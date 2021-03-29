@@ -16,3 +16,20 @@ body {
   padding-top:25px;
 }
 
+.nav-category{
+  display: none;
+}
+.nav-dropdown{
+  display: block;
+}
+
+/*----------Stor skärm--------*/
+@media (min-width: 991px) {
+
+  .nav-category{
+    display: block;
+  }
+  .nav-dropdown{
+    display: none;
+  }
+}
