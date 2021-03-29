@@ -2,7 +2,7 @@
     {
         "id": 1,
         "email": "eva@eva.com",
-        "fistName": "Eva",
+        "firstName": "Eva",
         "lastName": "Evasson",
         "address": "Gatugatan 1A",
         "zipcode": 21121,
@@ -18,7 +18,7 @@
     {
         "id": 2,
         "email": "pal@pal.com",
-        "fistName": "Pål",
+        "firstName": "Pål",
         "lastName": "Pålsson",
         "address": "Gatugatan 4A",
         "zipcode": 21121,
@@ -32,7 +32,7 @@
     {
         "id": 3,
         "email": "steve@steve.com",
-        "fistName": "Steve",
+        "firstName": "Steve",
         "lastName": "Stevesson",
         "address": "Gatugatan 23A",
         "zipcode": 12143,
@@ -46,7 +46,7 @@
     {
         "id": 4,
         "email": "sabrina@sabrina.com",
-        "fistName": "Sabrina",
+        "firstName": "Sabrina",
         "lastName": "Sabrinasson",
         "address": "Gatugatan 111A",
         "zipcode": 21101,
