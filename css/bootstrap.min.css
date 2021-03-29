@@ -3897,6 +3897,11 @@ input[type="submit"].btn-block {
     margin-bottom: 0;
     list-style: none;
 }
+
+.nav input[type=text] {
+    width: 100px;
+
+}
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
