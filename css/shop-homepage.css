@@ -59,18 +59,13 @@ form.example button {
   cursor: pointer;
 }
 
-.container .AboutUs {
-  color: rgb(255, 255, 255);
-  position: relative;
-  right: 80px;
-
+#titleinfo {
+  color: aqua;
+  text-align: center;
 }
 
-.container .AboutTitle {
-  color: rgb(255, 255, 255);
-  position: relative;
-  right: 80px;
-  font-size: 24px;
-  font-weight: bold;
-  
+#textinfo {
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
