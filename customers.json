@@ -1,0 +1,60 @@
+[
+    {
+        "id": 1,
+        "email": "eva@eva.com",
+        "förnamn": "Eva",
+        "efternamn": "Evasson",
+        "gatuadress": "Gatugatan 1A",
+        "postnummer": 21121,
+        "ort": "Malmö",
+        "lösenord": "1234",
+        "VIP": "ja",
+        "aktiv": "ja",
+        "skapad datum": "2019-12-12",
+        "redigerad datum": "2019-12-12"
+        
+
+    },
+    {
+        "id": 2,
+        "email": "pal@pal.com",
+        "förnamn": "Pål",
+        "efternamn": "Pålsson",
+        "gatuadress": "Gatugatan 4A",
+        "postnummer": 21121,
+        "ort": "Malmö",
+        "lösenord": "1234",
+        "VIP": "nej",
+        "aktiv": "nej",
+        "skapad datum": "2010-12-12",
+        "redigerad datum": "2019-12-12"
+    },
+    {
+        "id": 3,
+        "email": "steve@steve.com",
+        "förnamn": "Steve",
+        "efternamn": "Stevesson",
+        "gatuadress": "Gatugatan 23A",
+        "postnummer": 12143,
+        "ort": "Stockholm",
+        "lösenord": "1234",
+        "VIP": "ja",
+        "aktiv": "ja",
+        "skapad datum": "2020-12-12",
+        "redigerad datum": "2019-12-12"
+    },
+    {
+        "id": 4,
+        "email": "sabrina@sabrina.com",
+        "förnamn": "Sabrina",
+        "efternamn": "Sabrinasson",
+        "gatuadress": "Gatugatan 111A",
+        "postnummer": 21101,
+        "ort": "Helsingborg",
+        "lösenord": "1234",
+        "VIP": "nej",
+        "aktiv": "ja",
+        "skapad datum": "2010-12-12",
+        "redigerad datum": "2019-12-12"
+    }
+]
