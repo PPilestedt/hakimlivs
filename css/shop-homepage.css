@@ -81,3 +81,7 @@ form.example button {
   color: #fad96c;
 
 }
+
+.navlinks {
+  display: inline-block;
+}
