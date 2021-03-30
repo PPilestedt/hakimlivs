@@ -4,7 +4,8 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
 body {
-  padding-top: 70px;
+  /*padding-top: 70px;
+*/
 }
 
 #logo {
@@ -70,7 +71,13 @@ form.example button {
   text-align: center;
 }
 
-footer {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+.undecorated-link {
+  text-decoration: none;
+  color: #ffc400;
+
+}
+.undecorated-link:hover {
+  text-decoration: none;
+  color: #fad96c;
+
 }
