@@ -69,3 +69,8 @@ form.example button {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
+
+footer {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
