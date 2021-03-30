@@ -28,6 +28,11 @@
     <a href="index.html"><img src="images\hakimLogo.png" alt="Hakim Livs Logo" id="logo"></a>
     <input type="text" placeholder="Search..">
     <a class="nav-link" href="#">Varukorg</a>
+
+    <!-- Order Modal button-->
+    <div class="col">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count"></span>)</button>
+
     <a class="nav-link" href="login.html">Logga in</a>
     <div class="collapse navbar-collapse" id="navbarResponsive">
 
@@ -103,6 +108,7 @@
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <button class="add-to-cart btn btn-primary">Lägg till</button>
               </div>
             </div>
           </div>
@@ -119,6 +125,7 @@
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <button class="add-to-cart btn btn-primary">Lägg till</button>
               </div>
             </div>
           </div>
@@ -135,6 +142,7 @@
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <button class="add-to-cart btn btn-primary">Lägg till</button>
               </div>
             </div>
           </div>
@@ -151,6 +159,7 @@
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <button class="add-to-cart btn btn-primary">Lägg till</button>
               </div>
             </div>
           </div>
@@ -167,6 +176,7 @@
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <button class="add-to-cart btn btn-primary">Lägg till</button>
               </div>
             </div>
           </div>
@@ -183,6 +193,7 @@
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <button class="add-to-cart btn btn-primary">Lägg till</button>
               </div>
             </div>
           </div>
@@ -209,9 +220,41 @@
     <!-- /.container -->
   </footer>
 
+
+
+ <!-- Order Modal -->
+ <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Din varukorg</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="show-cart table">
+          
+        </table>
+        <div>Summa: <span class="total-cart"></span></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+        <button type="button" class="btn btn-primary">Slutför beställning</button>
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- Order Modal end -->
+
+
+
+
+
   <!-- Bootstrap core JavaScript -->
   <script src="jquery.js"></script>
   <script src="bootstrap.bundle.js"></script>
+  <script src="cart.js"></script>
 
 </body>
 
