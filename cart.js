@@ -140,6 +140,7 @@ var shoppingCart = (function() {
     var price = Number($(this).data('price'));
     shoppingCart.addItemToCart(name, price, 1);
     displayCart();
+    console.log("klicky")
   });
   
   // Clear items
