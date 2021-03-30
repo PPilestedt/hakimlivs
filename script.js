@@ -1,13 +1,19 @@
 let shoppingCart2 = [];
-
-fetch("data/products.json")
-            .then(res=>res.json())
-            .then(products => {
-                displayAllProducts(products);
-            })
-            .catch(error => console.error(error));
+loadProducts();
 
 
+async function loadProducts(){
+    await fetch("data/products.json")
+                .then(res=>res.json())
+                .then(products => {
+                    displayAllProducts(products);
+                })
+                .catch(error => console.error(error));
+                
+}
+            
+            
+            
 function displayAllProducts(products) {
     let productContainer = document.getElementById("product-content");
 
@@ -40,15 +46,46 @@ function DisplayProductsInCard(product) {
     button.classList.add("add-to-cart");
     button.classList.add("btn");
     button.classList.add("btn-primary");
+    button.setAttribute("data-id",`${product.id}`);
     button.textContent = "Lägg till i varukorgen";
-    /*
+    
     button.addEventListener("click", function (e) {
         addToCart(product, quantityInput.value);
-    }); */
+    });
 
     prodDescription.appendChild(quantityInput);
     prodDescription.appendChild(button);
     card.appendChild(prodDescription);
     
     return card;
+}
+
+function addToCart(product, quantity){
+    console.log("add to cart");
+    console.log(product);
+    console.log(quantity);
+    
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    if(cart == null){
+        cart = [];
+    }
+    
+    product.quantity = Number(quantity);
+
+
+    let cartContainsProduct = false;
+    for (let index = 0; index < cart.length; index++) {
+        if(cart[index].id == product.id){
+            console.log("cart contains product");
+            cartContainsProduct = true;
+            cart[index].quantity += Number(product.quantity);
+            break;
+        }
+    }
+    if(!cartContainsProduct){
+        console.log("cart did not contain product")
+        cart.push(product);
+    }
+
+    localStorage.setItem("cart",JSON.stringify(cart));
 }
