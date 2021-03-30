@@ -3,9 +3,6 @@
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
-body {
-
-}
 
 #logo {
   width: 265px;
@@ -102,17 +99,37 @@ form.example button {
 .column {
     float: left;
     width: 25%;
-  }
+}
   
-  .row:after {
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
+}
 
+.left {
+  order: 1;
+}
+
+.center {
+  order: 2;
+}
+
+.right {
+  order: 3;
+}
   @media screen and (max-width: 600px) {
     .column {
       width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    .center {
+      order: 3;
+    }
+    .right {
+      order: 2;
     }
   }
 

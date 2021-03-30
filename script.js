@@ -41,10 +41,10 @@ function DisplayProductsInCard(product) {
     button.classList.add("btn");
     button.classList.add("btn-primary");
     button.textContent = "Lägg till i varukorgen";
-    /*
+    
     button.addEventListener("click", function (e) {
         addToCart(product, quantityInput.value);
-    }); */
+    }); 
 
     prodDescription.appendChild(quantityInput);
     prodDescription.appendChild(button);
