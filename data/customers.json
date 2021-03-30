@@ -8,8 +8,8 @@
         "zipcode": 21121,
         "city": "Malmö",
         "password": "",
-        "VIP": "ja",
-        "active": "ja",
+        "VIP": true,
+        "active": true,
         "created": "2019-12-12",
         "edited": "2019-12-12"
         
@@ -24,8 +24,8 @@
         "zipcode": 21121,
         "city": "Malmö",
         "password": "",
-        "VIP": "nej",
-        "active": "nej",
+        "VIP": false,
+        "active": false,
         "created": "2010-12-12",
         "edited": "2019-12-12"
     },
@@ -38,8 +38,8 @@
         "zipcode": 12143,
         "city": "Stockholm",
         "password": "",
-        "VIP": "ja",
-        "active": "ja",
+        "VIP": true,
+        "active": true,
         "created": "2019-12-12",
         "edited": "2020-12-12"
     },
@@ -52,8 +52,8 @@
         "zipcode": 21101,
         "city": "Helsingborg",
         "password": "",
-        "VIP": "nej",
-        "active": "ja",
+        "VIP": true,
+        "active": true,
         "created": "2010-12-12",
         "edited": "2019-12-12"
     }
