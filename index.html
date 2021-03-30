@@ -27,14 +27,15 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span></button>
     <a href="index.html"><img src="images\hakimLogo.png" alt="Hakim Livs Logo" id="logo"></a>
-    <input type="text" placeholder="Search..">
-    <button type="submit">Sök</button>
-      
+    <div class="search-container">
+      <input type="text" placeholder="Search..">
+      <button type="submit">Sök</button>
+    </div>
     <a class="nav-link undecorated-link" href="login.html">Logga in</a>
 
     <!-- Order Modal button-->
     <div class="col">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count"></span>)</button>
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count"></span>)</button>
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
 
@@ -117,14 +118,14 @@
   <!-- Footer -->
   <footer class="bg-dark">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
+      <div class="row" id="footer-wrapper">
+        <div class="col-lg-4 left">
           <a href="history.html" class="undecorated-link">Hakim Livs - Vår Historia</a>
         </div>
-        <div class="col-lg-4">
-          <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        <div class="col-lg-4 center">
+          <p class="m-0 text-white">Copyright &copy; Your Website 2020</p>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 right">
           <a class="undecorated-link" href="login.html">Admin Login</a>
         </div>
       </div>

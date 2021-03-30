@@ -1,4 +1,4 @@
-let shoppingCart = [];
+let shoppingCart2 = [];
 
 fetch("data/products.json")
             .then(res=>res.json())
@@ -37,10 +37,14 @@ function DisplayProductsInCard(product) {
     quantityInput.pattern = "[0-9]";
 
     let button = document.createElement("button");
+    button.classList.add("add-to-cart");
+    button.classList.add("btn");
+    button.classList.add("btn-primary");
     button.textContent = "Lägg till i varukorgen";
+    /*
     button.addEventListener("click", function (e) {
         addToCart(product, quantityInput.value);
-    });
+    }); */
 
     prodDescription.appendChild(quantityInput);
     prodDescription.appendChild(button);
