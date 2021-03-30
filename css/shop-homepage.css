@@ -1,0 +1,71 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+body {
+  padding-top: 70px;
+}
+
+#logo {
+  width: 265px;
+  height: 64px;
+}
+
+.nav-category{
+  padding-top:25px;
+}
+
+.nav-category{
+  display: none;
+}
+.nav-dropdown{
+  display: block;
+}
+
+/*----------Stor skärm--------*/
+@media (min-width: 991px) {
+
+  .nav-category{
+    display: block;
+  }
+  .nav-dropdown{
+    display: none;
+  }
+}
+
+form.example {
+  position: relative;
+  left: 100px;
+}
+
+form.example input[type=text] {
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid grey;
+  width: 500px;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+#titleinfo {
+  color: aqua;
+  text-align: center;
+}
+
+#textinfo {
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
