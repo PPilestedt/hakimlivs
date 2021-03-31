@@ -222,6 +222,9 @@ form.example button {
   order: 3;
 }
 
+.cart-item-sum{
+  text-align: end;
+}
   @media screen and (max-width: 991px) {
     .center {
       order: 3;
