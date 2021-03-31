@@ -209,3 +209,24 @@ form.example button {
 .navlinks {
   display: inline-block;
 }
+
+.left {
+  order: 1;
+}
+
+.center {
+  order: 2;
+}
+
+.right {
+  order: 3;
+}
+
+  @media screen and (max-width: 991px) {
+    .center {
+      order: 3;
+    }
+    .right {
+      order: 2;
+    }
+  }
