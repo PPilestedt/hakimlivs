@@ -46,6 +46,51 @@ $(function(){
         displayCart();
     }
 
+    function removeCartItem(event){
+        const element = event.target;
+        const productId = element.getAttribute("data-id");
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        
+        console.log("removeing from cart id " + productId);
+
+
+        if(cart != null){
+            for (let index = 0; index < cart.length; index++) {
+                if(cart[index].id == productId){
+                    cart.splice(index,1);
+                    break;
+                }
+            }
+        }
+
+        localStorage.setItem("cart",JSON.stringify(cart));
+        displayCart();
+    }
+
+    function updateCartNumber(event){
+        const element = event.target;
+        const productId = element.getAttribute("data-id");
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        
+        console.log("updating number from inputfield. product:" + productId);
+
+        if(element.value <= 99 && element.value >= 0){
+            if(cart != null){
+                for (let index = 0; index < cart.length; index++) {
+                    if(cart[index].id == productId){
+                        cart[index].quantity = Number(element.value);
+                        break;
+                    }
+                }
+            }
+        }else{
+            alert("GET OUT OF MY STORE!");
+        }
+
+        localStorage.setItem("cart",JSON.stringify(cart));
+        displayCart();
+    }
+
     async function loadProducts(){
         await fetch("data/products.json")
                     .then(res=>res.json())
@@ -161,7 +206,7 @@ $(function(){
                             <td>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
+                                    <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                             </td>
@@ -180,6 +225,8 @@ $(function(){
         //eventListeners för cart item knappar
         $(".minus-item").click(decreaseCartItem);
         $(".plus-item").click(increaseCartItem);
+        $(".delete-item").click(removeCartItem);
+        $(".item-count").change(updateCartNumber);
 
     }
 
