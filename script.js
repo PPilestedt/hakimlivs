@@ -1,3 +1,9 @@
+
+const cartItems = document.querySelector(".total-count");
+
+cartItems.innerText = itemsTotal;
+
+
 $(function(){
 
     let shoppingCart2 = [];
@@ -61,6 +67,7 @@ $(function(){
     }
 
     function addToCart(product, quantity){
+        
         console.log("add to cart");
         console.log(product);
         console.log(quantity);
@@ -92,11 +99,13 @@ $(function(){
     }
 
     function displayCart() {
+        let itemsTotal = 0;
         console.log("Displaycart function")
         const cartArray = JSON.parse( localStorage.getItem("cart"));
         let output = "";
         
         cartArray.forEach(product => {
+           // itemsTotal += product.price;
             output += "<tr>"
             + "<td>" + product.title + "</td>" 
             + "<td>(" + product.price + ")</td>"
@@ -109,6 +118,7 @@ $(function(){
             +  "</tr>";
         });
        
+        // cartItems.innerText = itemsTotal;
         $('.show-cart').html(output);
         //$('.total-cart').html(shoppingCart.totalCart());
         //$('.total-count').html(shoppingCart.totalCount());
