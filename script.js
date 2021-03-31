@@ -142,8 +142,4 @@ $(function(){
         output += "</ul>"
         $('#navbarResponsive').html(output);
     }
-
-    function filterCategories() {
-
-    }
 })
