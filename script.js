@@ -1,7 +1,7 @@
 
-const cartItems = document.querySelector(".total-count");
+//const cartItems = document.querySelector(".total-count");
 
-cartItems.innerText = itemsTotal;
+//cartItems.innerText = itemsTotal;
 
 
 $(function(){
