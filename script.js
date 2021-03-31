@@ -1,10 +1,6 @@
-
-//const cartItems = document.querySelector(".total-count");
-
-//cartItems.innerText = itemsTotal;
-
-
 $(function(){
+
+    
 
     let shoppingCart2 = [];
     loadProducts();
@@ -99,13 +95,17 @@ $(function(){
     }
 
     function displayCart() {
+        const cartItems = document.querySelector(".total-count");
+        const cartSum = document.querySelector(".total-cart");
         let itemsTotal = 0;
+        let priceTotal = 0;
         console.log("Displaycart function")
         const cartArray = JSON.parse( localStorage.getItem("cart"));
         let output = "";
         
         cartArray.forEach(product => {
-           // itemsTotal += product.price;
+           itemsTotal += product.quantity;
+           priceTotal += product.price*product.quantity;
             output += "<tr>"
             + "<td>" + product.title + "</td>" 
             + "<td>(" + product.price + ")</td>"
@@ -118,7 +118,8 @@ $(function(){
             +  "</tr>";
         });
        
-        // cartItems.innerText = itemsTotal;
+        cartItems.innerText = itemsTotal;
+        cartSum.innerText = priceTotal;
         $('.show-cart').html(output);
         //$('.total-cart').html(shoppingCart.totalCart());
         //$('.total-count').html(shoppingCart.totalCount());
