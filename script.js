@@ -82,6 +82,10 @@ $(function(){
                 console.log("cart contains product");
                 cartContainsProduct = true;
                 cart[index].quantity += Number(product.quantity);
+                if (cart[index].quantity > 99){
+                    alert("Maxantal av en produkt är 99");
+                    cart[index].quantity = 99;
+                }
                 break;
             }
         }
