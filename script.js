@@ -85,7 +85,7 @@ $(function(){
                 }
             }
         }else{
-            alert("GET OUT OF MY STORE!");
+            alert("Felaktig inmatning");
         }
 
         localStorage.setItem("cart",JSON.stringify(cart));
