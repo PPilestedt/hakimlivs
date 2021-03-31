@@ -192,3 +192,7 @@ form.example button {
 .navlinks {
   display: inline-block;
 }
+
+.cart-item-sum{
+  text-align: end;
+}
