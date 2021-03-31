@@ -1,8 +1,9 @@
 $(function(){
 
-    let shoppingCart2 = [];
+    let categoriesArray = [];
+    let productsArray = [];
     loadProducts();
-
+    loadCategories();
 
     async function loadProducts(){
         await fetch("data/products.json")
@@ -18,12 +19,13 @@ $(function(){
         let productContainer = document.getElementById("product-content");
 
         products.forEach(item => {
-            let card = DisplayProductsInCard(item);
+            productsArray.push(item);
+            let card = displayProductsInCard(item);
             productContainer.appendChild(card);
         })
     }
 
-    function DisplayProductsInCard(product) {
+    function displayProductsInCard(product) {
         let card = document.createElement("div");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} " height="200"> </div>`;
@@ -114,4 +116,34 @@ $(function(){
         //$('.total-count').html(shoppingCart.totalCount());
     }
 
+    async function loadCategories() {
+        await fetch("data/categories.json")
+                    .then(res=>res.json())
+                    .then(categories => {
+                         displayAllCategories(categories);
+                     })
+                    .catch(error => console.error(error));
+                        
+    }
+
+    function displayAllCategories(categories) {
+        let output = "";
+
+        categories.forEach(category => {
+            categoriesArray.push(category);
+            output += "<a href='#' class='list-group-item'>" + category.name + "</a>"
+        })
+        $('.nav-category').html(output);
+
+        output = "<ul class='navbar-nav ml-auto nav-dropdown'>"
+        categories.forEach(category => {
+            output += "<li><a href='#' class='list-group-item'>" + category.name + "</a></li>"
+        })
+        output += "</ul>"
+        $('#navbarResponsive').html(output);
+    }
+
+    function filterCategories() {
+
+    }
 })
