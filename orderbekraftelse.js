@@ -10,7 +10,7 @@ function orderBekraftelse() {
         Object.values(cartItems).map(item => {
             productContainer.innerHTML += `
             <tr>
-            <td class="product-id">${item.id}</td>
+            
                 <td class="product-namn">${item.title}</td>
                 <td class="product-price">${(item.price).toFixed(2)}kr</td>
                 <td class="product-quantity">${item.quantity}</td>
