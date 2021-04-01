@@ -10,7 +10,6 @@ function orderBekraftelse() {
         Object.values(cartItems).map(item => {
             productContainer.innerHTML += `
             <tr>
-            
                 <td class="product-namn">${item.title}</td>
                 <td class="product-price">${(item.price).toFixed(2)}kr</td>
                 <td class="product-quantity">${item.quantity}</td>
@@ -28,7 +27,7 @@ totalDiv.innerHTML = `Totalt: ` +getTotal()+`kr`;
 function getTotal() {
     let sum = 0;
     for (let i = 0; i < cartItems.length; i++) {
-        sum += parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity);
+        sum += parseFloat((cartItems[i].price).toFixed(2)) * parseInt(cartItems[i].quantity);
     }
     return sum;
 }
