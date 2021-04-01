@@ -190,7 +190,7 @@ $(function(){
         let priceTotal = 0;
         console.log("Displaycart function")
         const cartArray = JSON.parse(localStorage.getItem("cart"));
-        let output = "";
+        let output = document.getElementById('order-entries');
         
         if(cartArray != null){
             cartArray.forEach(product => {
@@ -216,6 +216,7 @@ $(function(){
                             <td class="cart-item-sum">${(product.price * product.quantity).toFixed(2) } Kr
                             </td>
                 </tr>`;
+            
             });
         }
         cartItems.innerText = itemsTotal;
