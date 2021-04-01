@@ -92,13 +92,13 @@ function displayCart() {
     let priceTotal = 0;
     console.log("Displaycart function")
     const cartArray = JSON.parse(localStorage.getItem("cart"));
-    let output = document.getElementById('order-entries');
+    let output = "";
     
     if(cartArray != null){
         cartArray.forEach(product => {
         itemsTotal += product.quantity;
         priceTotal += product.price*product.quantity;
-            output.innerHTML += `<tr>
+            output += `<tr>
                         <td>
                             ${product.title}
                         </td>
@@ -121,7 +121,7 @@ function displayCart() {
         
         });
     }
-    $('.show-cart').html(output);
+    document.getElementById('order-entries').innerHTML = output;
 
     //eventListeners för cart item knappar
     $(".minus-item").click(decreaseCartItem);
