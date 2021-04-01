@@ -1,9 +1,10 @@
 $(function(){
 
+    let categoriesArray = [];
+    let productsArray = [];
     
-
-    let shoppingCart2 = [];
     loadProducts();
+    loadCategories();
     displayCart();
 
     function decreaseCartItem(event){
@@ -71,20 +72,25 @@ $(function(){
         const element = event.target;
         const productId = element.getAttribute("data-id");
         const cart = JSON.parse(localStorage.getItem("cart"));
-        
+        let value = element.value;
         console.log("updating number from inputfield. product:" + productId);
 
-        if(element.value <= 99 && element.value >= 0){
+        if (value.includes(".")) {
+            alert("Felaktig inmatning");
+            return;
+        }
+
+        if(value <= 99 && value >= 0){
             if(cart != null){
                 for (let index = 0; index < cart.length; index++) {
                     if(cart[index].id == productId){
-                        cart[index].quantity = Number(element.value);
+                        cart[index].quantity = Number(value);
                         break;
                     }
                 }
             }
         }else{
-            alert("GET OUT OF MY STORE!");
+            alert("Felaktig inmatning");
         }
 
         localStorage.setItem("cart",JSON.stringify(cart));
@@ -105,28 +111,32 @@ $(function(){
         let productContainer = document.getElementById("product-content");
 
         products.forEach(item => {
-            let card = DisplayProductsInCard(item);
+            productsArray.push(item);
+            let card = displayProductsInCard(item);
             productContainer.appendChild(card);
         })
     }
 
-    function DisplayProductsInCard(product) {
+    function displayProductsInCard(product) {
         let card = document.createElement("div");
         card.className = "product-card";
-        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} " height="200"> </div>`;
+        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
 
         let prodDescription = document.createElement("div");
         prodDescription.className = "product-description";
         prodDescription.innerHTML =
-            `<h3>${product.title}</h3>
-            <p>${product.description}</p>
-            <h4>Pris: ${product.price} kr</h4>
+            `<h4>${product.title}</h4>
+            
+            <h5>Pris: ${product.price} kr</h5>
             <br>`;
+        // Minor surgery
+        //<p>${product.description}</p>
 
         let quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.value = "1";
         quantityInput.min = "1";
+        quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
 
         let button = document.createElement("button");
@@ -152,20 +162,33 @@ $(function(){
         console.log("add to cart");
         console.log(product);
         console.log(quantity);
-        
+
+        if (quantity.includes(".")) {
+            alert("Felaktig inmatning");
+            return;
+        }
+        let productQuantity = parseInt(quantity);
         let cart = JSON.parse(localStorage.getItem("cart"));
         if(cart == null){
             cart = [];
         }
         
-        product.quantity = Number(quantity);
+        if (productQuantity < 1) {
+            alert("Minantal av en produkt är 1");
+            return;
+        } else if (productQuantity > 99) {
+            alert("Maxantal av en produkt är 99");
+            return;
+        } 
+
+        product.quantity = productQuantity;
 
         let cartContainsProduct = false;
         for (let index = 0; index < cart.length; index++) {
             if(cart[index].id == product.id){
                 console.log("cart contains product");
                 cartContainsProduct = true;
-                cart[index].quantity += Number(product.quantity);
+                cart[index].quantity += productQuantity;
                 if (cart[index].quantity > 99){
                     alert("Maxantal av en produkt är 99");
                     cart[index].quantity = 99;
@@ -174,7 +197,7 @@ $(function(){
             }
         }
         if(!cartContainsProduct){
-            console.log("cart did not contain product")
+            console.log("cart did not contain product");
             cart.push(product);
         }
 
@@ -230,15 +253,34 @@ $(function(){
 
     }
 
- 
+    async function loadCategories() {
+        await fetch("data/categories.json")
+                    .then(res=>res.json())
+                    .then(categories => {
+                         displayAllCategories(categories);
+                     })
+                    .catch(error => console.error(error));
+                        
+    }
 
-   // minusButton.addEventListener("click", function (e) {
-        
-    //});
+    function displayAllCategories(categories) {
+        let output = "";
 
-   // plusButton.addEventListener("click", function (e) {
-    //    addToCart(product, quantityInput.value);
-    //});
+        categories.forEach(category => {
+            categoriesArray.push(category);
+            output += "<a href='#' class='list-group-item'>" + category.name + "</a>"
+        })
+        $('.nav-category').html(output);
 
-
+        output = "<ul class='navbar-nav ml-auto nav-dropdown'>"
+        categories.forEach(category => {
+            output += "<li><a href='#' class='list-group-item'>" + category.name + "</a></li>"
+        })
+        output += "</ul>"
+        $('#navbarResponsive').html(output);
+    }
 })
+
+
+
+
