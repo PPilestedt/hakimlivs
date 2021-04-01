@@ -23,6 +23,7 @@ body {
   display: block;
 }
 
+
 /*----------Stor skärm--------*/
 @media (min-width: 991px) {
 
@@ -191,4 +192,37 @@ form.example button {
 
 .navlinks {
   display: inline-block;
+}
+
+.container-order {
+  position: relative;
+  text-align: center;
+}
+
+#show-cart table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1%;
+
+}
+
+table th,
+table td {
+  padding: 2 0.5em;
+}
+
+table tbody > :nth-child(2n-1) {
+  background-color: #cec9c1;
+}
+
+.summary-table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgb(19, 19, 19);
+  padding: 8px;
+  border-collapse: collapse;
+}
+
+.table-head {
+  background-color: #ffc400;
 }

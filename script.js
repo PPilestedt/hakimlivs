@@ -2,6 +2,7 @@ $(function(){
 
     let shoppingCart2 = [];
     loadProducts();
+    displayCart();
 
 
     async function loadProducts(){
@@ -113,5 +114,4 @@ $(function(){
         //$('.total-cart').html(shoppingCart.totalCart());
         //$('.total-count').html(shoppingCart.totalCount());
     }
-
 })
