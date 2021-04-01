@@ -16,6 +16,7 @@
   -->
   <!-- Custom styles for this template -->
   <link href="css/shop-homepage.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
 
 </head>
 
@@ -31,7 +32,9 @@
         <input type="text" placeholder="Search..">
         <button type="submit">Sök</button>
       </div>
-      <a class="nav-link undecorated-link" href="login.html">Logga in</a>
+
+        <!-- Logga in modal button -->
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".login-register-form">Logga in</button>
 
       <!-- Order Modal button-->
       <div class="col">
@@ -40,6 +43,9 @@
       <div class="collapse navbar-collapse sticky-top" id="navbarResponsive">
 
       </div>
+
+
+
     </div>
   </nav>
 
@@ -122,7 +128,7 @@
 
 
   <!-- Order Modal -->
-  <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -145,6 +151,110 @@
     </div>
   </div>
   <!-- Order Modal end -->
+
+ 
+ <!-- Login / Register Modal-->
+ <div class="modal fade login-register-form" role="dialog">
+     <div class="modal-dialog modal-sm">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">
+                     <span class="glyphicon glyphicon-remove"></span>
+                 </button>
+                 <ul class="nav nav-tabs">
+                   <br>
+                     <li class="active"><a data-toggle="tab" href="#login-form"> Logga in <span class="glyphicon glyphicon-user"></span></a></li>
+                     <li><a data-toggle="tab" href="#registration-form"> Registera ny kund <span class="glyphicon glyphicon-pencil"></span></a></li>
+                 </ul>
+             </div>
+             <div class="modal-body">
+                 <div class="tab-content">
+                     <div id="login-form" class="tab-pane active">  <!-- fade in active-->
+
+                      <!-- bane bild -->
+                      <div class="imgcontainer">
+                        <img src="images/customerLogIn.png" alt="Avatar" class="avatar" style="width:120px;height:120px;">
+                      </div>
+                      <!-- bane bild end -->
+
+
+
+                         <form action="/">
+                             <div class="form-group">
+                                 <label for="email">Email:</label>
+                                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                             </div>
+                             <div class="form-group">
+                                 <label for="pwd">Lösenord:</label>
+                                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                             </div>
+                             <div class="checkbox">
+                                 <label><input type="checkbox" name="remember"> Kom ihåg mig</label>
+                             </div>
+                             <button type="submit" class="btn btn-warning">Logga in</button>
+                             <br>
+                         </form>
+                     </div>
+
+                     
+                     <div id="registration-form" class="tab-pane fade">
+
+                      <!-- bane bild -->
+                      <div class="imgcontainer">
+                        <img src="images/customerLogIn.png" alt="Avatar" class="avatar" style="width:120px;height:120px;">
+                      </div>
+                      <!-- bane bild end -->
+
+                         <form action="/">
+                             <div class="form-group" >
+                                 <label for="name">Ditt förnamn:</label>
+                                 <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname">
+                             </div>
+
+                             <div class="form-group" >
+                              <label for="name">Ditt efternamn:</label>
+                              <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname" name="lastname">
+                          </div>
+
+                             <div class="form-group" >
+                              <label for="address">Gatuadress:</label>
+                              <input type="text" class="form-control" id="address" placeholder="Enter your street address" name="address">
+                          </div>
+
+                          <div class="form-group" >
+                            <label for="name">Postnummer:</label>
+                            <input type="text" class="form-control" id="zipcode" placeholder="Enter your zip code" name="zipcode">
+                        </div>
+
+                        <div class="form-group" >
+                          <label for="name">Stad:</label>
+                          <input type="text" class="form-control" id="city" placeholder="Enter your city" name="city">
+                      </div>
+
+                             <div class="form-group">
+                                 <label for="newemail">Email:</label>
+                                 <input type="email" class="form-control" id="newemail" placeholder="Enter new email" name="newemail">
+                             </div>
+                             <div class="form-group">
+                                 <label for="newpwd">Lösenord:</label>
+                                 <input type="password" class="form-control" id="newpwd" placeholder="New password" name="newpwd">
+                             </div>
+                             <button type="submit" class="btn btn-warning">Registrera dig</button>
+                             <br>
+                         </form>
+                     </div>
+
+                 </div>
+             </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                      </div>
+         </div>
+     </div>
+ </div>
+  
+</div>
+  <!-- Login / Register Modal end -->
 
 
 

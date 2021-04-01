@@ -277,3 +277,11 @@ $(function(){
         $('#navbarResponsive').html(output);
     }
 })
+
+
+$("#registration-form").on('click', function(){
+    
+        alert("hej");
+    
+});
+
