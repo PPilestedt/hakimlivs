@@ -189,7 +189,7 @@ $(function(){
         let itemsTotal = 0;
         let priceTotal = 0;
         console.log("Displaycart function")
-        const cartArray = JSON.parse( localStorage.getItem("cart"));
+        const cartArray = JSON.parse(localStorage.getItem("cart"));
         let output = "";
         
         if(cartArray != null){

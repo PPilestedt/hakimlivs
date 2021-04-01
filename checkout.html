@@ -17,7 +17,9 @@
     <div class="container-order">
         <h2>Ordersammanställning</h2>
     
-        <table class="summary-table" id="summary-table">
+        <div class="modal-body">
+            <table class="show-cart table">
+          </div>
             <thead class="table-head">
             <tr>
                 <th>Produkt</th>
@@ -29,8 +31,11 @@
             </thead>
             <tbody id="order-entries"></tbody>
         </table>
+    </div>
         <p id="total-cart"><strong>Totalsumma: </strong></p>
     </div>
 </body>
-<script src="order.js"></script>
+<script src="script.js"></script>
+<script src="jquery.js"></script>
+<script src="bootstrap.bundle.js"></script>
 </html>
