@@ -30,7 +30,7 @@ function getTotal() {
     for (let i = 0; i < cartItems.length; i++) {
         sum += parseFloat(cartItems[i].price) * parseInt(cartItems[i].quantity);
     }
-    return sum;
+    return sum.toFixed(2);
 }
 orderBekraftelse();
 getTotal();
