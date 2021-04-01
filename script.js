@@ -166,7 +166,6 @@ $(function(){
         }
         let productQuantity = parseInt(quantity);
         let cart = JSON.parse(localStorage.getItem("cart"));
-        let productQuantity = parseInt(quantity);
         if(cart == null){
             cart = [];
         }
