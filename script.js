@@ -75,7 +75,10 @@ $(function(){
         let value = element.value;
         console.log("updating number from inputfield. product:" + productId);
 
-
+        if (value.includes(".")) {
+            alert("Felaktig inmatning");
+            return;
+        }
 
         if(value <= 99 && value >= 0){
             if(cart != null){
