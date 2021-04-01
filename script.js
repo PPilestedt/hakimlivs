@@ -157,19 +157,20 @@ $(function(){
         console.log(quantity);
         
         let cart = JSON.parse(localStorage.getItem("cart"));
+        let productQuantity = parseInt(quantity);
         if(cart == null){
             cart = [];
         }
         
-        if (Number(quantity) < 1) {
+        if (productQuantity < 1) {
             alert("Minantal av en produkt är 1");
             return;
-        } else if (Number(quantity) > 99) {
+        } else if (productQuantity > 99) {
             alert("Maxantal av en produkt är 99");
             return;
         } 
 
-        product.quantity = Number(quantity);
+        product.quantity = productQuantity;
 
         let cartContainsProduct = false;
         for (let index = 0; index < cart.length; index++) {
