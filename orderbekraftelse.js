@@ -12,10 +12,10 @@ function orderBekraftelse() {
             <tr>
             <td class="product-id">${item.id}</td>
                 <td class="product-namn">${item.title}</td>
-                <td class="product-price">${(item.price).toFixed(2)} kr</td>
+                <td class="product-price">${(item.price).toFixed(2)}kr</td>
                 <td class="product-quantity">${item.quantity}</td>
                 <td class="product-weight">${(item.weight).toFixed(2)}</td>     
-                <td class="product-total">${(item.quantity * item.price).toFixed(2)} kr</td>          
+                <td class="product-total">${(item.quantity * item.price).toFixed(2)}kr</td>          
             </tr>           
             `
         });
@@ -23,7 +23,7 @@ function orderBekraftelse() {
 }
 
 let totalDiv = document.querySelector(".total");
-totalDiv.innerHTML = `Totalt: ` +getTotal();
+totalDiv.innerHTML = `Totalt: ` +getTotal()+`kr`;
 
 function getTotal() {
     let sum = 0;
