@@ -59,6 +59,7 @@ function increaseCartItem(event){
         }
     }
 
+    document.getElementById("finish-checkout-btn").removeAttribute("disabled");
     localStorage.setItem("cart",JSON.stringify(cart));
     displayCart();
 }
@@ -81,6 +82,9 @@ function updateCartNumber(event){
             for (let index = 0; index < cart.length; index++) {
                 if(cart[index].id == productId){
                     cart[index].quantity = Number(value);
+                    if (cart[index].quantity > 0) {
+                        document.getElementById("finish-checkout-btn").removeAttribute("disabled");
+                    }
                     break;
                 }
             }
@@ -139,7 +143,17 @@ function displayCart() {
 
 function disableButton() {
     const cart = JSON.parse(localStorage.getItem("cart"));
+    let amountEmpty = 0;
     if (cart == null || cart.length <= 0) {
+        document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
+        return;
+    }
+    for(let index = 0; index < cart.length; index++) {
+        if (cart[index].quantity <= 0) {
+            amountEmpty++;
+        }
+    }
+    if (amountEmpty == cart.length) {
         document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
     }
 }
