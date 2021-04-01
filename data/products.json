@@ -1,9 +1,9 @@
 [
     {
         "id": 1,
-        "title": "Fjällraven Backpack",
-        "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-        "image": "https:\/\/picsum.photos\/500?random=1",
+        "title": "Banan",
+        "description": "En ekologiskt och rättvisemärkt odlad banan. Bananer passar bra som mellanmål. Bananen är temperaturkänslig, mycket känslig för uttorkning, etylen och kylskador. Förvaras i rumstemperatur eller svalt, aldrig i kylskåp.",
+        "image": "https://d2rfo6yapuixuu.cloudfront.net/hef/h8e/10262323167262/7311042002482_1593420939098_master_axfood_400",
         "price": 109.95,
         "category": "Tidskrifter",
         "dateadded": "2021-03-29",
@@ -13,9 +13,9 @@
     },
     {
         "id": 2,
-        "title": "Mens Casual T-Shirts ",
-        "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-        "image": "https:\/\/picsum.photos\/500?random=2",
+        "title": "Loka Jordgubb",
+        "description": "Redan för tusen år sedan kom folk till Loka Brunn för att dricka det rena och friska vattnet, som enligt sägen gav styrka och kraft. Kanske var det en myt, kanske inte. Sant är i alla fall att vi tappar det friska vattnet på butelj, kolsyrar lätt och balanserar mineralhalten. Ett vatten som smakar ovanligt gott helt enkelt.",
+        "image": "https://d2rfo6yapuixuu.cloudfront.net/h3d/he3/10832212656158/7310401043067_1606895199578_master_axfood_400",
         "price": 22,
         "category": "Städ",
         "dateadded": "2021-03-29",
@@ -25,9 +25,9 @@
     },
     {
         "id": 3,
-        "title": "Mens Cotton Jacket",
-        "description": "great outerwear jackets for Spring\/Autumn\/Winter, suitable for many occasions, such as working, hiking, camping, mountain\/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
-        "image": "https:\/\/picsum.photos\/500?random=3",
+        "title": "Lök Gul",
+        "description": "Gul lök är en bra smaksättare. Passar bra både som kall och varm i matlagning.",
+        "image": "https://d2rfo6yapuixuu.cloudfront.net/h74/h35/8870819495966/07311042001225.jpg_1471954844094_master_axfood_400",
         "price": 55.99,
         "category": "Städ",
         "dateadded": "2021-03-29",

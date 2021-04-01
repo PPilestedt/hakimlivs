@@ -15,22 +15,55 @@
 </head>
 
 <body>
-    <div class="test">
-        <table class="table">
+
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span></button>
+            <a href="index.html"><img src="images\hakimLogo.png" alt="Hakim Livs Logo" id="logo"></a>
+            <div class="search-container">
+                <input type="text" placeholder="Search..">
+                <button type="submit">Sök</button>
+            </div>
+            <a class="nav-link undecorated-link" href="login.html">Logga in</a>
+
+            <!-- Order Modal button-->
+            <div class="col">
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span
+                        class="total-count">0</span>)</button>
+            </div>
+            <div class="collapse navbar-collapse sticky-top" id="navbarResponsive">
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="text-center">Tack för din order! Din order skickas snarast! - Hakim Livs</h2>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Produkt ID</th>
                     <th scope="col">Produkt title</th>
                     <th scope="col">Pris</th>
-                    <th scope="col">Vikt</th>
                     <th scope="col">Antal</th>
-                    <th scope="col">Totalt</th>
+                    <th scope="col">Vikt</th>
+                    <th scope="col">Summa</th>
                 </tr>
             </thead>
-            <tbody class="test2">
+            <tbody class="produkter">
 
             </tbody>
-            </table>
+        </table>
+
+
+        <div class="total text-right">
+
+        </div>
     </div>
     <script src="orderbekraftelse.js"></script>
 
