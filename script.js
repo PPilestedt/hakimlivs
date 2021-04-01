@@ -129,6 +129,7 @@ $(function(){
         quantityInput.type = "number";
         quantityInput.value = "1";
         quantityInput.min = "1";
+        quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
 
         let button = document.createElement("button");
@@ -160,6 +161,14 @@ $(function(){
             cart = [];
         }
         
+        if (Number(quantity) < 1) {
+            alert("Minantal av en produkt är 1");
+            return;
+        } else if (Number(quantity) > 99) {
+            alert("Maxantal av en produkt är 99");
+            return;
+        } 
+
         product.quantity = Number(quantity);
 
         let cartContainsProduct = false;
