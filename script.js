@@ -117,15 +117,17 @@ $(function(){
     function displayProductsInCard(product) {
         let card = document.createElement("div");
         card.className = "product-card";
-        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} " height="200"> </div>`;
+        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
 
         let prodDescription = document.createElement("div");
         prodDescription.className = "product-description";
         prodDescription.innerHTML =
-            `<h3>${product.title}</h3>
-            <p>${product.description}</p>
-            <h4>Pris: ${product.price} kr</h4>
+            `<h4>${product.title}</h4>
+            
+            <h5>Pris: ${product.price} kr</h5>
             <br>`;
+        // Minor surgery
+        //<p>${product.description}</p>
 
         let quantityInput = document.createElement("input");
         quantityInput.type = "number";
@@ -157,7 +159,12 @@ $(function(){
         console.log("add to cart");
         console.log(product);
         console.log(quantity);
-        
+
+        if (quantity.includes(".")) {
+            alert("Felaktig inmatning");
+            return;
+        }
+        let productQuantity = parseInt(quantity);
         let cart = JSON.parse(localStorage.getItem("cart"));
         let productQuantity = parseInt(quantity);
         if(cart == null){
@@ -179,7 +186,7 @@ $(function(){
             if(cart[index].id == product.id){
                 console.log("cart contains product");
                 cartContainsProduct = true;
-                cart[index].quantity += Number(product.quantity);
+                cart[index].quantity += productQuantity;
                 if (cart[index].quantity > 99){
                     alert("Maxantal av en produkt är 99");
                     cart[index].quantity = 99;
@@ -188,7 +195,7 @@ $(function(){
             }
         }
         if(!cartContainsProduct){
-            console.log("cart did not contain product")
+            console.log("cart did not contain product");
             cart.push(product);
         }
 
