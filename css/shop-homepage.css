@@ -258,11 +258,11 @@ form.example button {
     margin: auto;
   }
   .product-card .product-description input{
-    width: 200px;
+    width: 175px;
     margin: 5%;
   }  
   .product-card .product-description button{
-    height: 150px;
+    height: 100px;
     margin: 5%;
     font-size: 25px;
   }
