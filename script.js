@@ -72,14 +72,16 @@ $(function(){
         const element = event.target;
         const productId = element.getAttribute("data-id");
         const cart = JSON.parse(localStorage.getItem("cart"));
-        
+        let value = element.value;
         console.log("updating number from inputfield. product:" + productId);
 
-        if(element.value <= 99 && element.value >= 0){
+
+
+        if(value <= 99 && value >= 0){
             if(cart != null){
                 for (let index = 0; index < cart.length; index++) {
                     if(cart[index].id == productId){
-                        cart[index].quantity = Number(element.value);
+                        cart[index].quantity = Number(value);
                         break;
                     }
                 }
