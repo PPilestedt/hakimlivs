@@ -1,51 +1,37 @@
 
 
-
-
-
-
-
-
-  form {
-    border: 3px solid #f1f1f1;
-}
-/*assign full width inputs*/
-  
-input[type=text],
-input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-/*set a style for the buttons*/
-  
-.button2 {
-    background-color: #fcbb43;
-    color: black;
-    padding: 14px 20px;
-    margin: 8px 0;
+.modal-header {
+    padding: 0;
+  }
+  .modal-header .close {
+    padding: 10px 15px;
+  }
+  .modal-header ul {
     border: none;
-    cursor: pointer;
-    width: 100%;
-}
-/* set a hover effect for the button*/
-  
-button:hover {
-    opacity: 0.8;
-}
-/*set extra style for the cancel button*/
-  
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-/*centre the display image inside the container*/
-  
-.imgcontainer {
+  }
+  .modal-header ul li {
+    margin: 0;
+  }
+  .modal-header ul li a {
+    border: none;
+    border-radius: 0;
+  }
+  .modal-header ul li.active a {
+    color: #6077df;
+  }
+  .modal-header ul li a:hover {
+    border: none;
+  }
+  .modal-header ul li a span {
+    margin-left: 10px;
+  }
+  .modal-body .form-group {
+    margin-bottom: 10px;
+  }
+
+
+
+  .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
 }
@@ -56,18 +42,14 @@ img.avatar {
     border-radius: 50%;
 }
 /*set padding to the container*/
-  
-.container {
-    padding: 16px;
-}
-/*set the forgot password text*/
-  
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-/*set styles for span and cancel button on small screens*/
-  
+
+
+
+
+
+
+
+
 @media screen and (max-width: 300px) {
     span.psw {
         display: block;
@@ -77,6 +59,32 @@ span.psw {
         width: 100%;
     }
 }
+
+.form-group {
+    display: inline-block block;
+
+    
+    
+}
+
+#registration-form {
+   display: inline-block block;
+}
+
+@media (min-width: 1200px) {
+    .modal-xlg {
+       width: 90%; 
+    }
+ }
+
+
+
+
+
+
+
+
+
 
 
  

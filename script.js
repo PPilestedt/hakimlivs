@@ -260,3 +260,10 @@ $(function(){
     }
 })
 
+
+$("#registration-form").on('click', function(){
+    
+        alert("hej");
+    
+});
+
