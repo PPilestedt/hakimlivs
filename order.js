@@ -77,7 +77,7 @@ function updateCartNumber(event){
         return;
     }
 
-    if(value <= 99 && value >= 0){
+    if(value <= 99 && value >= 1){
         if(cart != null){
             for (let index = 0; index < cart.length; index++) {
                 if(cart[index].id == productId){
