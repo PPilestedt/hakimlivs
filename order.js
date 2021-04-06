@@ -148,7 +148,7 @@ function disableButton() {
     const cart = JSON.parse(localStorage.getItem("cart"));
     let amountEmpty = 0;
     if (cart == null || cart.length <= 0) {
-        document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
+        document.getElementById("finish-checkout-btn-two").setAttribute("disabled", "true");
         return;
     }
     for(let index = 0; index < cart.length; index++) {
@@ -157,6 +157,6 @@ function disableButton() {
         }
     }
     if (amountEmpty == cart.length) {
-        document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
+        document.getElementById("finish-checkout-btn-two").setAttribute("disabled", "true");
     }
 }
