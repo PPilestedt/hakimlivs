@@ -33,8 +33,8 @@ function decreaseCartItem(event){
 
     if(cart != null){
         for(let product of cart){
-            if(product.id == productId && product.quantity > 0){
-                if(product.quantity > 0){
+            if(product.id == productId && product.quantity > 1){
+                if(product.quantity > 1){
                     product.quantity--;
                     break;
                 }
