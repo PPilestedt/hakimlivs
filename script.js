@@ -43,6 +43,7 @@ $(function(){
             }
         }
 
+        document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
     }
@@ -201,6 +202,7 @@ $(function(){
             cart.push(product);
         }
 
+        document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
     
@@ -244,7 +246,7 @@ $(function(){
         cartItems.innerText = itemsTotal;
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
         $('.show-cart').html(output);
-
+        disableButton();
         //eventListeners för cart item knappar
         $(".minus-item").click(decreaseCartItem);
         $(".plus-item").click(increaseCartItem);
@@ -278,6 +280,23 @@ $(function(){
         })
         output += "</ul>"
         $('#navbarResponsive').html(output);
+    }
+
+    function disableButton() {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        let amountEmpty = 0;
+        if (cart == null || cart.length <= 0) {
+            document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
+            return;
+        }
+        for(let index = 0; index < cart.length; index++) {
+            if (cart[index].quantity <= 0) {
+                amountEmpty++;
+            }
+        }
+        if (amountEmpty == cart.length) {
+            document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
+        }
     }
 })
 
