@@ -98,6 +98,7 @@ function updateCartNumber(event){
 }
 
 function displayCart() {
+    const cartSum = document.querySelector("#total-cart");
     let itemsTotal = 0;
     let priceTotal = 0;
     console.log("Displaycart function")
@@ -105,6 +106,7 @@ function displayCart() {
     let output = "";
     
     if(cartArray != null){
+        
         cartArray.forEach(product => {
         itemsTotal += product.quantity;
         priceTotal += product.price*product.quantity;
@@ -132,6 +134,7 @@ function displayCart() {
         });
     }
     document.getElementById('order-entries').innerHTML = output;
+    cartSum.innerText = priceTotal.toFixed(2) + " Kr";
     disableButton();
     //eventListeners för cart item knappar
     $(".minus-item").click(decreaseCartItem);
