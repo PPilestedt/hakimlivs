@@ -59,7 +59,7 @@ function increaseCartItem(event){
         }
     }
 
-    document.getElementById("finish-checkout-btn").removeAttribute("disabled");
+    document.getElementById("finish-checkout-btn-two").removeAttribute("disabled");
     localStorage.setItem("cart",JSON.stringify(cart));
     displayCart();
 }
