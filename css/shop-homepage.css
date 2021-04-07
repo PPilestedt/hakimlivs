@@ -266,6 +266,14 @@ form.example button {
     margin: 5%;
     font-size: 25px;
   }
+  tr {
+    display: block;
+  }
+  td.break {
+    width: 70%;
+    float: left;
+    text-align: left;
+  }
 }
 
 .container-order {
@@ -282,7 +290,7 @@ form.example button {
 
 table th,
 table td {
-  padding: 2 0.5em;
+  padding: 0.5em;
 }
 
 table tbody > :nth-child(2n-1) {
