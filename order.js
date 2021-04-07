@@ -23,6 +23,7 @@ function removeCartItem(event){
     localStorage.setItem("cart",JSON.stringify(cart));
     displayCart();
 }
+
 function decreaseCartItem(event){
 
     const element = event.target;

@@ -133,16 +133,18 @@ $(function(){
     /**
      * Fetches the products of an predefined JSON-file
      * and then passes them along to the displayAllProducts() function.
+     * All products are stored in global variable productsArray.
      * 
      */
     async function loadProducts(){
         await fetch("data/products.json")
                     .then(res=>res.json())
                     .then(products => {
-                        displayAllProducts(products);
+                        productsArray = products;
                     })
                     .catch(error => console.error(error));
-                    
+
+        displayAllProducts(productsArray);
     }
                
     /**
@@ -154,9 +156,9 @@ $(function(){
      */
     function displayAllProducts(products) {
         let productContainer = document.getElementById("product-content");
+        productContainer.innerHTML = "";
 
         products.forEach(item => {
-            productsArray.push(item);
             let card = displayProductsInCard(item);
             productContainer.appendChild(card);
         })
@@ -330,10 +332,10 @@ $(function(){
         await fetch("data/categories.json")
                     .then(res=>res.json())
                     .then(categories => {
-                         displayAllCategories(categories);
+                        categoriesArray = categories;
                      })
                     .catch(error => console.error(error));
-                        
+        displayAllCategories(categoriesArray);                        
     }
 
     /**
@@ -344,20 +346,52 @@ $(function(){
      */
 
     function displayAllCategories(categories) {
-        let output = "";
+        let output = `<div class="list-group-item navbar-button">Alla Produkter</div>`;
 
         categories.forEach(category => {
-            categoriesArray.push(category);
-            output += "<a href='#' class='list-group-item'>" + category.name + "</a>"
-        })
+            output += `<div class="list-group-item navbar-button">${category.name}</div>`
+        });
         $('.nav-category').html(output);
 
-        output = "<ul class='navbar-nav ml-auto nav-dropdown'>"
+        output = `<ul class='navbar-nav ml-auto nav-dropdown'>
+                    <li><div class="list-group-item navbar-button">Alla Produkter</div></li>`;
         categories.forEach(category => {
-            output += "<li><a href='#' class='list-group-item'>" + category.name + "</a></li>"
-        })
-        output += "</ul>"
+
+            output += `<li><div class="list-group-item navbar-button">${category.name}</div></li>`
+            //output += "<li><a href='#' class='list-group-item'>" + category.name + "</a></li>"
+        });
+        output += "</ul>";
+        
         $('#navbarResponsive').html(output);
+
+        //adding eventhandler to navbar buttons
+        $(".navbar-button").click(filterProductsByCategory);
+
+    }
+
+    /**
+     * Filters products by category and sends array for rendering
+     * to displayAllProducts.
+     * 
+     * @param {*} event the event triggerd by the navbutton
+     * @returns 
+     */
+
+    function filterProductsByCategory(event){
+        let selectedCategoryName = event.target.innerHTML;
+
+        if(selectedCategoryName == "Alla Produkter"){
+            displayAllProducts(productsArray);
+            return;
+        }
+
+        let filteredProducts = [];
+        productsArray.forEach(product => {
+            if(product.category == selectedCategoryName){
+                filteredProducts.push(product);
+            }
+        });
+        displayAllProducts(filteredProducts);
     }
 
     /**
