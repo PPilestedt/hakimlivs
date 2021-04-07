@@ -23,6 +23,7 @@ function removeCartItem(event){
     localStorage.setItem("cart",JSON.stringify(cart));
     displayCart();
 }
+
 function decreaseCartItem(event){
 
     const element = event.target;
@@ -83,7 +84,7 @@ function updateCartNumber(event){
                 if(cart[index].id == productId){
                     cart[index].quantity = Number(value);
                     if (cart[index].quantity > 0) {
-                        document.getElementById("finish-checkout-btn").removeAttribute("disabled");
+                        document.getElementById("finish-checkout-btn-two").removeAttribute("disabled");
                     }
                     break;
                 }
@@ -115,19 +116,20 @@ function displayCart() {
                             ${product.title}
                         </td>
                         <td>
-                            ${product.price}
+                            ${product.price} Kr per artikel
                         </td>
                         <td>
                             <div class="input-group">
-                                <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
-                                <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
+                                <button class="minus-item btn input-group-addon btn-primary checkout-left" data-id="${product.id}">-</button>
+                                <input type="text" class="item-count form-control checkout-center" data-id="${product.id}" value="${product.quantity}">
+                                <button class="plus-item btn input-group-addon btn-primary checkout-right" data-id="${product.id}">+</button>
                             </div>
                         </td>
                         <td>
                             <button class="delete-item btn btn-danger" data-id="${product.id}">X</button>
                         </td>
-                        <td class="cart-item-sum">${(product.price * product.quantity).toFixed(2) } Kr
+                        <td class="cart-item-sum">
+                            ${(product.price * product.quantity).toFixed(2) } Kr
                         </td>
             </tr>`;
         

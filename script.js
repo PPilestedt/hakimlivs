@@ -7,6 +7,15 @@ $(function(){
     loadCategories();
     displayCart();
 
+
+    /**
+     * Receives an event from the eventListener and
+     * then decreases the amount of the product by 1 in the cart in localStorage.
+     * displayCart() is called in the end to refresh the cart in the browser.
+     * 
+     * @param {*} event 
+     */
+
     function decreaseCartItem(event){
 
         const element = event.target;
@@ -30,6 +39,13 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Receives an event from the eventListener and
+     * then increases the amount of the product by 1 in the cart in localStorage.
+     * displayCart() is called in the end to refresh the cart in the browser. 
+     * 
+     * @param {*} event 
+    */
     function increaseCartItem(event){
         const element = event.target;
         const productId = element.getAttribute("data-id");
@@ -48,6 +64,13 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Receives an event from the eventListener and
+     * then removes the product from the cart in localStorage.
+     * displayCart() is called in the end to refresh the cart in the browser. 
+     * 
+     * @param {*} event 
+     */
     function removeCartItem(event){
         const element = event.target;
         const productId = element.getAttribute("data-id");
@@ -69,6 +92,15 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Receives an event from the eventListener and
+     * updates the cart with the value stored in the products corresponding
+     * text-input field.
+     * displayCart() is then called to update the cart in the browser.
+     * 
+     * @param {*} event 
+     * @returns 
+     */
     function updateCartNumber(event){
         const element = event.target;
         const productId = element.getAttribute("data-id");
@@ -98,26 +130,47 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Fetches the products of an predefined JSON-file
+     * and then passes them along to the displayAllProducts() function.
+     * All products are stored in global variable productsArray.
+     * 
+     */
     async function loadProducts(){
         await fetch("data/products.json")
                     .then(res=>res.json())
                     .then(products => {
-                        displayAllProducts(products);
+                        productsArray = products;
                     })
                     .catch(error => console.error(error));
-                    
+
+        displayAllProducts(productsArray);
     }
-                
+               
+    /**
+     * Receives a full list of products and then
+     * sends them on to the displayProductsInCard to create the product cards.
+     * The cards are then appended to the product container. 
+     * 
+     * @param {*} products 
+     */
     function displayAllProducts(products) {
         let productContainer = document.getElementById("product-content");
+        productContainer.innerHTML = "";
 
         products.forEach(item => {
-            productsArray.push(item);
             let card = displayProductsInCard(item);
             productContainer.appendChild(card);
         })
     }
 
+    /**
+     * Receives an product and creates 
+     * a html layout with the product information.
+     * 
+     * @param {*} product contains one product and all its information
+     * @returns the HTML code for a product card
+     */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
         card.className = "product-card";
@@ -158,13 +211,20 @@ $(function(){
         return card;
     }
 
+    /**
+     * Aadds a product to the cart in localStorage withe the selected amount.
+     * 
+     * @param {*} product the product that will be added to the cart
+     * @param {*} quantity the quantity of products entered in the product card field
+     * @returns 
+     */
     function addToCart(product, quantity){
         
         console.log("add to cart");
         console.log(product);
         console.log(quantity);
 
-        if (quantity.includes(".")) {
+        if (quantity.includes(".") || quantity == '') {
             alert("Felaktig inmatning");
             return;
         }
@@ -208,6 +268,12 @@ $(function(){
     
     }
 
+    /**
+     * Loops through the cart in localStorage and then
+     * replaces the html code in the cart modal. 
+     * All eventlisteners in the cart-modal is also replaced.
+     * 
+     */
     function displayCart() {
         const cartItems = document.querySelector(".total-count");
         const cartSum = document.querySelector(".total-cart");
@@ -221,24 +287,26 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
-                output += `<tr>
+                output += `<tr class='cart-table'>
                             <td>
                                 ${product.title}
                             </td>
                             <td>
-                                ${product.price}
+                                ${product.price} Kr per artikel
                             </td>
-                            <td>
+                            <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
                                     <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
+                                
                             </td>
                             <td>
                                 <button class="delete-item btn btn-danger" data-id="${product.id}">X</button>
                             </td>
-                            <td class="cart-item-sum">${(product.price * product.quantity).toFixed(2) } Kr
+                            <td class="cart-item-sum break">  
+                               Totalt: ${(product.price * product.quantity).toFixed(2) } Kr
                             </td>
                 </tr>`;
             });
@@ -255,33 +323,82 @@ $(function(){
 
     }
 
+    /**
+     * Loads all the categories from a JASON-file
+     * and passes them along to the displayAllCategories() function 
+     * 
+     * */
     async function loadCategories() {
         await fetch("data/categories.json")
                     .then(res=>res.json())
                     .then(categories => {
-                         displayAllCategories(categories);
+                        categoriesArray = categories;
                      })
                     .catch(error => console.error(error));
-                        
+        displayAllCategories(categoriesArray);                        
     }
+
+    /**
+     * receives a list of all the avaliable categories and 
+     * creates the elements in the nav-list and the nav-dropdown
+     * 
+     * @param {*} categories is a full list of all the categories avaliable
+     */
 
     function displayAllCategories(categories) {
-        let output = "";
+        let output = `<div class="list-group-item navbar-button">Alla Produkter</div>`;
 
         categories.forEach(category => {
-            categoriesArray.push(category);
-            output += "<a href='#' class='list-group-item'>" + category.name + "</a>"
-        })
+            output += `<div class="list-group-item navbar-button">${category.name}</div>`
+        });
         $('.nav-category').html(output);
 
-        output = "<ul class='navbar-nav ml-auto nav-dropdown'>"
+        output = `<ul class='navbar-nav ml-auto nav-dropdown'>
+                    <li><div class="list-group-item navbar-button">Alla Produkter</div></li>`;
         categories.forEach(category => {
-            output += "<li><a href='#' class='list-group-item'>" + category.name + "</a></li>"
-        })
-        output += "</ul>"
+
+            output += `<li><div class="list-group-item navbar-button">${category.name}</div></li>`
+            //output += "<li><a href='#' class='list-group-item'>" + category.name + "</a></li>"
+        });
+        output += "</ul>";
+        
         $('#navbarResponsive').html(output);
+
+        //adding eventhandler to navbar buttons
+        $(".navbar-button").click(filterProductsByCategory);
+
     }
 
+    /**
+     * Filters products by category and sends array for rendering
+     * to displayAllProducts.
+     * 
+     * @param {*} event the event triggerd by the navbutton
+     * @returns 
+     */
+
+    function filterProductsByCategory(event){
+        let selectedCategoryName = event.target.innerHTML;
+
+        if(selectedCategoryName == "Alla Produkter"){
+            displayAllProducts(productsArray);
+            return;
+        }
+
+        let filteredProducts = [];
+        productsArray.forEach(product => {
+            if(product.category == selectedCategoryName){
+                filteredProducts.push(product);
+            }
+        });
+        displayAllProducts(filteredProducts);
+    }
+
+    /**
+     * Turns off the checkout button if the cart is empty
+     * 
+     * @returns 
+     */
     function disableButton() {
         const cart = JSON.parse(localStorage.getItem("cart"));
         let amountEmpty = 0;
