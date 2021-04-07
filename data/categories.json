@@ -23,10 +23,5 @@
         "id": 5,
         "name": "Tidskrifter",
         "tax": 6
-    },
-    {
-        "id": 6,
-        "name": "Bonus",
-        "tax": 5
     }
 ]
