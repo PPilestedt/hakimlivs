@@ -9,7 +9,7 @@ $(function(){
 
 
     /**
-     * decreaseCartItem() receives an event from the eventListener and
+     * Receives an event from the eventListener and
      * then decreases the amount of the product by 1 in the cart in localStorage.
      * displayCart() is called in the end to refresh the cart in the browser.
      * 
@@ -40,7 +40,7 @@ $(function(){
     }
 
     /**
-     * increaseCartItem() receives an event from the eventListener and
+     * Receives an event from the eventListener and
      * then increases the amount of the product by 1 in the cart in localStorage.
      * displayCart() is called in the end to refresh the cart in the browser. 
      * 
@@ -65,7 +65,7 @@ $(function(){
     }
 
     /**
-     * removeCartItem() receives an event from the eventListener and
+     * Receives an event from the eventListener and
      * then removes the product from the cart in localStorage.
      * displayCart() is called in the end to refresh the cart in the browser. 
      * 
@@ -93,7 +93,7 @@ $(function(){
     }
 
     /**
-     * updateCartNumber() receives an event from the eventListener and
+     * Receives an event from the eventListener and
      * updates the cart with the value stored in the products corresponding
      * text-input field.
      * displayCart() is then called to update the cart in the browser.
@@ -131,7 +131,7 @@ $(function(){
     }
 
     /**
-     * loadProducts() fetches the products of an predefined JSON-file
+     * Fetches the products of an predefined JSON-file
      * and then passes them along to the displayAllProducts() function.
      * 
      */
@@ -146,7 +146,7 @@ $(function(){
     }
                
     /**
-     * displayAllProducts() receives a full list of products and then
+     * Receives a full list of products and then
      * sends them on to the displayProductsInCard to create the product cards.
      * The cards are then appended to the product container. 
      * 
@@ -163,7 +163,7 @@ $(function(){
     }
 
     /**
-     * dusokayOridyctsInCard() receives an product and creates 
+     * Receives an product and creates 
      * a html layout with the product information.
      * 
      * @param {*} product contains one product and all its information
@@ -210,7 +210,7 @@ $(function(){
     }
 
     /**
-     * addToCart() adds a product to the cart in localStorage withe the selected amount.
+     * Aadds a product to the cart in localStorage withe the selected amount.
      * 
      * @param {*} product the product that will be added to the cart
      * @param {*} quantity the quantity of products entered in the product card field
@@ -267,7 +267,7 @@ $(function(){
     }
 
     /**
-     * displaycart() loops through the cart in localStorage and then
+     * Loops through the cart in localStorage and then
      * replaces the html code in the cart modal. 
      * All eventlisteners in the cart-modal is also replaced.
      * 
