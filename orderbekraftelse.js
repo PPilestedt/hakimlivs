@@ -11,7 +11,7 @@ function orderBekraftelse() {
             productContainer.innerHTML += `
             <tr>
                 <td class="product-namn">${item.title}</td>
-                <td class="product-price">${(item.price).toFixed(2)}kr</td>
+                <td class="product-price">${(item.price).toFixed(2)} Kr</td>
                 <td class="product-quantity">${item.quantity}</td>
                 <td class="product-weight">${(item.weight).toFixed(2)}</td>     
                 <td class="product-total">${(item.quantity * item.price).toFixed(2)}kr</td>          

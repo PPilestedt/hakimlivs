@@ -285,24 +285,26 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
-                output += `<tr>
+                output += `<tr class='cart-table'>
                             <td>
                                 ${product.title}
                             </td>
                             <td>
-                                ${product.price}
+                                ${product.price} Kr per artikel
                             </td>
-                            <td>
+                            <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
                                     <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
+                                
                             </td>
                             <td>
                                 <button class="delete-item btn btn-danger" data-id="${product.id}">X</button>
                             </td>
-                            <td class="cart-item-sum">${(product.price * product.quantity).toFixed(2) } Kr
+                            <td class="cart-item-sum break">  
+                               Totalt: ${(product.price * product.quantity).toFixed(2) } Kr
                             </td>
                 </tr>`;
             });

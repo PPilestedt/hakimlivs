@@ -1,0 +1,86 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+
+#logo {
+    width: 265px;
+    height: 64px;
+}
+
+.checkout-left {
+    order: 1;
+}
+
+.checkout-center {
+  order: 2;
+}
+
+.checkout-right {
+  order: 3;
+}
+
+.cart-item-sum{
+    text-align: end;
+  }
+
+.container-order {
+    position: relative;
+    text-align: center;
+}
+
+.summary-table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgb(19, 19, 19);
+  padding: 8px;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 0.5em;
+}
+
+table tbody > :nth-child(2n-1) {
+  background-color: #cec9c1;
+}
+
+.table-head {
+  background-color: #ffc400;
+}
+
+.button-center {
+    text-align: center;
+}
+
+#finish-checkout-btn-two {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .nav-category{
+    display: block;
+  }
+  .nav-dropdown{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  
+    .checkout-left {
+      order: 2;
+    }  
+    .checkout-center {
+      order: 1;
+    }  
+    .checkout-right {
+      order: 3;
+    }
+    .input-group > .form-control{
+      width: 75%;
+      flex: none;
+    }
+}
