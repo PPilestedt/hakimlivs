@@ -83,7 +83,7 @@ function updateCartNumber(event){
                 if(cart[index].id == productId){
                     cart[index].quantity = Number(value);
                     if (cart[index].quantity > 0) {
-                        document.getElementById("finish-checkout-btn").removeAttribute("disabled");
+                        document.getElementById("finish-checkout-btn-two").removeAttribute("disabled");
                     }
                     break;
                 }

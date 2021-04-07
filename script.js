@@ -7,6 +7,15 @@ $(function(){
     loadCategories();
     displayCart();
 
+
+    /**
+     * Receives an event from the eventListener and
+     * then decreases the amount of the product by 1 in the cart in localStorage.
+     * displayCart() is called in the end to refresh the cart in the browser.
+     * 
+     * @param {*} event 
+     */
+
     function decreaseCartItem(event){
 
         const element = event.target;
@@ -30,6 +39,13 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Receives an event from the eventListener and
+     * then increases the amount of the product by 1 in the cart in localStorage.
+     * displayCart() is called in the end to refresh the cart in the browser. 
+     * 
+     * @param {*} event 
+    */
     function increaseCartItem(event){
         const element = event.target;
         const productId = element.getAttribute("data-id");
@@ -48,6 +64,13 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Receives an event from the eventListener and
+     * then removes the product from the cart in localStorage.
+     * displayCart() is called in the end to refresh the cart in the browser. 
+     * 
+     * @param {*} event 
+     */
     function removeCartItem(event){
         const element = event.target;
         const productId = element.getAttribute("data-id");
@@ -69,6 +92,15 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Receives an event from the eventListener and
+     * updates the cart with the value stored in the products corresponding
+     * text-input field.
+     * displayCart() is then called to update the cart in the browser.
+     * 
+     * @param {*} event 
+     * @returns 
+     */
     function updateCartNumber(event){
         const element = event.target;
         const productId = element.getAttribute("data-id");
@@ -98,6 +130,11 @@ $(function(){
         displayCart();
     }
 
+    /**
+     * Fetches the products of an predefined JSON-file
+     * and then passes them along to the displayAllProducts() function.
+     * 
+     */
     async function loadProducts(){
         await fetch("data/products.json")
                     .then(res=>res.json())
@@ -107,7 +144,14 @@ $(function(){
                     .catch(error => console.error(error));
                     
     }
-                
+               
+    /**
+     * Receives a full list of products and then
+     * sends them on to the displayProductsInCard to create the product cards.
+     * The cards are then appended to the product container. 
+     * 
+     * @param {*} products 
+     */
     function displayAllProducts(products) {
         let productContainer = document.getElementById("product-content");
 
@@ -118,6 +162,13 @@ $(function(){
         })
     }
 
+    /**
+     * Receives an product and creates 
+     * a html layout with the product information.
+     * 
+     * @param {*} product contains one product and all its information
+     * @returns the HTML code for a product card
+     */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
         card.className = "product-card";
@@ -158,6 +209,13 @@ $(function(){
         return card;
     }
 
+    /**
+     * Aadds a product to the cart in localStorage withe the selected amount.
+     * 
+     * @param {*} product the product that will be added to the cart
+     * @param {*} quantity the quantity of products entered in the product card field
+     * @returns 
+     */
     function addToCart(product, quantity){
         
         console.log("add to cart");
@@ -208,6 +266,12 @@ $(function(){
     
     }
 
+    /**
+     * Loops through the cart in localStorage and then
+     * replaces the html code in the cart modal. 
+     * All eventlisteners in the cart-modal is also replaced.
+     * 
+     */
     function displayCart() {
         const cartItems = document.querySelector(".total-count");
         const cartSum = document.querySelector(".total-cart");
@@ -255,6 +319,11 @@ $(function(){
 
     }
 
+    /**
+     * Loads all the categories from a JASON-file
+     * and passes them along to the displayAllCategories() function 
+     * 
+     * */
     async function loadCategories() {
         await fetch("data/categories.json")
                     .then(res=>res.json())
@@ -264,6 +333,13 @@ $(function(){
                     .catch(error => console.error(error));
                         
     }
+
+    /**
+     * receives a list of all the avaliable categories and 
+     * creates the elements in the nav-list and the nav-dropdown
+     * 
+     * @param {*} categories is a full list of all the categories avaliable
+     */
 
     function displayAllCategories(categories) {
         let output = "";
@@ -282,6 +358,11 @@ $(function(){
         $('#navbarResponsive').html(output);
     }
 
+    /**
+     * Turns off the checkout button if the cart is empty
+     * 
+     * @returns 
+     */
     function disableButton() {
         const cart = JSON.parse(localStorage.getItem("cart"));
         let amountEmpty = 0;
