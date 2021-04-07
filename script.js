@@ -17,8 +17,8 @@ $(function(){
 
         if(cart != null){
             for(let product of cart){
-                if(product.id == productId && product.quantity > 0){
-                    if(product.quantity > 0){
+                if(product.id == productId && product.quantity > 1){
+                    if(product.quantity > 1){
                         product.quantity--;
                         break;
                     }
@@ -43,6 +43,7 @@ $(function(){
             }
         }
 
+        document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
     }
@@ -72,14 +73,19 @@ $(function(){
         const element = event.target;
         const productId = element.getAttribute("data-id");
         const cart = JSON.parse(localStorage.getItem("cart"));
-        
+        let value = element.value;
         console.log("updating number from inputfield. product:" + productId);
 
-        if(element.value <= 99 && element.value >= 0){
+        if (value.includes(".")) {
+            alert("Felaktig inmatning");
+            return;
+        }
+
+        if(value <= 99 && value >= 1){
             if(cart != null){
                 for (let index = 0; index < cart.length; index++) {
                     if(cart[index].id == productId){
-                        cart[index].quantity = Number(element.value);
+                        cart[index].quantity = Number(value);
                         break;
                     }
                 }
@@ -115,15 +121,17 @@ $(function(){
     function displayProductsInCard(product) {
         let card = document.createElement("div");
         card.className = "product-card";
-        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} " height="200"> </div>`;
+        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
 
         let prodDescription = document.createElement("div");
         prodDescription.className = "product-description";
         prodDescription.innerHTML =
-            `<h3>${product.title}</h3>
-            <p>${product.description}</p>
-            <h4>Pris: ${product.price} kr</h4>
+            `<h4>${product.title}</h4>
+            
+            <h5>Pris: ${product.price} kr</h5>
             <br>`;
+        // Minor surgery
+        //<p>${product.description}</p>
 
         let quantityInput = document.createElement("input");
         quantityInput.type = "number";
@@ -155,28 +163,33 @@ $(function(){
         console.log("add to cart");
         console.log(product);
         console.log(quantity);
-        
+
+        if (quantity.includes(".")) {
+            alert("Felaktig inmatning");
+            return;
+        }
+        let productQuantity = parseInt(quantity);
         let cart = JSON.parse(localStorage.getItem("cart"));
         if(cart == null){
             cart = [];
         }
         
-        if (Number(quantity) < 1) {
+        if (productQuantity < 1) {
             alert("Minantal av en produkt är 1");
             return;
-        } else if (Number(quantity) > 99) {
+        } else if (productQuantity > 99) {
             alert("Maxantal av en produkt är 99");
             return;
         } 
 
-        product.quantity = Number(quantity);
+        product.quantity = productQuantity;
 
         let cartContainsProduct = false;
         for (let index = 0; index < cart.length; index++) {
             if(cart[index].id == product.id){
                 console.log("cart contains product");
                 cartContainsProduct = true;
-                cart[index].quantity += Number(product.quantity);
+                cart[index].quantity += productQuantity;
                 if (cart[index].quantity > 99){
                     alert("Maxantal av en produkt är 99");
                     cart[index].quantity = 99;
@@ -185,10 +198,11 @@ $(function(){
             }
         }
         if(!cartContainsProduct){
-            console.log("cart did not contain product")
+            console.log("cart did not contain product");
             cart.push(product);
         }
 
+        document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
     
@@ -232,7 +246,7 @@ $(function(){
         cartItems.innerText = itemsTotal;
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
         $('.show-cart').html(output);
-
+        disableButton();
         //eventListeners för cart item knappar
         $(".minus-item").click(decreaseCartItem);
         $(".plus-item").click(increaseCartItem);
@@ -267,4 +281,25 @@ $(function(){
         output += "</ul>"
         $('#navbarResponsive').html(output);
     }
+
+    function disableButton() {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        let amountEmpty = 0;
+        if (cart == null || cart.length <= 0) {
+            document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
+            return;
+        }
+        for(let index = 0; index < cart.length; index++) {
+            if (cart[index].quantity <= 0) {
+                amountEmpty++;
+            }
+        }
+        if (amountEmpty == cart.length) {
+            document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
+        }
+    }
 })
+
+
+
+
