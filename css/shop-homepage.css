@@ -168,6 +168,7 @@ form.example button {
   width: 67%;
   margin-bottom: 1%;
 }  
+
 .undecorated-link {
   text-decoration: none;
   color: #ffc400;
@@ -186,6 +187,8 @@ form.example button {
 .cart-item-sum{
   text-align: end;
 }
+
+
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
   .nav-category{
@@ -266,7 +269,7 @@ form.example button {
     margin: 5%;
     font-size: 25px;
   }
-  tr {
+  tr.cart-table {
     display: block;
   }
   td.break {
@@ -274,42 +277,4 @@ form.example button {
     float: left;
     text-align: left;
   }
-}
-
-.container-order {
-  position: relative;
-  text-align: center;
-}
-
-#show-cart table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 1%;
-
-}
-
-table th,
-table td {
-  padding: 0.5em;
-}
-
-table tbody > :nth-child(2n-1) {
-  background-color: #cec9c1;
-}
-
-.summary-table {
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid rgb(19, 19, 19);
-  padding: 8px;
-  border-collapse: collapse;
-}
-
-.table-head {
-  background-color: #ffc400;
-}
-
-#finish-checkout-btn-two {
-  position: relative;
-  left: 46%;
 }

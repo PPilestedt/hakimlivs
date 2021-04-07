@@ -221,7 +221,7 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
-                output += `<tr>
+                output += `<tr class='cart-table'>
                             <td>
                                 ${product.title}
                             </td>
