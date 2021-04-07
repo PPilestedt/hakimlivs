@@ -222,7 +222,7 @@ $(function(){
         console.log(product);
         console.log(quantity);
 
-        if (quantity.includes(".")) {
+        if (quantity.includes(".") || quantity == '') {
             alert("Felaktig inmatning");
             return;
         }
