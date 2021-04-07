@@ -133,16 +133,18 @@ $(function(){
     /**
      * Fetches the products of an predefined JSON-file
      * and then passes them along to the displayAllProducts() function.
+     * All products are stored in global variable productsArray.
      * 
      */
     async function loadProducts(){
         await fetch("data/products.json")
                     .then(res=>res.json())
                     .then(products => {
-                        displayAllProducts(products);
+                        productsArray = products;
                     })
                     .catch(error => console.error(error));
-                    
+
+        displayAllProducts(productsArray);
     }
                
     /**
@@ -328,10 +330,10 @@ $(function(){
         await fetch("data/categories.json")
                     .then(res=>res.json())
                     .then(categories => {
-                         displayAllCategories(categories);
+                        categoriesArray = categories;
                      })
                     .catch(error => console.error(error));
-                        
+        displayAllCategories(categoriesArray);                        
     }
 
     /**
