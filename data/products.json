@@ -263,12 +263,12 @@
         "id": 21,
         "title": "TEST",
         "description": "TEST",
-        "image": "https:\/\/picsum.photos\/500?random=30",
+        "image": "https:\/\/picsum.photos\/500?random=21",
         "price": 999.00,
-        "productprice": 6,
+        "productprice": 10,
         "category": "TEST",
-        "dateadded": "2021-03-29",
-        "dateedited": "2021-03-29",
+        "dateadded": "2021-03-30",
+        "dateedited": "2021-03-30",
         "pricecomparison": 60.10810810810811,
         "weight": 0.60
     }
