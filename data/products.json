@@ -258,5 +258,18 @@
         "dateedited": "2021-03-29",
         "pricecomparison": 35.10810810810811,
         "weight": 0.37
+    },
+    {
+        "id": 21,
+        "title": "TEST",
+        "description": "TEST",
+        "image": "https:\/\/picsum.photos\/500?random=30",
+        "price": 9999,
+        "productprice": 6,
+        "category": "TEST",
+        "dateadded": "2021-03-29",
+        "dateedited": "2021-03-29",
+        "pricecomparison": 35.10810810810811,
+        "weight": 0.37
     }
 ]
