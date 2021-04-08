@@ -23,6 +23,10 @@
         "id": 5,
         "name": "Tidskrifter",
         "tax": 6
+    },
+     {
+        "id": 6,
+        "name": "TEST",
+        "tax": 25
     }
-    
 ]
