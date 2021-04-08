@@ -274,7 +274,7 @@
     },
         {
         "id": 22,
-        "title": "<h1>TEST2<?h1>",
+        "title": "Bortskänkes",
         "description": "Bäst i test TEST",
         "image": "https:\/\/picsum.photos\/500?random=21",
         "price": 1245.00,
@@ -283,7 +283,7 @@
         "dateadded": "2021-04-08",
         "dateedited": "2021-04-08",
         "pricecomparison": 60.10810810810811,
-        "weight": 6.85
+        "weight": 56.85
     }
     
 ]
