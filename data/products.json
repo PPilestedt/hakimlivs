@@ -271,5 +271,19 @@
         "dateedited": "2021-03-30",
         "pricecomparison": 60.10810810810811,
         "weight": 0.60
+    },
+        {
+        "id": 22,
+        "title": "TEST2",
+        "description": "Bäst i test TEST",
+        "image": "https:\/\/picsum.photos\/500?random=21",
+        "price": 1245.00,
+        "productprice": 10,
+        "category": "TEST2",
+        "dateadded": "2021-04-08",
+        "dateedited": "2021-04-08",
+        "pricecomparison": 60.10810810810811,
+        "weight": 6.85
     }
+    
 ]
