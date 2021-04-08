@@ -274,7 +274,7 @@
     },
         {
         "id": 22,
-        "title": "TEST2",
+        "title": "<h1>TEST2<?h1>",
         "description": "Bäst i test TEST",
         "image": "https:\/\/picsum.photos\/500?random=21",
         "price": 1245.00,
