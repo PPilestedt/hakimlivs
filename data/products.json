@@ -258,45 +258,7 @@
         "dateedited": "2021-03-29",
         "pricecomparison": 35.10810810810811,
         "weight": 0.37
-    },
-    {
-        "id": 21,
-        "title": "TEST",
-        "description": "TEST",
-        "image": "https:\/\/picsum.photos\/500?random=21",
-        "price": 999.00,
-        "productprice": 10,
-        "category": "TEST",
-        "dateadded": "2021-03-30",
-        "dateedited": "2021-03-30",
-        "pricecomparison": 60.10810810810811,
-        "weight": 0.60
-    },
-        {
-        "id": 22,
-        "title": "Bortskänkes",
-        "description": "Bäst i test TEST",
-        "image": "https:\/\/picsum.photos\/500?random=22",
-        "price": 1245.00,
-        "productprice": 10,
-        "category": "TEST2",
-        "dateadded": "2021-04-08",
-        "dateedited": "2021-04-08",
-        "pricecomparison": 60.10810810810811,
-        "weight": 56.85
-    },
-          {
-        "id": 23,
-        "title": "Omars virus",
-        "description": "Virrrrus",
-        "image": "https:\/\/picsum.photos\/500?random=23",
-        "price": 3.00,
-        "productprice": 10,
-        "category": "TEST2",
-        "dateadded": "2021-04-08",
-        "dateedited": "2021-04-08",
-        "pricecomparison": 60.10810810810811,
-        "weight": 3.85
     }
+
     
 ]
