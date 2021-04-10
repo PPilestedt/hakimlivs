@@ -187,6 +187,10 @@ form.example button {
 .cart-item-sum{
   text-align: end;
 }
+/* För admin panelen */
+.panel {
+  margin: 25px 0;   
+}
 
 
 /*Övergång till dropdown i headern*/
