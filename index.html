@@ -183,7 +183,7 @@
                          <form action="/">
                              <div class="form-group">
                                  <label for="username">Email:</label>
-                                 <input type="text" class="form-control" id="username" placeholder="Skriv din email" name="username" required>
+                                 <input type="text" class="form-control" id="username" placeholder="Skriv din email" name="username" pattern="(?!^ +$)^.+$" required>
                              </div>
                              <div class="form-group">
                                  <label for="pwd">Lösenord:</label>
@@ -209,17 +209,17 @@
                          <form action="/" onsubmit="return pwdcheck()">  
                              <div class="form-group" >
                                  <label for="firstname">Ditt förnamn:</label>
-                                 <input type="text" minlength="2" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" required>
+                                 <input type="text" minlength="2" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
                              </div>
 
                              <div class="form-group" >
                               <label for="lastname">Ditt efternamn:</label>
-                              <input type="text" minlength="2" class="form-control" id="lastname" placeholder="Skriv ditt efternamn" name="lastname" required>
+                              <input type="text" minlength="2" class="form-control" id="lastname" placeholder="Skriv ditt efternamn" name="lastname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
                           </div>
 
                              <div class="form-group" >
                               <label for="address">Gatuadress:</label>
-                              <input type="text" class="form-control" id="address" placeholder="Skriv din gatuadress" name="address" required>
+                              <input type="text" class="form-control" id="address" placeholder="Skriv din gatuadress" name="address" pattern="(?!^ +$)^.+$" required>
                           </div>
 
                           <div class="form-group" >
@@ -229,7 +229,7 @@
 
                         <div class="form-group" >
                           <label for="city">Ort:</label>
-                          <input type="text" class="form-control" id="city" placeholder="Skriv din ort" name="city" required>
+                          <input type="text" class="form-control" id="city" placeholder="Skriv din ort" name="city" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
                       </div>
 
                       <div class="form-group" >
