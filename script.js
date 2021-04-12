@@ -419,7 +419,7 @@ $(function(){
     }
 
     function filterProductsBySearch(event) {
-        let search = document.getElementById("search-input").value;
+        let search = document.getElementById("search-input").value.toLowerCase();
 
         if (search === '') {
             displayAllProducts(productsArray);
