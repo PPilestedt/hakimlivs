@@ -7,7 +7,6 @@ $(function(){
     loadCategories();
     displayCart();
 
-
     /**
      * Receives an event from the eventListener and
      * then decreases the amount of the product by 1 in the cart in localStorage.
@@ -183,12 +182,6 @@ $(function(){
             
             <h5>Pris: ${product.price} kr</h5>
             <br>`;
-        // Minor surgery
-        //<p>${product.description}</p>
-
-{       /* <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-        <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
-        <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button> */}
 
         let inputGroup = document.createElement("div");
         inputGroup.className = "input-group";
@@ -396,7 +389,8 @@ $(function(){
 
         //adding eventhandler to navbar buttons
         $(".navbar-button").click(filterProductsByCategory);
-
+        $("#searchbutton").click(filterProductsBySearch);
+        $("#search-input").change(filterProductsBySearch);
     }
 
     /**
@@ -418,6 +412,23 @@ $(function(){
         let filteredProducts = [];
         productsArray.forEach(product => {
             if(product.category == selectedCategoryName){
+                filteredProducts.push(product);
+            }
+        });
+        displayAllProducts(filteredProducts);
+    }
+
+    function filterProductsBySearch(event) {
+        let search = document.getElementById("search-input").value;
+
+        if (search === '') {
+            displayAllProducts(productsArray);
+            return;
+        }
+
+        let filteredProducts = [];
+        productsArray.forEach(product => {
+            if (product.title.toLowerCase().includes(search)) {
                 filteredProducts.push(product);
             }
         });
