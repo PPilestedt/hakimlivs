@@ -354,10 +354,10 @@ $(function(){
         $('.nav-category').html(output);
 
         output = `<ul class='navbar-nav ml-auto nav-dropdown'>
-                    <li><div class="list-group-item navbar-button">Alla Produkter</div></li>`;
+                    <li><div class="list-group-item navbar-button" data-toggle="collapse" data-target="#navbarResponsive">Alla Produkter</div></li>`;
         categories.forEach(category => {
 
-            output += `<li><div class="list-group-item navbar-button">${category.name}</div></li>`
+            output += `<li><div class="list-group-item navbar-button" data-toggle="collapse" data-target="#navbarResponsive">${category.name}</div></li>`
             //output += "<li><a href='#' class='list-group-item'>" + category.name + "</a></li>"
         });
         output += "</ul>";
