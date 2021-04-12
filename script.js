@@ -186,12 +186,39 @@ $(function(){
         // Minor surgery
         //<p>${product.description}</p>
 
+{       /* <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
+        <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
+        <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button> */}
+
+        let inputGroup = document.createElement("div");
+        inputGroup.className = "input-group";
+
+        let minusButton = document.createElement("button");
+        minusButton.classList.add("card-minus-item");
+        minusButton.classList.add("btn");
+        minusButton.classList.add("btn-primary");
+        minusButton.setAttribute("data-id", `${product.id}`);
+        minusButton.textContent = "-";
+        minusButton.addEventListener("click", function(e) {
+            quantityInput.value--;
+        })
+
         let quantityInput = document.createElement("input");
         quantityInput.type = "number";
         quantityInput.value = "1";
         quantityInput.min = "1";
         quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
+
+        let plusButton = document.createElement("button");
+        plusButton.classList.add("card-plus-item");
+        plusButton.classList.add("btn");
+        plusButton.classList.add("btn-primary");
+        plusButton.setAttribute("data-id",`${product.id}`);
+        plusButton.textContent = "+";
+        plusButton.addEventListener("click", function(e) {
+            quantityInput.value++;
+        })
 
         let button = document.createElement("button");
         button.classList.add("add-to-cart");
@@ -204,7 +231,10 @@ $(function(){
             addToCart(product, quantityInput.value);
         });
 
-        prodDescription.appendChild(quantityInput);
+        inputGroup.appendChild(minusButton);
+        inputGroup.appendChild(quantityInput);
+        inputGroup.appendChild(plusButton);
+        prodDescription.appendChild(inputGroup);
         prodDescription.appendChild(button);
         card.appendChild(prodDescription);
         

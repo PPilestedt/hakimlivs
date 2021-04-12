@@ -163,10 +163,13 @@ form.example button {
 }
 
 .product-card .product-description input{
-  width: 67%;
-  margin-bottom: 1%;
+  width: 40%;
+  margin: 0%;
 }  
-
+.product-card .product-description .input-group{
+  margin: 5%;
+  margin-left: 10%;
+}  
 .undecorated-link {
   text-decoration: none;
   color: #ffc400;
@@ -266,11 +269,13 @@ form.example button {
     height: 300px;
     margin: auto;
   }
-  .product-card .product-description input{
-    width: 175px;
+  .product-card .product-description .input-group{
     margin: 5%;
+  }    
+  .product-card .product-description .input-group input{
+    width: 100px;
   }  
-  .product-card .product-description button{
+  .product-card .product-description .add-to-cart{
     height: 100px;
     margin: 5%;
     font-size: 25px;
