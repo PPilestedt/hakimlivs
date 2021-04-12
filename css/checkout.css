@@ -99,7 +99,10 @@ table tbody > :nth-child(2n-1) {
     left: -9999px;
   }
 
-  tr {border: 1px solid #ccc;}
+  tr {
+    border: 1px solid #ccc;
+    margin-bottom: 3%;
+  }
 
   table td {
     border: none;
@@ -124,5 +127,8 @@ table tbody > :nth-child(2n-1) {
 
   .cart-item-sum {
     text-align: center;
+  }
+  .summary-table {
+    padding: 0px;
   }
 }
