@@ -121,7 +121,7 @@ function displayCart() {
                         <td>
                             <div class="input-group">
                                 <button class="minus-item btn input-group-addon btn-primary checkout-left" data-id="${product.id}">-</button>
-                                <input type="text" class="item-count form-control checkout-center" data-id="${product.id}" value="${product.quantity}">
+                                <input type="number" class="item-count form-control checkout-center" data-id="${product.id}" value="${product.quantity}">
                                 <button class="plus-item btn input-group-addon btn-primary checkout-right" data-id="${product.id}">+</button>
                             </div>
                         </td>
