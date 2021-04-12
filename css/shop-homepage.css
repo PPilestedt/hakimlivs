@@ -10,12 +10,10 @@
 }
 
 .nav-category{
+  display: none;
   padding-top:25px;
 }
 
-.nav-category{
-  display: none;
-}
 .nav-dropdown{
   display: block;
 }
@@ -219,8 +217,12 @@ form.example button {
 }
 
 @media screen and (max-width: 991px) {
+  .left {
+    margin-top: 5px;
+  }
   .center {
     order: 3;
+    margin-bottom: 3px;
   }
   .right {
     order: 2;

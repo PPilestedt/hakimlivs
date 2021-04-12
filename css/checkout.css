@@ -68,19 +68,67 @@ table tbody > :nth-child(2n-1) {
   }
 }
 
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 500px) {
   
-    .checkout-left {
+  /*.checkout-left {
       order: 2;
-    }  
-    .checkout-center {
-      order: 1;
-    }  
-    .checkout-right {
-      order: 3;
-    }
-    .input-group > .form-control{
-      width: 75%;
-      flex: none;
-    }
+  }  
+  .checkout-center {
+    order: 1;
+  }  
+  .checkout-right {
+    order: 3;
+  }
+  .input-group > .form-control{
+    width: 75%;
+    flex: none;
+  }*/
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  table th,
+  table td {
+    padding: 0em;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+    margin-bottom: 3%;
+  }
+
+  table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    position: absolute;
+    left: 6px;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  td:nth-child(1):before {content: "Produkt";}
+  td:nth-child(2):before {content: "Pris per produkt";}
+  td:nth-child(3):before {content: "Antal";}
+  td:nth-child(4):before {content: "Ta bort";}
+  td:nth-child(5):before {content: "Pris";}
+
+  .cart-item-sum {
+    text-align: center;
+  }
+  .summary-table {
+    padding: 0px;
+  }
 }
