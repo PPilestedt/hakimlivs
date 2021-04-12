@@ -389,7 +389,8 @@ $(function(){
 
         //adding eventhandler to navbar buttons
         $(".navbar-button").click(filterProductsByCategory);
-        $("#searchbutton").click(filterProductsBySearch)
+        $("#searchbutton").click(filterProductsBySearch);
+        $("#search-input").change(filterProductsBySearch);
     }
 
     /**
