@@ -237,13 +237,20 @@ form.example button {
 }
 
 
-.product-card {
-  width: 163px;
+.card {
+  width: 162px;
 }
-.product-card .product-img {
-  height: 150px;
-  width: 200px;
+.card-image {
+  width: 150px;
 }
-.product-card .product-img img{
-  height: 150px;
+
+.card h4 {
+ 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.3rem;
+    margin: 0;
+    background: white;
+    resize: horizontal;
 }
