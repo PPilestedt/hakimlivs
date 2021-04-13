@@ -78,7 +78,6 @@ $(function(){
         
         console.log("removeing from cart id " + productId);
 
-
         if(cart != null){
             for (let index = 0; index < cart.length; index++) {
                 if(cart[index].id == productId){
@@ -137,7 +136,7 @@ $(function(){
      * 
      */
     async function loadProducts(){
-        await fetch("data/products.json")
+        await fetch("https://hakims.herokuapp.com/product")
                     .then(res=>res.json())
                     .then(products => {
                         productsArray = products;
@@ -329,7 +328,7 @@ $(function(){
      * 
      * */
     async function loadCategories() {
-        await fetch("data/categories.json")
+        await fetch("https://hakims.herokuapp.com/category")
                     .then(res=>res.json())
                     .then(categories => {
                         categoriesArray = categories;
@@ -387,7 +386,7 @@ $(function(){
 
         let filteredProducts = [];
         productsArray.forEach(product => {
-            if(product.category == selectedCategoryName){
+            if(product.category.name == selectedCategoryName){
                 filteredProducts.push(product);
             }
         });
