@@ -1,7 +1,7 @@
 $(function(){
 
     let categoriesArray = [];
-    let productsArray = [];
+    let productsArray = []; 
     
     loadProducts();
     loadCategories();
@@ -172,7 +172,7 @@ $(function(){
      */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
-        card.className = "product-card";
+        card.className = "product-card"; //----------------------------------------------------------------------------
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
 
         let prodDescription = document.createElement("div");
