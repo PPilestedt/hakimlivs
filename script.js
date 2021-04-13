@@ -218,7 +218,7 @@ $(function(){
         button.classList.add("btn");
         button.classList.add("btn-primary");
         button.setAttribute("data-id",`${product.id}`);
-        button.textContent = "Lägg till i varukorgen";
+        button.textContent = "Köp";
         
         button.addEventListener("click", function (e) {
             addToCart(product, quantityInput.value);
