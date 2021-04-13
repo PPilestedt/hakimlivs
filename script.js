@@ -172,16 +172,15 @@ $(function(){
      */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
+        card.className = "card";
+        card.innerHTML = `<div class="card-img-top"><img class="card-image" src="${product.image}" alt="${product.title} "> </div>`;
 
         let prodDescription = document.createElement("div");
-        prodDescription.className = "product-description";
+        prodDescription.className = "card-body";
         prodDescription.innerHTML =
-            `<h4>${product.title}</h4>
+            `<h4 class="card-title">${product.title}</h4>
             
-            <h5>Pris: ${product.price} kr</h5>
-            <br>`;
+            <h5>${product.price} kr</h5>`;
 
         let inputGroup = document.createElement("div");
         inputGroup.className = "input-group";
