@@ -346,10 +346,10 @@ $(function(){
      */
 
     function displayAllCategories(categories) {
-        let output = `<div class="list-group-item navbar-button">Alla Produkter</div>`;
+        let output = `<div class="list-group-item navbar-button category-hover">Alla Produkter</div>`;
 
         categories.forEach(category => {
-            output += `<div class="list-group-item navbar-button">${category.name}</div>`
+            output += `<div class="list-group-item navbar-button category-hover">${category.name}</div>`
         });
         $('.nav-category').html(output);
 

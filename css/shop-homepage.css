@@ -14,6 +14,11 @@
   padding-top:25px;
 }
 
+.category-hover:hover {
+  background-color: gray;
+  cursor:pointer;
+}
+
 .nav-dropdown{
   display: block;
 }
