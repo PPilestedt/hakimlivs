@@ -3,13 +3,19 @@ window.addEventListener("load", focus);
 
 function focus() {
     let cards = document.getElementsByClassName("product-card");
-    console.log("focus " + cards.length)
-    console.log(cards)
+
+    if (!cards.length == 0) {
+        // Do something with el
+        console.log("focus " + cards.length)
+        console.log(cards)
 
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", exampleOnclick) 
 
    }
+      } else {
+        setTimeout(focus, 100); // try again in 100 milliseconds
+      } 
 
 }
 
@@ -20,18 +26,9 @@ function exampleOnclick() {
     console.log(title)
     let image = this.getElementsByTagName("img")[0].src;
     console.log(image)
-    let description = ""
-    let price = ""
+    let description = "Description babamaam"
 
- /*     for (let index = 0; index < productsArray.length; index++) {
-        //const element = array[index]; 
-        
-        if (productsArray[index].title == title) {
-            image = productsArray[index].image;
-            description = productsArray[index].description;
-            price = productsArray[index].price;
-        }
-    } */  
+    let price = ""
 
     var exampleModal = getExampleModal();
   
