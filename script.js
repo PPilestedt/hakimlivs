@@ -183,7 +183,7 @@ $(function(){
             <h5>${product.price} kr</h5>`;
 
         let inputGroup = document.createElement("div");
-        inputGroup.className = "input-group";
+        inputGroup.className = "input-group d-flex justify-content-center flex-nowrap";
 
         let minusButton = document.createElement("button");
         minusButton.classList.add("card-minus-item");
