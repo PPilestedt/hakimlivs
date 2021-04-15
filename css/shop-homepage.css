@@ -205,6 +205,10 @@ form.example button {
   margin: 25px 0;   
 }
 
+/* För produkt fokus bilden */
+#focusImg {
+  overflow: hidden;
+}
 
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
