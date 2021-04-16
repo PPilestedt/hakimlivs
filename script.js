@@ -7,7 +7,6 @@ $(function(){
     loadCategories();
     displayCart();
 
-
     /**
      * Receives an event from the eventListener and
      * then decreases the amount of the product by 1 in the cart in localStorage.
@@ -183,8 +182,21 @@ $(function(){
             
             <h5>Pris: ${product.price} kr</h5>
             <br>`;
-        // Minor surgery
-        //<p>${product.description}</p>
+
+        let inputGroup = document.createElement("div");
+        inputGroup.className = "input-group";
+
+        let minusButton = document.createElement("button");
+        minusButton.classList.add("card-minus-item");
+        minusButton.classList.add("btn");
+        minusButton.classList.add("btn-primary");
+        minusButton.setAttribute("data-id", `${product.id}`);
+        minusButton.textContent = "-";
+        minusButton.addEventListener("click", function(e) {
+            if (quantityInput.value > 1) {
+                quantityInput.value--;
+            }
+        })
 
         let quantityInput = document.createElement("input");
         quantityInput.type = "number";
@@ -192,6 +204,27 @@ $(function(){
         quantityInput.min = "1";
         quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
+        quantityInput.onkeyup = function() {
+            if(this.value > 99) {
+                alert("Felaktig inmatning");
+                this.value = 99;
+            } else if(this.value < 1) {
+                alert("Felaktig inmatning");
+                this.value = 1;
+            }
+        };
+
+        let plusButton = document.createElement("button");
+        plusButton.classList.add("card-plus-item");
+        plusButton.classList.add("btn");
+        plusButton.classList.add("btn-primary");
+        plusButton.setAttribute("data-id",`${product.id}`);
+        plusButton.textContent = "+";
+        plusButton.addEventListener("click", function(e) {
+            if (quantityInput.value < 99) {
+                quantityInput.value++;
+            }
+        })
 
         let button = document.createElement("button");
         button.classList.add("add-to-cart");
@@ -204,7 +237,10 @@ $(function(){
             addToCart(product, quantityInput.value);
         });
 
-        prodDescription.appendChild(quantityInput);
+        inputGroup.appendChild(minusButton);
+        inputGroup.appendChild(quantityInput);
+        inputGroup.appendChild(plusButton);
+        prodDescription.appendChild(inputGroup);
         prodDescription.appendChild(button);
         card.appendChild(prodDescription);
         
@@ -297,7 +333,7 @@ $(function(){
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
+                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
@@ -366,7 +402,8 @@ $(function(){
 
         //adding eventhandler to navbar buttons
         $(".navbar-button").click(filterProductsByCategory);
-
+        $("#searchbutton").click(filterProductsBySearch);
+        $("#search-input").change(filterProductsBySearch);
     }
 
     /**
@@ -388,6 +425,33 @@ $(function(){
         let filteredProducts = [];
         productsArray.forEach(product => {
             if(product.category == selectedCategoryName){
+                filteredProducts.push(product);
+            }
+        });
+        displayAllProducts(filteredProducts);
+    }
+
+    function filterProductsBySearch(event) {
+        let search = document.getElementById("search-input").value.toLowerCase().trim();
+
+        if (search === '') {
+            displayAllProducts(productsArray);
+            return;
+        }
+        
+        let filteredProducts = [];
+        categoriesArray.forEach(category => {
+            if (search === category.name.toLowerCase()) {
+                productsArray.forEach(product => {
+                    if(product.category == category.name){
+                        filteredProducts.push(product);
+                    }
+                });
+            }
+        })
+
+        productsArray.forEach(product => {
+            if (product.title.toLowerCase().includes(search)) {
                 filteredProducts.push(product);
             }
         });
