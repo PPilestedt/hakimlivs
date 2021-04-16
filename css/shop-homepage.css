@@ -189,8 +189,12 @@ form.example button {
 
 .cart-item-sum{
   text-align: end;
+  white-space: nowrap;
 }
 
+footer {
+  padding: 0.5rem;
+}
 
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {

@@ -292,7 +292,7 @@ $(function(){
                                 ${product.title}
                             </td>
                             <td>
-                                ${product.price} Kr per artikel
+                                ${product.price} Kr
                             </td>
                             <td class='break'>
                                 <div class="input-group">
