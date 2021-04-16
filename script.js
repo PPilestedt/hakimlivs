@@ -419,14 +419,24 @@ $(function(){
     }
 
     function filterProductsBySearch(event) {
-        let search = document.getElementById("search-input").value.toLowerCase();
+        let search = document.getElementById("search-input").value.toLowerCase().trim();
 
         if (search === '') {
             displayAllProducts(productsArray);
             return;
         }
-
+        
         let filteredProducts = [];
+        categoriesArray.forEach(category => {
+            if (search === category.name.toLowerCase()) {
+                productsArray.forEach(product => {
+                    if(product.category == category.name){
+                        filteredProducts.push(product);
+                    }
+                });
+            }
+        })
+
         productsArray.forEach(product => {
             if (product.title.toLowerCase().includes(search)) {
                 filteredProducts.push(product);
