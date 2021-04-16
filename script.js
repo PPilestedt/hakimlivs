@@ -174,6 +174,9 @@ $(function(){
         let card = document.createElement("div");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
+        
+        card.className = "card";
+        card.innerHTML = `<div class="card-img-top"><img class="card-image" src="${product.image}" alt="${product.title} "> </div>`;
       
         let prodDescription = document.createElement("div");
         prodDescription.className = "card-body";
