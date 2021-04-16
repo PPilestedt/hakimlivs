@@ -517,6 +517,7 @@ function focusOnclick() {
         <div class="modal-body">
         <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
         <div class="product-description text-justify"><p>Beskrivning: ${description}</p></div>
+        <hr>
         <div class="product-description"><h6><b>Pris:</b> ${price} kr</h6></div>
         <div class="product-description"><h6><b>Kategori:</b> ${category}</h6></div>
         <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
