@@ -457,8 +457,9 @@ $(function(){
         }
     }
 
-    //--------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
 
+/**Hämtar alla produktkort och lägger en eventlistener på dem */
 initFocus()
 function initFocus() {
     let cards = document.getElementsByClassName("product-card");
@@ -469,11 +470,11 @@ function initFocus() {
         cards[i].addEventListener("click", focusOnclick) 
    }
       } else {
-        setTimeout(initFocus, 100); // try again in 100 milliseconds
+        setTimeout(initFocus, 100); // kör igen efter 100 ms om det behövs
       } 
 }
 
-
+/**Hittar title och går igenom produktsarray och sätter rästen av värdena, utom lagerstarus */
 function focusOnclick() {
     
     let title = this.getElementsByTagName("h4")[0].innerText.trim();
@@ -493,30 +494,34 @@ function focusOnclick() {
             price = productsArray[i].price
             productprice = productsArray[i].productprice
             category = productsArray[i].category
-            pricecomparison = productsArray[i].pricecomparison
-            weight = productsArray[i].weight
+            pricecomparison = productsArray[i].pricecomparison.toFixed(2)
+            weight = productsArray[i].weight + " kg"
+
+            if (parseFloat(weight) < 1) {
+                weight = parseFloat(weight) * 1000;
+                weight += " g";
+            }
         }
     }
 
     let exampleModal = getFocusModal();
   
-    // Init the modal if it hasn't been already.
+    // Initierar modalen om det behövs
     if (!exampleModal) { exampleModal = initFocusModal(); }
 
   
     let html =`
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
         <div class="modal-body">
-        <div class="product-img" id="focusImg"><img src="${image}" alt="${title} "> </div>
-        <div class="product-description"><p>${description}</p></div>
-        <div class="product-description"><h5>${price}</h5></div>
-        <div class="product-description"><h5>${category}</h5></div>
-        <div class="product-description"><h5>${weight}</h5></div>
+        <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
+        <div class="product-description text-justify"><p>Beskrivning: ${description}</p></div>
+        <div class="product-description"><h5>Pris: ${price} kr</h5></div>
+        <div class="product-description"><h5>Kategori: ${category}</h5></div>
+        <div class="product-description"><h5>Vikt: ${weight}</h5></div>
+        <div class="product-description"><h5>Jämförelsepris: ${pricecomparison} kr</h5></div>
+        <div class="product-description"><h5>I lager: Lagestatus här sen</h5></div>
 
         </div>
         <div class="modal-footer">
@@ -525,7 +530,7 @@ function focusOnclick() {
   
     setFocusModalContent(html);
   
-    // Show the modal.
+    // visar modalen
     jQuery(exampleModal).modal('show');
   
   }
@@ -537,7 +542,7 @@ function focusOnclick() {
   function setFocusModalContent(html) {
     getFocusModal().querySelector('.modal-content').innerHTML = html;
   }
-  
+  // initierar diven som är modalen
   function initFocusModal() {
     var modal = document.createElement('div');
     modal.classList.add('modal', 'fade');
