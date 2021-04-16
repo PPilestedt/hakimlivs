@@ -163,8 +163,11 @@ form.example button {
   margin: 25px 0;   
 }
 
-footer {
-  padding: 0.5rem;
+
+/* För produkt fokus bilden */
+#focusImg {
+  overflow: hidden;
+  margin-bottom: 15px;
 }
 
 /*Övergång till dropdown i headern*/
@@ -265,6 +268,7 @@ footer {
 footer {
   padding-top: 15px;
   padding-bottom: 15px;
+  padding: 0.5rem;
 }
 
 #right-field {

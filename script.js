@@ -1,7 +1,7 @@
 $(function(){
 
     let categoriesArray = [];
-    let productsArray = [];
+    let productsArray = []; 
     
     loadProducts();
     loadCategories();
@@ -172,9 +172,9 @@ $(function(){
      */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `<div class="card-img-top"><img class="card-image" src="${product.image}" alt="${product.title} "> </div>`;
-
+        card.className = "product-card";
+        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
+      
         let prodDescription = document.createElement("div");
         prodDescription.className = "card-body";
         prodDescription.innerHTML =
@@ -478,6 +478,110 @@ $(function(){
             document.getElementById("finish-checkout-btn").setAttribute("disabled", "true");
         }
     }
+
+//--------------------------------------------------------------------------------------------------------
+
+/**Hämtar alla produktkort och lägger en eventlistener på dem */
+initFocus()
+function initFocus() {
+    let cards = document.getElementsByClassName("product-card");
+
+    if (!productsArray.length == 0) {
+
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener("click", focusOnclick) 
+   }
+      } else {
+        setTimeout(initFocus, 100); // kör igen efter 100 ms om det behövs
+      } 
+}
+
+/**Hittar title och går igenom produktsarray och sätter rästen av värdena, utom lagerstarus */
+function focusOnclick() {
+    
+    let title = this.getElementsByTagName("h4")[0].innerText.trim();
+    let description = ""
+    let image = ""
+    let price = ""
+    let productprice = ""
+    let category = ""
+    let pricecomparison = ""
+    let weight = ""
+
+    for (let i = 0; i < productsArray.length; i++) {
+        
+        if (productsArray[i].title.trim() == title) {
+            description = productsArray[i].description
+            image = productsArray[i].image
+            price = productsArray[i].price
+            productprice = productsArray[i].productprice
+            category = productsArray[i].category
+            pricecomparison = productsArray[i].pricecomparison.toFixed(2)
+            weight = productsArray[i].weight + " kg"
+
+            if (parseFloat(weight) < 1) {
+                weight = parseFloat(weight) * 1000;
+                weight += " g";
+            }
+        }
+    }
+
+    let exampleModal = getFocusModal();
+  
+    // Initierar modalen om det behövs
+    if (!exampleModal) { exampleModal = initFocusModal(); }
+
+  
+    let html =`
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
+        </div>
+        <div class="modal-body">
+        <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
+        <div class="product-description text-justify"><p>Beskrivning: ${description}</p></div>
+        <hr>
+        <div class="product-description"><h6><b>Pris:</b> ${price} kr</h6></div>
+        <div class="product-description"><h6><b>Kategori:</b> ${category}</h6></div>
+        <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
+        <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison} kr</h6></div>
+        <div class="product-description"><h6><b>I lager:</b> Lagestatus här sen</h6></div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+        </div>`
+  
+    setFocusModalContent(html);
+  
+    // visar modalen
+    jQuery(exampleModal).modal('show');
+  
+  }
+  
+  function getFocusModal() {
+    return document.getElementById('exampleModal');
+  }
+  
+  function setFocusModalContent(html) {
+    getFocusModal().querySelector('.modal-content').innerHTML = html;
+  }
+  // initierar diven som är modalen
+  function initFocusModal() {
+    var modal = document.createElement('div');
+    modal.classList.add('modal', 'fade');
+    modal.setAttribute('id', 'exampleModal');
+    modal.setAttribute('tabindex', '-1');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-labelledby', 'exampleModalLabel');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML =
+          '<div class="modal-dialog modal-dialog-centered" role="document">' +
+            '<div class="modal-content"></div>' +
+          '</div>';
+    document.body.appendChild(modal);
+    return modal;
+  }
+
 })
 
 
