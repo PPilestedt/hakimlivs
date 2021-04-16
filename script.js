@@ -423,7 +423,7 @@ $(function(){
 
         let filteredProducts = [];
         productsArray.forEach(product => {
-            if(product.category.name == selectedCategoryName){
+            if(product.category == selectedCategoryName){
                 filteredProducts.push(product);
             }
         });
