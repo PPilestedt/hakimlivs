@@ -193,7 +193,9 @@ $(function(){
         minusButton.setAttribute("data-id", `${product.id}`);
         minusButton.textContent = "-";
         minusButton.addEventListener("click", function(e) {
-            quantityInput.value--;
+            if (quantityInput.value > 1) {
+                quantityInput.value--;
+            }
         })
 
         let quantityInput = document.createElement("input");
@@ -202,6 +204,15 @@ $(function(){
         quantityInput.min = "1";
         quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
+        quantityInput.onkeyup = function() {
+            if(this.value > 99) {
+                alert("Felaktig inmatning");
+                this.value = 99;
+            } else if(this.value < 1) {
+                alert("Felaktig inmatning");
+                this.value = 1;
+            }
+        };
 
         let plusButton = document.createElement("button");
         plusButton.classList.add("card-plus-item");
@@ -210,7 +221,9 @@ $(function(){
         plusButton.setAttribute("data-id",`${product.id}`);
         plusButton.textContent = "+";
         plusButton.addEventListener("click", function(e) {
-            quantityInput.value++;
+            if (quantityInput.value < 99) {
+                quantityInput.value++;
+            }
         })
 
         let button = document.createElement("button");
