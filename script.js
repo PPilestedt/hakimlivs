@@ -136,7 +136,7 @@ $(function(){
      * 
      */
     async function loadProducts(){
-        await fetch("https://hakimsandra.herokuapp.com/product")
+        await fetch("data/products.json")
                     .then(res=>res.json())
                     .then(products => {
                         productsArray = products;
@@ -364,7 +364,7 @@ $(function(){
      * 
      * */
     async function loadCategories() {
-        await fetch("https://hakimsandra.herokuapp.com/category")
+        await fetch("data/categories.json")
                     .then(res=>res.json())
                     .then(categories => {
                         categoriesArray = categories;
