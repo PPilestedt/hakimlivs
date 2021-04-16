@@ -29,7 +29,7 @@
         <span class="navbar-toggler-icon"></span></button>
       <a href="index.html"><img src="images/hakimLogo.png" alt="Hakim Livs Logo" id="logo"></a>
       <div class="search-container">
-        <input type="text" placeholder="Search.." id="search-input">
+        <input type="text" placeholder="Search.." id="search-input" maxlength="25">
         <button type="submit" id="searchbutton">Sök</button>
       </div>
 
@@ -53,7 +53,7 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-lg-3">
+      <div id="left-field" class="col-lg-3">
         <div class="list-group nav-category">
 
         </div>
@@ -61,7 +61,7 @@
       </div>
       <!-- /.col-lg-3 -->
 
-      <div class="col-lg-9">
+      <div id="right-field" class="col-lg-9">
 
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -90,17 +90,11 @@
           </a>
         </div>
 
-        <div class="row">
-          <div id="product-wrapper">
-            <div id="product-content"></div>
-          </div>
 
-        </div>
+        
         <!-- /.row -->
-
-        <div id="focus-modal">
-
-        </div>
+        <div id="product-content" class="d-flex flex-wrap"></div>
+       
 
       </div>
       <!-- /.col-lg-9 -->

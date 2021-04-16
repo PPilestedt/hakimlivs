@@ -26,6 +26,11 @@ input[type=number] {
   padding-top:25px;
 }
 
+.category-hover:hover {
+  background-color: gray;
+  cursor:pointer;
+}
+
 .nav-dropdown{
   display: block;
 }
@@ -66,30 +71,14 @@ form.example button {
   text-align: center;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-  background-color: rgb(255, 255, 255);
-}
+
 
 .price {
   color: grey;
   font-size: 22px;
 }
 
-.card button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: rgb(255, 255, 255);
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  font-size: 18px;
-}
+
 
 .card button:hover {
   opacity: 0.7;
@@ -122,30 +111,6 @@ form.example button {
   position: relative;
 }
 
-  #product-wrapper {
-    align-items: center;
-    background: #FFF;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 945px;
-}
-
-#product-content {
-    background: #FFFFFF;
-    display: flex;
-    flex-wrap: wrap;
-    margin: -0.3rem;
-    max-width: 960px;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-}
-
-#product-content > * {
-    flex: 1 0 300px;
-}
-
 .product-card {
     border: #f1f1f1 1px solid;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -158,14 +123,6 @@ form.example button {
 .product-card:hover {
     box-shadow: 0 8px 16px 0 rgba(46, 45, 45, 0.2);
     
-}
-
-.product-card .product-img {
-    text-align: center;
-}
-
-.product-card .product-img img{
-  height: 200px;
 }
 
 .product-card .product-description > * {
@@ -199,11 +156,13 @@ form.example button {
 
 .cart-item-sum{
   text-align: end;
+  white-space: nowrap;
 }
 /* För admin panelen */
 .panel {
   margin: 25px 0;   
 }
+
 
 /* För produkt fokus bilden */
 #focusImg {
@@ -221,20 +180,6 @@ form.example button {
   }
 }
 
-@media screen and (max-width: 1024px) {
-  #product-content > * {
-    flex: 0 0 200px;
-  }
-  .product-card {
-    width: 230px;
-  }
-  .product-card .product-img img{
-    height: 150px;
-  }
-  .product-card .product-description{
-    width: 200px;
-  }
-}
 
 @media screen and (max-width: 991px) {
   .left {
@@ -247,56 +192,13 @@ form.example button {
   .right {
     order: 2;
   }  
-  .product-card {
-    width: 230px;
-  }
-  .product-card .product-img {
-    height: 150px;
-    width: 200px;
-  }
-  .product-card .product-img img{
-    height: 150px;
-  }
+
 
 }
 
 @media screen and (max-width: 600px) {
-  #product-content > * {
-    flex: 0 0 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .column {
-    width: 100%;
-  }
-  .product-card {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    height: 550px;
-    width: 350px;
-  }
-  .product-card .product-img {
-    height: 200px;
-    width: 260px;
-  }
-  .product-card .product-img img{
-    height: 200px;
-  }
-  .product-card .product-description {
-    height: 300px;
-    margin: auto;
-  }
-  .product-card .product-description .input-group{
-    margin: 5%;
-  }    
-  .product-card .product-description .input-group input{
-    width: 100px;
-  }  
-  .product-card .product-description .add-to-cart{
-    height: 100px;
-    margin: 5%;
-    font-size: 25px;
-  }
+ 
+
   tr.cart-table {
     display: block;
   }
@@ -305,4 +207,74 @@ form.example button {
     float: left;
     text-align: left;
   }
+}
+
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 162px;
+  margin: 10px 5px 10px 5px;
+  text-align: center;
+  font-family: arial;
+  background-color: rgb(255, 255, 255);
+}
+
+.card-image {
+  width: 162px;
+  padding: 10px;
+  border-radius: 13px;
+}
+
+.card h4 {
+ 
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    margin: 0;
+    background: white;
+    font-weight: 600;
+    padding-bottom: 10px;
+    height: 50px;
+    line-height: 1em;
+}
+
+.card-body {
+  padding: 0 10px 10px 10px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.card .input-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card .add-to-cart {
+  width: 75%;
+}
+
+#product-content {
+  padding-bottom: 15px;
+}
+
+footer {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding: 0.5rem;
+}
+
+#right-field {
+  padding: 0;
+}
+
+#carouselExampleIndicators {
+  max-width: 720px;
 }

@@ -136,7 +136,7 @@ $(function(){
      * 
      */
     async function loadProducts(){
-        await fetch("data/products.json")
+        await fetch("https://hakims-livs.herokuapp.com/products")
                     .then(res=>res.json())
                     .then(products => {
                         productsArray = products;
@@ -172,19 +172,18 @@ $(function(){
      */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
-        card.className = "product-card"; //----------------------------------------------------------------------------
+        card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
-
+      
         let prodDescription = document.createElement("div");
-        prodDescription.className = "product-description";
+        prodDescription.className = "card-body";
         prodDescription.innerHTML =
-            `<h4>${product.title}</h4>
+            `<h4 class="card-title">${product.title}</h4>
             
-            <h5>Pris: ${product.price} kr</h5>
-            <br>`;
+            <h5>${product.price} kr</h5>`;
 
         let inputGroup = document.createElement("div");
-        inputGroup.className = "input-group";
+        inputGroup.className = "input-group d-flex justify-content-center flex-nowrap";
 
         let minusButton = document.createElement("button");
         minusButton.classList.add("card-minus-item");
@@ -193,7 +192,9 @@ $(function(){
         minusButton.setAttribute("data-id", `${product.id}`);
         minusButton.textContent = "-";
         minusButton.addEventListener("click", function(e) {
-            quantityInput.value--;
+            if (quantityInput.value > 1) {
+                quantityInput.value--;
+            }
         })
 
         let quantityInput = document.createElement("input");
@@ -202,6 +203,15 @@ $(function(){
         quantityInput.min = "1";
         quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
+        quantityInput.onkeyup = function() {
+            if(this.value > 99) {
+                alert("Felaktig inmatning");
+                this.value = 99;
+            } else if(this.value < 1) {
+                alert("Felaktig inmatning");
+                this.value = 1;
+            }
+        };
 
         let plusButton = document.createElement("button");
         plusButton.classList.add("card-plus-item");
@@ -210,7 +220,9 @@ $(function(){
         plusButton.setAttribute("data-id",`${product.id}`);
         plusButton.textContent = "+";
         plusButton.addEventListener("click", function(e) {
-            quantityInput.value++;
+            if (quantityInput.value < 99) {
+                quantityInput.value++;
+            }
         })
 
         let button = document.createElement("button");
@@ -218,7 +230,7 @@ $(function(){
         button.classList.add("btn");
         button.classList.add("btn-primary");
         button.setAttribute("data-id",`${product.id}`);
-        button.textContent = "Lägg till i varukorgen";
+        button.textContent = "Köp";
         
         button.addEventListener("click", function (e) {
             addToCart(product, quantityInput.value);
@@ -315,7 +327,7 @@ $(function(){
                                 ${product.title}
                             </td>
                             <td>
-                                ${product.price} Kr per artikel
+                                ${product.price} Kr
                             </td>
                             <td class='break'>
                                 <div class="input-group">
@@ -369,10 +381,10 @@ $(function(){
      */
 
     function displayAllCategories(categories) {
-        let output = `<div class="list-group-item navbar-button">Alla Produkter</div>`;
+        let output = `<div class="list-group-item navbar-button category-hover">Alla Produkter</div>`;
 
         categories.forEach(category => {
-            output += `<div class="list-group-item navbar-button">${category.name}</div>`
+            output += `<div class="list-group-item navbar-button category-hover">${category.name}</div>`
         });
         $('.nav-category').html(output);
 
@@ -419,14 +431,24 @@ $(function(){
     }
 
     function filterProductsBySearch(event) {
-        let search = document.getElementById("search-input").value.toLowerCase();
+        let search = document.getElementById("search-input").value.toLowerCase().trim();
 
         if (search === '') {
             displayAllProducts(productsArray);
             return;
         }
-
+        
         let filteredProducts = [];
+        categoriesArray.forEach(category => {
+            if (search === category.name.toLowerCase()) {
+                productsArray.forEach(product => {
+                    if(product.category == category.name){
+                        filteredProducts.push(product);
+                    }
+                });
+            }
+        })
+
         productsArray.forEach(product => {
             if (product.title.toLowerCase().includes(search)) {
                 filteredProducts.push(product);

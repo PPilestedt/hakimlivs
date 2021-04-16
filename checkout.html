@@ -31,19 +31,38 @@
             <thead class="table-head">
             <tr>
                 <th>Produkt</th>
-                <th></th>
+                <th>Pris</th>
                 <th>Antal</th>
                 <th></th>
-                <th>Pris</th>
+                <th>Totalt</th>
             </tr>
             </thead>
             <tbody id="order-entries"></tbody>
         </table>
-        <div><strong>Totasumma: </strong><span id="total-cart"></span></div>
+        <div><strong>Totalsumma: </strong><span id="total-cart"></span></div>
     </div>
     <div class="button-center">
       <button type="button" class="btn btn-primary" id="finish-checkout-btn-two" onclick="document.location='orderbekraftelse.html'">Slutför beställning</button>
     </div>
+<!-- Footer -->
+<footer class="bg-dark" id="footer-check">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 left">
+        <a href="history.html" class="undecorated-link">Hakim Livs - Vår Historia</a>
+      </div>
+      <div class="col-lg-4 center">
+        <p class="m-0 text-white">Copyright &copy; Your Website 2020</p>
+      </div>
+      <div class="col-lg-4 right">
+         <div class="m-0 text-white" id="kontaktUppgifter">
+         </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</footer>
+
     <script src="jquery.js"></script>
 <script src="bootstrap.bundle.js"></script>
 <script src="order.js"></script>
