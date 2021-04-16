@@ -22,7 +22,7 @@ function orderBekraftelse() {
 }
 
 let totalDiv = document.querySelector(".total");
-totalDiv.innerHTML = `Totalt: ` +getTotal()+` Kr`;
+totalDiv.innerHTML = getTotal()+ ` Kr`;
 
 function getTotal() {
     let sum = 0;
