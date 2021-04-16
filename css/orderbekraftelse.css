@@ -17,3 +17,22 @@
     }
 
 }
+
+#footer-bekraft {
+    position : absolute;
+    bottom : 0;
+    height : 40px;
+    margin-top : 40px;
+    width: 100%;
+}
+
+.undecorated-link {
+    text-decoration: none;
+    color: #ffc400;
+  
+  }
+  .undecorated-link:hover {
+    text-decoration: none;
+    color: #fad96c;
+  
+  }

@@ -136,7 +136,7 @@ $(function(){
      * 
      */
     async function loadProducts(){
-        await fetch("data/products.json")
+        await fetch("https://hakimsandra.herokuapp.com/product")
                     .then(res=>res.json())
                     .then(products => {
                         productsArray = products;
@@ -172,19 +172,18 @@ $(function(){
      */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
+        card.className = "card";
+        card.innerHTML = `<div class="card-img-top"><img class="card-image" src="${product.image}" alt="${product.title} "> </div>`;
 
         let prodDescription = document.createElement("div");
-        prodDescription.className = "product-description";
+        prodDescription.className = "card-body";
         prodDescription.innerHTML =
-            `<h4>${product.title}</h4>
+            `<h4 class="card-title">${product.title}</h4>
             
-            <h5>Pris: ${product.price} kr</h5>
-            <br>`;
+            <h5>${product.price} kr</h5>`;
 
         let inputGroup = document.createElement("div");
-        inputGroup.className = "input-group";
+        inputGroup.className = "input-group d-flex justify-content-center flex-nowrap";
 
         let minusButton = document.createElement("button");
         minusButton.classList.add("card-minus-item");
@@ -231,7 +230,7 @@ $(function(){
         button.classList.add("btn");
         button.classList.add("btn-primary");
         button.setAttribute("data-id",`${product.id}`);
-        button.textContent = "Lägg till i varukorgen";
+        button.textContent = "Köp";
         
         button.addEventListener("click", function (e) {
             addToCart(product, quantityInput.value);
@@ -365,7 +364,7 @@ $(function(){
      * 
      * */
     async function loadCategories() {
-        await fetch("data/categories.json")
+        await fetch("https://hakimsandra.herokuapp.com/category")
                     .then(res=>res.json())
                     .then(categories => {
                         categoriesArray = categories;
@@ -424,7 +423,7 @@ $(function(){
 
         let filteredProducts = [];
         productsArray.forEach(product => {
-            if(product.category == selectedCategoryName){
+            if(product.category.name == selectedCategoryName){
                 filteredProducts.push(product);
             }
         });
