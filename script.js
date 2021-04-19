@@ -161,6 +161,8 @@ $(function(){
             let card = displayProductsInCard(item);
             productContainer.appendChild(card);
         })
+
+        initFocus();
     }
 
     /**
@@ -485,7 +487,6 @@ $(function(){
 //--------------------------------------------------------------------------------------------------------
 
 /**Hämtar alla produktkort och lägger en eventlistener på dem */
-initFocus()
 function initFocus() {
     let cards = document.getElementsByClassName("card");
     
@@ -552,7 +553,7 @@ function focusOnclick(event) {
     
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
             </div>`
       
         setFocusModalContent(html);
