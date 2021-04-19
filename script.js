@@ -136,7 +136,7 @@ $(function(){
      * 
      */
     async function loadProducts(){
-        await fetch("https://hakims-livs.herokuapp.com/products")
+        await fetch("https://hakims-livs.herokuapp.com/api/products")
                     .then(res=>res.json())
                     .then(products => {
                         productsArray = products;
