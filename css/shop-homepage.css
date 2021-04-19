@@ -14,6 +14,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+  width: 45%;
 }
  
 #logo {
@@ -111,34 +112,6 @@ form.example button {
   position: relative;
 }
 
-.product-card {
-    border: #f1f1f1 1px solid;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 0.3rem;
-    max-width: 278px;
-    padding: 0.5rem;
-    transition: 0.3s;
-}
-
-.product-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(46, 45, 45, 0.2);
-    
-}
-
-.product-card .product-description > * {
-    margin-left: 10%;
-    margin-right: 10%;
-    text-align: left;
-}
-
-.product-card .product-description input{
-  width: 40%;
-  margin: 0%;
-}  
-.product-card .product-description .input-group{
-  margin: 5%;
-  margin-left: 10%;
-}  
 .undecorated-link {
   text-decoration: none;
   color: #ffc400;
@@ -217,12 +190,21 @@ form.example button {
   text-align: center;
   font-family: arial;
   background-color: rgb(255, 255, 255);
+  transition: box-shadow .3s;
+}
+
+.card:hover {
+  box-shadow: 0 0 11px rgba(100,100,100,1); 
 }
 
 .card-image {
   width: 162px;
   padding: 10px;
   border-radius: 13px;
+}
+.card-image:hover {
+cursor: pointer;
+
 }
 
 .card h4 {
@@ -238,7 +220,10 @@ form.example button {
     height: 50px;
     line-height: 1em;
 }
-
+.card h4:hover {
+  cursor: pointer;
+  }
+  
 .card-body {
   padding: 0 10px 10px 10px;
 }
