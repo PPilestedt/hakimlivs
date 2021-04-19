@@ -176,12 +176,12 @@ $(function(){
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
         
         card.className = "card";
-        card.innerHTML = `<div class="card-img-top"><img class="card-image" src="${product.image}" alt="${product.title} "> </div>`;
+        card.innerHTML = `<div class="card-img-top"><img class="card-image" data-id = "${product.id}" src="${product.image}" alt="${product.title} "> </div>`;
       
         let prodDescription = document.createElement("div");
         prodDescription.className = "card-body";
         prodDescription.innerHTML =
-            `<h4 class="card-title">${product.title}</h4>
+            `<h4 class="card-title" data-id= "${product.id}" >${product.title}</h4>
             
             <h5>${product.price} kr</h5>`;
 
@@ -192,7 +192,7 @@ $(function(){
         minusButton.classList.add("card-minus-item");
         minusButton.classList.add("btn");
         minusButton.classList.add("btn-primary");
-        minusButton.setAttribute("data-id", `${product.id}`);
+        minusButton.setAttribute("data-id", `${product.id}`);   
         minusButton.textContent = "-";
         minusButton.addEventListener("click", function(e) {
             if (quantityInput.value > 1) {
@@ -499,8 +499,10 @@ function initFocus() {
 }
 
 /**Hittar title och går igenom produktsarray och sätter rästen av värdena, utom lagerstarus */
-function focusOnclick() {
-    
+function focusOnclick(event) {
+
+    const element = event.target;
+    const productId = element.getAttribute("data-id");
     let title = this.getElementsByTagName("h4")[0].innerText.trim();
     let description = ""
     let image = ""
@@ -510,53 +512,57 @@ function focusOnclick() {
     let pricecomparison = ""
     let weight = ""
 
-    for (let i = 0; i < productsArray.length; i++) {
+    if (element.tagName.toLowerCase() === "img" || element.tagName.toLowerCase() === "h4") {
+        for (let i = 0; i < productsArray.length; i++) {
         
-        if (productsArray[i].title.trim() == title) {
-            description = productsArray[i].description
-            image = productsArray[i].image
-            price = productsArray[i].price
-            productprice = productsArray[i].productprice
-            category = productsArray[i].category
-            pricecomparison = productsArray[i].pricecomparison.toFixed(2)
-            weight = productsArray[i].weight + " kg"
-
-            if (parseFloat(weight) < 1) {
-                weight = parseFloat(weight) * 1000;
-                weight += " g";
+            if (productsArray[i].id == productId) {
+                description = productsArray[i].description
+                image = productsArray[i].image
+                price = productsArray[i].price
+                productprice = productsArray[i].productprice
+                category = productsArray[i].category
+                pricecomparison = productsArray[i].pricecomparison.toFixed(2)
+                weight = productsArray[i].weight + "kg"
+    
+                if (parseFloat(weight) < 1) {
+                    weight = parseFloat(weight) * 1000;
+                    weight += "g";
+                }
             }
         }
+    
+        let exampleModal = getFocusModal();
+      
+        // Initierar modalen om det behövs
+        if (!exampleModal) { exampleModal = initFocusModal(); }
+    
+      
+        let html =`
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
+            </div>
+            <div class="modal-body">
+            <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
+            <div class="product-description text-justify"><p>${description}</p></div>
+            <hr>
+            <div class="product-description"><h6><b>Pris:</b> ${price}kr</h6></div>
+            <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
+            <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}kr</h6></div>
+            <div class="product-description"><h6><b>I lager:</b> Lagestatus här sen</h6></div>
+    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+            </div>`
+      
+        setFocusModalContent(html);
+      
+        // visar modalen
+        jQuery(exampleModal).modal('show');
+        
     }
 
-    let exampleModal = getFocusModal();
-  
-    // Initierar modalen om det behövs
-    if (!exampleModal) { exampleModal = initFocusModal(); }
-
-  
-    let html =`
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
-        </div>
-        <div class="modal-body">
-        <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
-        <div class="product-description text-justify"><p>Beskrivning: ${description}</p></div>
-        <hr>
-        <div class="product-description"><h6><b>Pris:</b> ${price} kr</h6></div>
-        <div class="product-description"><h6><b>Kategori:</b> ${category}</h6></div>
-        <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
-        <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison} kr</h6></div>
-        <div class="product-description"><h6><b>I lager:</b> Lagestatus här sen</h6></div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
-        </div>`
-  
-    setFocusModalContent(html);
-  
-    // visar modalen
-    jQuery(exampleModal).modal('show');
+    
   
   }
   
