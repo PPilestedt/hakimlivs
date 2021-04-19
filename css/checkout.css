@@ -153,6 +153,7 @@ table tbody > :nth-child(2n-1) {
     height : 40px;
     margin-top : 40px;
     width: 100%;
+  padding: 0.5rem;
 }
 
 .undecorated-link {
