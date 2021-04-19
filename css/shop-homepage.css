@@ -225,6 +225,9 @@ form.example button {
   padding: 10px;
   border-radius: 13px;
 }
+.card-image:hover {
+cursor: pointer;
+}
 
 .card h4 {
  
@@ -239,7 +242,10 @@ form.example button {
     height: 50px;
     line-height: 1em;
 }
-
+.card h4:hover {
+  cursor: pointer;
+  }
+  
 .card-body {
   padding: 0 10px 10px 10px;
 }
