@@ -69,6 +69,8 @@ table tbody > :nth-child(2n-1) {
 
 #finish-checkout-btn-two {
   position: relative;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 992px) {
@@ -146,7 +148,7 @@ table tbody > :nth-child(2n-1) {
 }
 
 #footer-check {
-  position : absolute;
+  position : relative;
     bottom : 0;
     height : 40px;
     margin-top : 40px;
@@ -162,4 +164,11 @@ table tbody > :nth-child(2n-1) {
   text-decoration: none;
   color: #fad96c;
 
+}
+
+.customer-container {
+  width: 500px;
+  margin: auto;
+  border: 3px solid #41443f;
+  padding: 25px;
 }
