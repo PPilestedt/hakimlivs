@@ -39,16 +39,17 @@
             </thead>
             <tbody id="order-entries"></tbody>
         </table>
-        <div><strong>Totalsumma: </strong><span id="total-cart"></span></div>
+        <div id="total-sum"><strong>Totalsumma: </strong><span id="total-cart"></span></div>
     </div>
+    <!-- Temporarely disabled button until sprint 4
     <div class="button-center">
       <button type="button submit" class="btn btn-primary" id="finish-checkout-btn-two" onclick="document.location='orderbekraftelse.html'">Slutför beställning</button>
-    </div>
+    </div> -->
 
     <!-- Customer info fields-->
     <div id="responsive" class="customer-container" >
     <h2><center>Kunduppgifter</h2></center>
-    <form action="/" onsubmit="return pwdcheck()">  
+    <form action="/orderbekraftelse.html" onsubmit="return pwdcheck()">  
       <div class="form-group" >
           <label for="firstname">Ditt förnamn:</label>
           <input type="text" minlength="2" size="50" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
