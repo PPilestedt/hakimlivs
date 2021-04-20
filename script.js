@@ -512,6 +512,7 @@ function focusOnclick(event) {
     let category = ""
     let pricecomparison = ""
     let weight = ""
+    let stockInHand = ""
 
     if (element.tagName.toLowerCase() === "img" || element.tagName.toLowerCase() === "h4") {
         for (let i = 0; i < productsArray.length; i++) {
@@ -519,12 +520,12 @@ function focusOnclick(event) {
             if (productsArray[i].id == productId) {
                 description = productsArray[i].description
                 image = productsArray[i].image
-                price = productsArray[i].price
+                price = productsArray[i].price +  " Kr"
                 productprice = productsArray[i].productprice
                 category = productsArray[i].category
-                pricecomparison = productsArray[i].pricecomparison.toFixed(2)
-                weight = productsArray[i].weight + "kg"
-    
+                pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " Kr"
+                weight = productsArray[i].weight + "g"
+                stockInHand = productsArray[i].stockInHand + " st"
                 if (parseFloat(weight) < 1) {
                     weight = parseFloat(weight) * 1000;
                     weight += "g";
@@ -546,10 +547,10 @@ function focusOnclick(event) {
             <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
             <div class="product-description text-justify"><p>${description}</p></div>
             <hr>
-            <div class="product-description"><h6><b>Pris:</b> ${price}kr</h6></div>
+            <div class="product-description"><h6><b>Pris:</b> ${price}</h6></div>
             <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
-            <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}kr</h6></div>
-            <div class="product-description"><h6><b>I lager:</b> Lagestatus här sen</h6></div>
+            <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}</h6></div>
+            <div class="product-description"><h6><b>I lager:</b>${stockInHand}</h6></div>
     
             </div>
             <div class="modal-footer">
