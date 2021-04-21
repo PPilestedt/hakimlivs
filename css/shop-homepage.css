@@ -249,12 +249,16 @@ footer {
   .right {
     order: 2;
   }  
+  td {
+    white-space: normal;
+  }
 }
 
 @media screen and (max-width: 600px) {
   tr.cart-table {
     display: block;
   }
+
   td.break {
     width: 70%;
     float: left;
