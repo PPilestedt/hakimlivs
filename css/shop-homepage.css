@@ -80,7 +80,6 @@ form.example button {
 }
 
 
-
 .card button:hover {
   opacity: 0.7;
 }
@@ -136,52 +135,11 @@ form.example button {
   margin: 25px 0;   
 }
 
-
 /* För produkt fokus bilden */
 #focusImg {
   overflow: hidden;
   margin-bottom: 15px;
 }
-
-/*Övergång till dropdown i headern*/
-@media (min-width: 992px) {
-  .nav-category{
-    display: block;
-  }
-  .nav-dropdown{
-    display: none;
-  }
-}
-
-
-@media screen and (max-width: 991px) {
-  .left {
-    margin-top: 5px;
-  }
-  .center {
-    order: 3;
-    margin-bottom: 3px;
-  }
-  .right {
-    order: 2;
-  }  
-
-
-}
-
-@media screen and (max-width: 600px) {
- 
-
-  tr.cart-table {
-    display: block;
-  }
-  td.break {
-    width: 70%;
-    float: left;
-    text-align: left;
-  }
-}
-
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -251,8 +209,6 @@ cursor: pointer;
 }
 
 footer {
-  padding-top: 15px;
-  padding-bottom: 15px;
   padding: 0.5rem;
 }
 
@@ -262,4 +218,43 @@ footer {
 
 #carouselExampleIndicators {
   max-width: 720px;
+}
+
+.nav-buttons > * {
+  margin-left: 5%;
+}
+
+/*Övergång till dropdown i headern*/
+@media (min-width: 992px) {
+  .nav-category{
+    display: block;
+  }
+  .nav-dropdown{
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 991px) {
+  .left {
+    margin-top: 5px;
+  }
+  .center {
+    order: 3;
+    margin-bottom: 3px;
+  }
+  .right {
+    order: 2;
+  }  
+}
+
+@media screen and (max-width: 600px) {
+  tr.cart-table {
+    display: block;
+  }
+  td.break {
+    width: 70%;
+    float: left;
+    text-align: left;
+  }
 }
