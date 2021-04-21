@@ -513,6 +513,7 @@ function focusOnclick(event) {
     let pricecomparison = ""
     let weight = ""
     let stockInHand = ""
+    let product;
 
     if (element.tagName.toLowerCase() === "img" || element.tagName.toLowerCase() === "h4") {
         for (let i = 0; i < productsArray.length; i++) {
@@ -530,6 +531,7 @@ function focusOnclick(event) {
                     weight = parseFloat(weight) * 1000;
                     weight += "g";
                 }
+                product = productsArray[i];
             }
         }
     
@@ -552,13 +554,48 @@ function focusOnclick(event) {
             <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}</h6></div>
             <div class="product-description"><h6><b>I lager:</b>${stockInHand}</h6></div>
     
+            <div class="product-description input-group d-flex justify-content-center flex-nowrap">
+                <button id="focus-minus" class="card-minus-item btn btn-primary" data-id="${productId}">-</button>
+                <input id="focus-input" type="number" min="1" max ="99" pattern="[0-9]">
+                <button id="focus-plus" class="card-plus-item btn btn-primary" data-id="${productId}">+</button>
             </div>
             <div class="modal-footer">
+              <button id="focus-buy" class="add-to-cart btn btn-primary" data-id="${productId}">Köp</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
             </div>`
       
         setFocusModalContent(html);
-      
+        let minusButton = document.getElementById("focus-minus");
+        let input = document.getElementById("focus-input");
+        let plusButton = document.getElementById("focus-plus");
+
+        input.value = "1";
+
+        minusButton.addEventListener("click", function(e) {
+            if (input.value > 1) {
+                input.value--;
+            }
+        })
+
+        input.onkeyup = function() {
+            if(this.value > 99) {
+                alert("Felaktig inmatning");
+                this.value = 99;
+            } else if(this.value < 1) {
+                alert("Felaktig inmatning");
+                this.value = 1;
+            }
+        };
+
+        plusButton.addEventListener("click", function(e) {
+            if (input.value < 99) {
+                input.value++;
+            }
+        })
+
+        document.getElementById("focus-buy").addEventListener("click", function (e) {
+            addToCart(product, input.value);
+        });
         // visar modalen
         jQuery(exampleModal).modal('show');
         
