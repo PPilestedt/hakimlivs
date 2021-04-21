@@ -223,7 +223,7 @@ footer {
   max-width: 720px;
 }
 
-.nav-buttons > * {
+.log-in-button, .cart-button {
   margin-left: 5%;
 }
 
