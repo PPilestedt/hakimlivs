@@ -165,47 +165,14 @@ function disableButton() {
     }
 }
 
-$("#postknapp").click(function(){
-    let firstname = "Peter";
-    let lastname = "Pilestedt";
-    let address = "skojgatan";
-    let zipcode = "12345";
-    let city = "solna";
-    let phone = "070-1234567";
-    let email = "mailman@manmail.com";
-
-    console.log("försöker posta");
-    var postItem = localStorage.getItem("cart");
-    $.ajax({
-        url: 'http://localhost:8080/customer/add',
-        data: JSON.stringify({
-            firstname : `${firstname}`,
-            lastname : `${lastname}`,
-            address : `${address}`,
-            zipcode : `${zipcode}`,
-            city : `${city}`,
-            phone : `${phone}`,
-            email : `${email}`
-        }),
-        type: 'POST',
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    })
-});
-
-    $("#userform").submit(function(){
-        
-        console.log("klickade på submit i chechkout");
-
-        let firstname = document.getElementById("firstname").value;
-        let lastname = document.getElementById("lastname").value;
-        let address = document.getElementById("address").value;
-        let zipcode = document.getElementById("zipcode").value;
-        let city = document.getElementById("city").value;
-        let phone = document.getElementById("phone").value;
-        let email = document.getElementById("email").value;
+    $("#userform").click(function(){
+        let firstname = "Peter";
+        let lastname = "Pilestedt";
+        let address = "skojgatan";
+        let zipcode = "12345";
+        let city = "solna";
+        let phone = "070-1234567";
+        let email = "mailman@manmail.com";
 
         console.log("försöker posta");
         var postItem = localStorage.getItem("cart");
@@ -224,6 +191,69 @@ $("#postknapp").click(function(){
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
+            }
+        })
+    });
+
+    $("#postknapp").click(function(){
+        
+        console.log("klickade på submit i chechkout");
+
+        let firstname = document.getElementById("firstname").value;
+        let lastname = document.getElementById("lastname").value;
+        let address = document.getElementById("address").value;
+        let zipcode = document.getElementById("zipcode").value;
+        let city = document.getElementById("city").value;
+        let phone = document.getElementById("phone").value;
+        let email = document.getElementById("email").value;
+        let customerid;
+        let orderid;
+
+        console.log("försöker posta");
+        var postItem = localStorage.getItem("cart");
+        $.ajax({
+            url: 'http://localhost:8080/customer/add',
+            data: JSON.stringify({
+                firstname : `${firstname}`,
+                lastname : `${lastname}`,
+                address : `${address}`,
+                zipcode : `${zipcode}`,
+                city : `${city}`,
+                phone : `${phone}`,
+                email : `${email}`}),
+            type: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success: function (msg) {
+                let jsonUpdatedData = msg;
+                customerid = jsonUpdatedData.id;
+                console.log("Customerid " + customerid);
+                console.log(`http://localhost:8080/order/add?customerID=${customerid}`);
+                $.ajax({
+                    url: `http://localhost:8080/order/add?customerID=${customerid}`,
+                    type: 'GET',
+                    success: function (msg) {
+                        let jsonUpdatedData = msg;
+                        orderid = jsonUpdatedData.id;
+                        console.log("orderid " + orderid);
+
+                        let cartitems = JSON.parse(localStorage.getItem("cart"));
+
+                        cartitems.forEach(item => {
+                            let productid = item.id;
+                            $.ajax({
+                                url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}`,
+                                type: 'GET',
+                                success: function (msg) {
+                                    let jsonUpdatedData = msg;
+                                    console.log(jsonUpdatedData);
+                                } 
+                            });   
+                        });
+                    }
+                });
             }
         });
     });
