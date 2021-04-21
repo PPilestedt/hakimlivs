@@ -50,7 +50,7 @@
     <!-- Customer info fields-->
     <div id="responsive" class="customer-container" style="max-width:100%;height:auto;" >
     <h2><center>Kunduppgifter</h2></center>
-    <form action="/orderbekraftelse.html" onsubmit="return pwdcheck()">  
+    <form action="/orderbekraftelse.html" onsubmit="" id="userform">  
       <div class="form-group" >
           <label for="firstname">Ditt förnamn:</label>
           <input type="text" minlength="2" size="50" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
@@ -77,13 +77,13 @@
   </div>
 
   <div class="form-group" >
-    <label for="phonenumber">Telefon:</label>
-    <input type="text" pattern="[0-9]*" class="form-control" id="phonenumber" placeholder="Skriv ditt telefonnummer" name="phonenumber" title="Skriv ditt telefonnummer utan bindestreck"required>
+    <label for="phone">Telefon:</label>
+    <input type="text" pattern="[0-9]*" class="form-control" id="phone" placeholder="Skriv ditt telefonnummer" name="phonenumber" title="Skriv ditt telefonnummer utan bindestreck"required>
   </div>
 
       <div class="form-group">
-          <label for="newemail">Email:</label>
-          <input type="email" class="form-control" id="newemail" placeholder="Skriv din email" name="newemail" required>
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Skriv din email" name="newemail" required>
       </div>
 
       <div class="button-center"></div>

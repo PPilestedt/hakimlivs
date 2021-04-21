@@ -166,19 +166,27 @@ function disableButton() {
 }
 
 $("#postknapp").click(function(){
+    let firstname = "Peter";
+    let lastname = "Pilestedt";
+    let address = "skojgatan";
+    let zipcode = "12345";
+    let city = "solna";
+    let phone = "070-1234567";
+    let email = "mailman@manmail.com";
+
     console.log("försöker posta");
     var postItem = localStorage.getItem("cart");
     $.ajax({
-        url: 'http://localhost:8080/api/addproduct',
+        url: 'http://localhost:8080/customer/add',
         data: JSON.stringify({
-        title: "Test Prodokt",
-        description: "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
-        stockInHand: 50,
-        image: "https:\/\/picsum.photos\/500?random=19",
-        price: 7.95,
-        productprice: 4,
-        category: "Tidskrifter",
-        weight: 0.25}),
+            firstname : `${firstname}`,
+            lastname : `${lastname}`,
+            address : `${address}`,
+            zipcode : `${zipcode}`,
+            city : `${city}`,
+            phone : `${phone}`,
+            email : `${email}`
+        }),
         type: 'POST',
         headers: {
             "Accept": "application/json",
@@ -187,5 +195,37 @@ $("#postknapp").click(function(){
     })
 });
 
+    $("#userform").submit(function(){
+        
+        console.log("klickade på submit i chechkout");
+
+        let firstname = document.getElementById("firstname").value;
+        let lastname = document.getElementById("lastname").value;
+        let address = document.getElementById("address").value;
+        let zipcode = document.getElementById("zipcode").value;
+        let city = document.getElementById("city").value;
+        let phone = document.getElementById("phone").value;
+        let email = document.getElementById("email").value;
+
+        console.log("försöker posta");
+        var postItem = localStorage.getItem("cart");
+        $.ajax({
+            url: 'http://localhost:8080/customer/add',
+            data: JSON.stringify({
+                firstname : `${firstname}`,
+                lastname : `${lastname}`,
+                address : `${address}`,
+                zipcode : `${zipcode}`,
+                city : `${city}`,
+                phone : `${phone}`,
+                email : `${email}`
+            }),
+            type: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        });
+    });
 
 })
