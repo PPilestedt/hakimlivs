@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/hakimLogoSmall.png">
     <title>Checkout</title>
      <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -11,7 +12,7 @@
     <!-- Custom styles for this template -->
   <link href="css/checkout.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -31,21 +32,94 @@
             <thead class="table-head">
             <tr>
                 <th>Produkt</th>
-                <th></th>
+                <th>Pris</th>
                 <th>Antal</th>
                 <th></th>
-                <th>Pris</th>
+                <th>Totalt</th>
             </tr>
             </thead>
             <tbody id="order-entries"></tbody>
         </table>
-        <div><strong>Totasumma: </strong><span id="total-cart"></span></div>
+        <div id="total-sum"><strong>Totalsumma: </strong><span id="total-cart"></span></div>
     </div>
+    <!-- Temporarely disabled button until sprint 4
     <div class="button-center">
-      <button type="button" class="btn btn-primary" id="finish-checkout-btn-two" onclick="document.location='orderbekraftelse.html'">Slutför beställning</button>
+      <button type="button submit" class="btn btn-primary" id="finish-checkout-btn-two" onclick="document.location='orderbekraftelse.html'">Slutför beställning</button>
+    </div> -->
+
+    <!-- Customer info fields-->
+    <div id="responsive" class="customer-container" style="max-width:100%;height:auto;" >
+    <h2 class="text-center">Kunduppgifter</h2>
+    <form action="/orderbekraftelse.html" onsubmit="return pwdcheck()">  
+      <div class="form-group" >
+          <label for="firstname">Ditt förnamn:</label>
+          <input type="text" minlength="2" size="50" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
+      </div>
+
+      <div class="form-group" >
+       <label for="lastname">Ditt efternamn:</label>
+       <input type="text" minlength="2" class="form-control" id="lastname" placeholder="Skriv ditt efternamn" name="lastname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
+      </div>
+
+      <div class="form-group" >
+       <label for="address">Gatuadress:</label>
+       <input type="text" class="form-control" id="address" placeholder="Skriv din gatuadress" name="address" pattern="(?!^ +$)^.+$" required>
+      </div>
+
+   <div class="form-group" >
+     <label for="zipcode">Postnummer:</label>
+     <input type="text" minlength="5" maxlength="5" pattern="[0-9]*" class="form-control" id="zipcode" placeholder="Skriv ditt postnummer" name="zipcode" required>
     </div>
-    <script src="jquery.js"></script>
+
+  <div class="form-group" >
+   <label for="city">Ort:</label>
+   <input type="text" class="form-control" id="city" placeholder="Skriv din ort" name="city" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
+  </div>
+
+  <div class="form-group" >
+    <label for="phonenumber">Telefon:</label>
+    <input type="text" pattern="[0-9]*" class="form-control" id="phonenumber" placeholder="Skriv ditt telefonnummer" name="phonenumber" title="Skriv ditt telefonnummer utan bindestreck"required>
+  </div>
+
+      <div class="form-group">
+          <label for="newemail">Email:</label>
+          <input type="email" class="form-control" id="newemail" placeholder="Skriv din email" name="newemail" required>
+      </div>
+
+      <div class="button-center"></div>
+        <button type="submit" class="btn btn-primary" id="finish-checkout-btn-two" onsubmit="document.location='orderbekraftelse.html'">Slutför beställning</button>
+      </div>
+    </div>
+    <br>
+  </form>
+</div>
+
+
+<!-- End Customer info fields-->
+
+<!-- Footer -->
+<footer class="bg-dark mt-auto" id="footer-check">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 left">
+        <a href="history.html" class="undecorated-link">Hakim Livs - Vår Historia</a>
+      </div>
+      <div class="col-lg-4 center">
+        <p class="m-0 text-white">Copyright &copy; Your Website 2020</p>
+      </div>
+      <div class="col-lg-4 right">
+         <div class="m-0 text-white" id="kontaktUppgifter">
+         </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</footer>
+
+<script src="jquery.js"></script>
 <script src="bootstrap.bundle.js"></script>
 <script src="order.js"></script>
+<script src="validation.js"></script>
+<script src="sidofot-uppgifter.js" async></script>
 </body>
 </html>

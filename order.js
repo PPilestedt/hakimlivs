@@ -102,6 +102,8 @@ function displayCart() {
     const cartSum = document.querySelector("#total-cart");
     let itemsTotal = 0;
     let priceTotal = 0;
+    let productPrice = "";
+    let totalPriceForProduct = "";
     console.log("Displaycart function")
     const cartArray = JSON.parse(localStorage.getItem("cart"));
     let output = "";
@@ -111,17 +113,21 @@ function displayCart() {
         cartArray.forEach(product => {
         itemsTotal += product.quantity;
         priceTotal += product.price*product.quantity;
+        productPrice = product.price + " Kr";
+        productPrice = productPrice.replace(".", ",");
+        totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
+        totalPriceForProduct = totalPriceForProduct.replace(".", ",");
             output += `<tr>
                         <td>
                             ${product.title}
                         </td>
                         <td>
-                            ${product.price} Kr per artikel
+                            ${productPrice}
                         </td>
                         <td>
                             <div class="input-group">
                                 <button class="minus-item btn input-group-addon btn-primary checkout-left" data-id="${product.id}">-</button>
-                                <input type="text" class="item-count form-control checkout-center" data-id="${product.id}" value="${product.quantity}">
+                                <input type="number" class="item-count form-control checkout-center" data-id="${product.id}" value="${product.quantity}">
                                 <button class="plus-item btn input-group-addon btn-primary checkout-right" data-id="${product.id}">+</button>
                             </div>
                         </td>
@@ -129,7 +135,7 @@ function displayCart() {
                             <button class="delete-item btn btn-danger" data-id="${product.id}">X</button>
                         </td>
                         <td class="cart-item-sum">
-                            ${(product.price * product.quantity).toFixed(2) } Kr
+                            ${totalPriceForProduct}
                         </td>
             </tr>`;
         
@@ -137,6 +143,8 @@ function displayCart() {
     }
     document.getElementById('order-entries').innerHTML = output;
     cartSum.innerText = priceTotal.toFixed(2) + " Kr";
+    cartSum.innerText = cartSum.innerText.replace(".", ",");
+    
     disableButton();
     //eventListeners för cart item knappar
     $(".minus-item").click(decreaseCartItem);
