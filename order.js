@@ -1,3 +1,5 @@
+$(function() {
+
 const cart = JSON.parse(localStorage.getItem("cart"));
 
 displayCart();
@@ -162,3 +164,24 @@ function disableButton() {
         document.getElementById("finish-checkout-btn-two").setAttribute("disabled", "true");
     }
 }
+
+$("#postknapp").click(function(){
+    console.log("försöker posta");
+    var postItem = localStorage.getItem("cart");
+    $.ajax({
+        url: 'http://localhost:8080/api/addproduct',
+        data: {
+        title: "Test Prodokt",
+        description: "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
+        stockInHand: 50,
+        image: "https:\/\/picsum.photos\/500?random=19",
+        price: 7.95,
+        productprice: 4,
+        category: "Tidskrifter",
+        weight: 0.25},
+        type: 'POST'
+    })
+});
+
+
+})
