@@ -3,19 +3,12 @@
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
-
 #logo {
     width: 265px;
     height: 64px;
 }
 .total {
     margin-right: 5%;
-}
-@media screen and (max-width: 425px) {
-    .container {
-        padding: 0;
-    }
-
 }
 
 #footer-bekraft {
@@ -28,8 +21,15 @@
     color: #ffc400;
   
   }
-  .undecorated-link:hover {
+.undecorated-link:hover {
     text-decoration: none;
     color: #fad96c;
   
-  }
+}
+
+@media screen and (max-width: 425px) {
+    .container {
+        padding: 0;
+    }
+
+}
