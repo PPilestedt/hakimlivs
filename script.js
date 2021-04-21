@@ -174,6 +174,8 @@ $(function(){
      */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
+        let productPrice = product.price + " Kr";
+        productPrice = productPrice.replace(".", ",");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
         
@@ -185,7 +187,7 @@ $(function(){
         prodDescription.innerHTML =
             `<h4 class="card-title" data-id= "${product.id}" >${product.title}</h4>
             
-            <h5>${product.price} kr</h5>`;
+            <h5>${productPrice}</h5>`;
 
         let inputGroup = document.createElement("div");
         inputGroup.className = "input-group d-flex justify-content-center flex-nowrap";
@@ -319,6 +321,8 @@ $(function(){
         const cartSum = document.querySelector(".total-cart");
         let itemsTotal = 0;
         let priceTotal = 0;
+        let totalPriceForProduct = "";
+        let productPrice = "";
         console.log("Displaycart function")
         const cartArray = JSON.parse( localStorage.getItem("cart"));
         let output = "";
@@ -327,12 +331,16 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
+            productPrice = product.price + " Kr";
+            productPrice = productPrice.replace(".", ",");
+            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
+            totalPriceForProduct = totalPriceForProduct.replace(".", ",");
                 output += `<tr class='cart-table'>
                             <td>
                                 ${product.title}
                             </td>
                             <td>
-                                ${product.price} Kr
+                                ${productPrice}
                             </td>
                             <td class='break'>
                                 <div class="input-group">
@@ -346,13 +354,14 @@ $(function(){
                                 <button class="delete-item btn btn-danger" data-id="${product.id}">X</button>
                             </td>
                             <td class="cart-item-sum break">  
-                               Totalt: ${(product.price * product.quantity).toFixed(2) } Kr
+                               Totalt: ${totalPriceForProduct}
                             </td>
                 </tr>`;
             });
         }
         cartItems.innerText = itemsTotal;
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
+        cartSum.innerText = cartSum.innerText.replace(".", ",");
         $('.show-cart').html(output);
         disableButton();
         //eventListeners för cart item knappar
@@ -527,14 +536,16 @@ function focusOnclick(event) {
                 pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " Kr"
                 weight = productsArray[i].weight + "g"
                 stockInHand = productsArray[i].stockInHand + " st"
-                if (parseFloat(weight) < 1) {
-                    weight = parseFloat(weight) * 1000;
-                    weight += "g";
+                if (parseFloat(weight) > 1000) {
+                    weight = parseFloat(weight) / 1000;
+                    weight += "kg";
                 }
                 product = productsArray[i];
             }
         }
-    
+        price = price.replace(".", ",");
+        pricecomparison = pricecomparison.replace(".", ",");
+        weight = weight.replace(".", ",");
         let exampleModal = getFocusModal();
       
         // Initierar modalen om det behövs

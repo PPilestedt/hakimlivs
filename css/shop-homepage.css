@@ -126,9 +126,12 @@ form.example button {
   display: inline-block;
 }
 
+td {
+  white-space: nowrap;
+}
+
 .cart-item-sum{
   text-align: end;
-  white-space: nowrap;
 }
 /* För admin panelen */
 .panel {
