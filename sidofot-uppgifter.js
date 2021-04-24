@@ -24,7 +24,7 @@ fetch('data/sidofotupppgifter.json')
               "<br/>" + 
               'Telefon: ' +  data[i].telefon  + 
               "<br/>" + 
-              'Öppet tider: ' +  data[i].openhours;
+              'Öppettider: ' +  data[i].openhours;
 
 
           mainContainer.appendChild(div);

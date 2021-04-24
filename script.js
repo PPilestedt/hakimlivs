@@ -239,6 +239,7 @@ $(function(){
         
         button.addEventListener("click", function (e) {
             addToCart(product, quantityInput.value);
+            $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         });
 
         inputGroup.appendChild(minusButton);
@@ -352,6 +353,7 @@ $(function(){
             });
         }
         cartItems.innerText = itemsTotal;
+        $(".total-count").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
         $('.show-cart').html(output);
         disableButton();
@@ -520,11 +522,11 @@ function focusOnclick(event) {
             if (productsArray[i].id == productId) {
                 description = productsArray[i].description
                 image = productsArray[i].image
-                price = productsArray[i].price +  " Kr"
+                price = productsArray[i].price +  " kr/st"
                 productprice = productsArray[i].productprice
                 category = productsArray[i].category
-                pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " Kr"
-                weight = productsArray[i].weight + "g"
+                pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " kr/kg"
+                weight = productsArray[i].weight + " g"
                 stockInHand = productsArray[i].stockInHand + " st"
                 if (parseFloat(weight) < 1) {
                     weight = parseFloat(weight) * 1000;
@@ -550,7 +552,7 @@ function focusOnclick(event) {
             <div class="product-description"><h6><b>Pris:</b> ${price}</h6></div>
             <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
             <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}</h6></div>
-            <div class="product-description"><h6><b>I lager:</b>${stockInHand}</h6></div>
+            <div class="product-description"><h6><b>I lager:</b> ${stockInHand}</h6></div>
     
             </div>
             <div class="modal-footer">

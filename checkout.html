@@ -50,41 +50,41 @@
     <!-- Customer info fields-->
     <div id="responsive" class="customer-container" style="max-width:100%;height:auto;" >
     <h2><center>Kunduppgifter</h2></center>
-    <form action="/orderbekraftelse.html" onsubmit="return pwdcheck()">  
+    <form name="myForm" action="orderbekraftelse.html" onkeypress="return event.keyCode != 13;" novalidate onsubmit="return pwdcheck()">  
       <div class="form-group" >
           <label for="firstname">Ditt förnamn:</label>
-          <input type="text" minlength="2" size="50" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
+          <input type="text" minlength="2" size="50" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" required>
       </div>
 
       <div class="form-group" >
        <label for="lastname">Ditt efternamn:</label>
-       <input type="text" minlength="2" class="form-control" id="lastname" placeholder="Skriv ditt efternamn" name="lastname" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
+       <input type="text" minlength="2" class="form-control" id="lastname" placeholder="Skriv ditt efternamn" name="lastname"required>
       </div>
 
       <div class="form-group" >
        <label for="address">Gatuadress:</label>
-       <input type="text" class="form-control" id="address" placeholder="Skriv din gatuadress" name="address" pattern="(?!^ +$)^.+$" required>
+       <input type="text" class="form-control" id="address" placeholder="Skriv din gatuadress" name="address" required>
       </div>
 
    <div class="form-group" >
      <label for="zipcode">Postnummer:</label>
-     <input type="text" minlength="5" maxlength="5" pattern="[0-9]*" class="form-control" id="zipcode" placeholder="Skriv ditt postnummer" name="zipcode" required>
+     <input type="text" minlength="6" maxlength="6" class="form-control" id="zipcode" placeholder="XXX XX" name="zipcode" required>
     </div>
 
   <div class="form-group" >
    <label for="city">Ort:</label>
-   <input type="text" class="form-control" id="city" placeholder="Skriv din ort" name="city" pattern="^(?![\s.]+$)[A-Za-zÅÄÖåäö\s.]*$" required>
+   <input type="text" class="form-control" id="city" placeholder="Skriv din ort" name="city" required>
   </div>
 
   <div class="form-group" >
     <label for="phonenumber">Telefon:</label>
-    <input type="text" pattern="[0-9]*" class="form-control" id="phonenumber" placeholder="Skriv ditt telefonnummer" name="phonenumber" title="Skriv ditt telefonnummer utan bindestreck"required>
+    <input type="text"  class="form-control" id="phonenumber" minlength="10" maxlength="10" placeholder="Skriv ditt telefonnummer" name="phonenumber" title="Skriv ditt telefonnummer utan bindestreck"required>
   </div>
 
-      <div class="form-group">
-          <label for="newemail">Email:</label>
-          <input type="email" class="form-control" id="newemail" placeholder="Skriv din email" name="newemail" required>
-      </div>
+  <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="newemail" placeholder="Skriv din email" name="email" required>
+  </div>
 
       <div class="button-center"></div>
         <button type="submit" class="btn btn-primary" id="finish-checkout-btn-two" onsubmit="document.location='orderbekraftelse.html'">Slutför beställning</button>
