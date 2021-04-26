@@ -175,7 +175,7 @@ $(function(){
     function displayProductsInCard(product) {
         let card = document.createElement("div");
         let productPrice = product.price + " Kr";
-        productPrice = productPrice.replace(".", ",");
+        productPrice = productPrice.replace(".", ":");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
         
@@ -332,9 +332,9 @@ $(function(){
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
             productPrice = product.price + " Kr";
-            productPrice = productPrice.replace(".", ",");
+            productPrice = productPrice.replace(".", ":");
             totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
-            totalPriceForProduct = totalPriceForProduct.replace(".", ",");
+            totalPriceForProduct = totalPriceForProduct.replace(".", ":");
                 output += `<tr class='cart-table'>
                             <td>
                                 ${product.title}
@@ -361,7 +361,7 @@ $(function(){
         }
         cartItems.innerText = itemsTotal;
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
-        cartSum.innerText = cartSum.innerText.replace(".", ",");
+        cartSum.innerText = cartSum.innerText.replace(".", ":");
         $('.show-cart').html(output);
         disableButton();
         //eventListeners för cart item knappar
@@ -543,9 +543,9 @@ function focusOnclick(event) {
                 product = productsArray[i];
             }
         }
-        price = price.replace(".", ",");
-        pricecomparison = pricecomparison.replace(".", ",");
-        weight = weight.replace(".", ",");
+        price = price.replace(".", ":");
+        pricecomparison = pricecomparison.replace(".", ":");
+        weight = weight.replace(".", ":");
         let exampleModal = getFocusModal();
       
         // Initierar modalen om det behövs
