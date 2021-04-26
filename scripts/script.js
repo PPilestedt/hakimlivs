@@ -240,7 +240,7 @@ $(function(){
         button.textContent = "Köp";
         
         button.addEventListener("click", function (e) {
-            addToCart(product, quantityInput.value);
+            addToCart(product, "1");
             $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         });
 
