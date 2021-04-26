@@ -22,6 +22,12 @@ input[type=number] {
   height: 64px;
 }
 
+#small-logo {
+  display: none;
+  width: 64px;
+  height: 64px;
+}
+
 .nav-category{
   display: none;
   padding-top:25px;
@@ -232,6 +238,50 @@ footer {
   margin-left: 5%;
 }
 
+
+.contact-info {
+  text-decoration: none;
+  color: #ffc400;
+}
+
+.copyright-info {
+  text-decoration: none;
+  color: #ffc400;
+}
+
+body {
+  background-color: rgba(245, 241, 233, 0.856);
+}
+
+.list-group-item{
+  background-color: rgba(245, 241, 233, 0.856);
+}
+
+.list-group-cart{
+  position: relative;
+  display: none;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group-log-in{
+  position: relative;
+  display: none;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.navbar-category-header {
+  margin: 0.5rem;
+}
+
+.navbar-span {
+  font-size: 20px;
+  color: #f1f1f1;
+}
+
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
   .nav-category{
@@ -257,6 +307,15 @@ footer {
   td {
     white-space: normal;
   }
+  #logo {
+    display: none;
+  }
+  #small-logo {
+    display: block;
+  }  
+  #small-logo-a {
+    margin: auto;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -269,22 +328,18 @@ footer {
     float: left;
     text-align: left;
   }
-}
 
-.contact-info {
-  text-decoration: none;
-  color: #ffc400;
-}
+  .log-in-button, .cart-button {
+    display: none;
+  }
+  .search-container {
+    width: 200px;
+  }
+  #search-input {
+    width: 150px;
+  }
 
-.copyright-info {
-  text-decoration: none;
-  color: #ffc400;
-}
-
-body {
-  background-color: rgba(245, 241, 233, 0.856);
-}
-
-.list-group-item{
-  background-color: rgba(245, 241, 233, 0.856);
+  .list-group-cart, .list-group-log-in {
+    display: block;
+  }
 }
