@@ -195,6 +195,16 @@ function disableButton() {
         })
     });
 
+    /**
+     * Gathers information from the form and initiates the order
+     * creation sequence.
+     * 
+     * 1. creating user
+     * 2. adding an order to that user
+     * 3. adding all the products in the cart to that order
+     * 3. removing all items in current cart ( not done yet )
+     * 
+     */
     $("#postknapp").click(function(){
         
         console.log("klickade på submit i chechkout");
@@ -207,10 +217,9 @@ function disableButton() {
         let phone = document.getElementById("phone").value;
         let email = document.getElementById("email").value;
         let customerid;
-        let orderid;
 
         console.log("försöker posta");
-        var postItem = localStorage.getItem("cart");
+ 
         $.ajax({
             url: 'http://localhost:8080/customer/add',
             data: JSON.stringify({
@@ -245,6 +254,8 @@ function disableButton() {
      */
     function submitOrderWithCustomer(customerid){
 
+        console.log("submitting order with customerid: " + customerid);
+
         $.ajax({
             url: `http://localhost:8080/order/add?customerID=${customerid}`,
             type: 'GET',
@@ -272,7 +283,7 @@ function disableButton() {
      */
     function submitProductsToOrder(orderid, productid){
 
-        console.log("saving productid: " + prodcutid + " to order with id: " + orderid);
+        console.log("saving productid: " + productid + " to order with id: " + orderid);
 
         $.ajax({
             url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}`,
