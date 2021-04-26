@@ -563,7 +563,7 @@ function focusOnclick(event) {
               <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
             </div>
             <div class="modal-body">
-            <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
+            <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} " width="100%"> </div>
             <div class="product-description text-justify"><p>${description}</p></div>
             <hr>
             <div class="product-description"><h6><b>Pris:</b> ${price}</h6></div>
@@ -612,6 +612,7 @@ function focusOnclick(event) {
 
         document.getElementById("focus-buy").addEventListener("click", function (e) {
             addToCart(product, input.value);
+            $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         });
         // visar modalen
         jQuery(exampleModal).modal('show');
