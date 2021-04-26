@@ -231,31 +231,57 @@ function disableButton() {
                 customerid = jsonUpdatedData.id;
                 console.log("Customerid " + customerid);
                 console.log(`http://localhost:8080/order/add?customerID=${customerid}`);
-                $.ajax({
-                    url: `http://localhost:8080/order/add?customerID=${customerid}`,
-                    type: 'GET',
-                    success: function (msg) {
-                        let jsonUpdatedData = msg;
-                        orderid = jsonUpdatedData.id;
-                        console.log("orderid " + orderid);
-
-                        let cartitems = JSON.parse(localStorage.getItem("cart"));
-
-                        cartitems.forEach(item => {
-                            let productid = item.id;
-                            $.ajax({
-                                url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}`,
-                                type: 'GET',
-                                success: function (msg) {
-                                    let jsonUpdatedData = msg;
-                                    console.log(jsonUpdatedData);
-                                } 
-                            });   
-                        });
-                    }
-                });
+                
+                submitOrderWithCustomer(customerid);
+              
             }
         });
     });
+
+    /**
+     * Creates an order with the specified customers id.
+     * 
+     * @param {The id of the customer} customerid 
+     */
+    function submitOrderWithCustomer(customerid){
+
+        $.ajax({
+            url: `http://localhost:8080/order/add?customerID=${customerid}`,
+            type: 'GET',
+            success: function (msg) {
+                let jsonUpdatedData = msg;
+                let orderid = jsonUpdatedData.id;
+                console.log("orderid " + orderid);
+
+                let cartitems = JSON.parse(localStorage.getItem("cart"));
+
+                cartitems.forEach(item => {
+                    let productid = item.id;
+                    submitProductsToOrder(orderid,productid);
+                });
+            }
+        });
+
+    }
+
+    /**
+     * Function that adds an product to the order specified.
+     * 
+     * @param {id of the order specified} orderid 
+     * @param {the id of the product to be added to the order} productid 
+     */
+    function submitProductsToOrder(orderid, productid){
+
+        console.log("saving productid: " + prodcutid + " to order with id: " + orderid);
+
+        $.ajax({
+            url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}`,
+            type: 'GET',
+            success: function (msg) {
+                let jsonUpdatedData = msg;
+                console.log(jsonUpdatedData);
+            } 
+        });
+    }
 
 })
