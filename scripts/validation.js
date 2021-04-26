@@ -43,7 +43,7 @@ function pwdcheck(){
     alert("Du måste ange ditt postnummer");
     return false;
   } else if (!zipRegex.test(x5.value)) {
-    alert("Felaktigt format på postnummer, xx xxx");
+    alert("Felaktigt format på postnummer, xxx xx");
     return false;
   }
 
