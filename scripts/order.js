@@ -114,9 +114,9 @@ function displayCart() {
         itemsTotal += product.quantity;
         priceTotal += product.price*product.quantity;
         productPrice = product.price + " Kr";
-        productPrice = productPrice.replace(".", ",");
+        productPrice = productPrice.replace(".", ":");
         totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
-        totalPriceForProduct = totalPriceForProduct.replace(".", ",");
+        totalPriceForProduct = totalPriceForProduct.replace(".", ":");
             output += `<tr>
                         <td>
                             ${product.title}
@@ -143,7 +143,7 @@ function displayCart() {
     }
     document.getElementById('order-entries').innerHTML = output;
     cartSum.innerText = priceTotal.toFixed(2) + " Kr";
-    cartSum.innerText = cartSum.innerText.replace(".", ",");
+    cartSum.innerText = cartSum.innerText.replace(".", ":");
     
     disableButton();
     //eventListeners för cart item knappar

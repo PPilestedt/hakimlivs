@@ -175,7 +175,7 @@ $(function(){
     function displayProductsInCard(product) {
         let card = document.createElement("div");
         let productPrice = product.price + " Kr";
-        productPrice = productPrice.replace(".", ",");
+        productPrice = productPrice.replace(".", ":");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
         
@@ -333,9 +333,9 @@ $(function(){
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
             productPrice = product.price + " Kr";
-            productPrice = productPrice.replace(".", ",");
+            productPrice = productPrice.replace(".", ":");
             totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
-            totalPriceForProduct = totalPriceForProduct.replace(".", ",");
+            totalPriceForProduct = totalPriceForProduct.replace(".", ":");
                 output += `<tr class='cart-table'>
                             <td>
                                 ${product.title}
@@ -346,7 +346,7 @@ $(function(){
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
+                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}" min="1" max="99" pattern="[0-9]">
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
@@ -363,7 +363,7 @@ $(function(){
         cartItems.innerText = itemsTotal;
         $(".total-count").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
-        cartSum.innerText = cartSum.innerText.replace(".", ",");
+        cartSum.innerText = cartSum.innerText.replace(".", ":");
         $('.show-cart').html(output);
         disableButton();
         //eventListeners för cart item knappar
@@ -444,6 +444,7 @@ $(function(){
             }
         });
         displayAllProducts(filteredProducts);
+        document.getElementById("search-input").value = "";
     }
 
     function filterProductsBySearch(event) {
@@ -455,8 +456,14 @@ $(function(){
         }
         
         let filteredProducts = [];
+        productsArray.forEach(product => {
+            if (product.title.toLowerCase().includes(search)) {
+                filteredProducts.push(product);
+            }
+        });
+
         categoriesArray.forEach(category => {
-            if (search === category.name.toLowerCase()) {
+            if (category.name.toLowerCase().includes(search)) {
                 productsArray.forEach(product => {
                     if(product.category == category.name){
                         filteredProducts.push(product);
@@ -464,12 +471,6 @@ $(function(){
                 });
             }
         })
-
-        productsArray.forEach(product => {
-            if (product.title.toLowerCase().includes(search)) {
-                filteredProducts.push(product);
-            }
-        });
         displayAllProducts(filteredProducts);
     }
 
@@ -545,9 +546,9 @@ function focusOnclick(event) {
                 product = productsArray[i];
             }
         }
-        price = price.replace(".", ",");
-        pricecomparison = pricecomparison.replace(".", ",");
-        weight = weight.replace(".", ",");
+        price = price.replace(".", ":");
+        pricecomparison = pricecomparison.replace(".", ":");
+        weight = weight.replace(".", ":");
         let exampleModal = getFocusModal();
       
         // Initierar modalen om det behövs
