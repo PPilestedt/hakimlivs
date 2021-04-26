@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -33,12 +33,10 @@
       </div>
 
         <!-- Logga in modal button -->
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".login-register-form">Logga in</button>
+      <button type="button" class="log-in-button btn btn-warning" data-toggle="modal" data-target=".login-register-form">Logga in</button>
 
       <!-- Order Modal button-->
-      <div class="col">
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count">0</span>)</button>
-      </div>
+      <button type="button" class="cart-button btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count">0</span>)</button>
       <div class="collapse navbar-collapse sticky-top" id="navbarResponsive">
 
       </div>
@@ -105,17 +103,17 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="bg-dark">
+  <footer class="bg-dark mt-auto">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 left">
           <a href="history.html" class="undecorated-link">Hakim Livs - Vår Historia</a>
         </div>
         <div class="col-lg-4 center">
-          <p class="m-0 text-white">Copyright &copy; Your Website 2020</p>
+          <p class="copyright-info">Copyright &copy; Hakim Livs 2021</p>
         </div>
         <div class="col-lg-4 right">
-           <div class="m-0 text-white" id="kontaktUppgifter">
+           <div class="contact-info" id="kontaktUppgifter">
            </div>
         </div>
       </div>
@@ -280,11 +278,12 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="jquery.js"></script>
-  <script src="bootstrap.bundle.js"></script>
-  <script src="script.js"></script>
-  <script src="sidofot-uppgifter.js" async></script>
-  <script src="validation.js"></script>
+  <script src="scripts/jquery.js"></script>
+  <script src="scripts/bootstrap.bundle.js"></script>
+  <script src="scripts/script.js"></script>
+  <script src="scripts/sidofot-uppgifter.js" async></script>
+  <script src="scripts/validation.js"></script>
+  <script src="scripts/cartanimation.js"></script>
 
 </body>
 

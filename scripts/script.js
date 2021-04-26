@@ -174,6 +174,8 @@ $(function(){
      */
     function displayProductsInCard(product) {
         let card = document.createElement("div");
+        let productPrice = product.price + " Kr";
+        productPrice = productPrice.replace(".", ":");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
         
@@ -185,7 +187,7 @@ $(function(){
         prodDescription.innerHTML =
             `<h4 class="card-title" data-id= "${product.id}" >${product.title}</h4>
             
-            <h5>${product.price} kr</h5>`;
+            <h5>${productPrice}</h5>`;
 
         let inputGroup = document.createElement("div");
         inputGroup.className = "input-group d-flex justify-content-center flex-nowrap";
@@ -239,6 +241,7 @@ $(function(){
         
         button.addEventListener("click", function (e) {
             addToCart(product, quantityInput.value);
+            $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         });
 
         inputGroup.appendChild(minusButton);
@@ -319,6 +322,8 @@ $(function(){
         const cartSum = document.querySelector(".total-cart");
         let itemsTotal = 0;
         let priceTotal = 0;
+        let totalPriceForProduct = "";
+        let productPrice = "";
         console.log("Displaycart function")
         const cartArray = JSON.parse( localStorage.getItem("cart"));
         let output = "";
@@ -327,17 +332,21 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
+            productPrice = product.price + " Kr";
+            productPrice = productPrice.replace(".", ":");
+            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
+            totalPriceForProduct = totalPriceForProduct.replace(".", ":");
                 output += `<tr class='cart-table'>
                             <td>
                                 ${product.title}
                             </td>
                             <td>
-                                ${product.price} Kr
+                                ${productPrice}
                             </td>
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
+                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}" min="1" max="99" pattern="[0-9]">
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
@@ -346,13 +355,15 @@ $(function(){
                                 <button class="delete-item btn btn-danger" data-id="${product.id}">X</button>
                             </td>
                             <td class="cart-item-sum break">  
-                               Totalt: ${(product.price * product.quantity).toFixed(2) } Kr
+                               Totalt: ${totalPriceForProduct}
                             </td>
                 </tr>`;
             });
         }
         cartItems.innerText = itemsTotal;
+        $(".total-count").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
+        cartSum.innerText = cartSum.innerText.replace(".", ":");
         $('.show-cart').html(output);
         disableButton();
         //eventListeners för cart item knappar
@@ -433,6 +444,7 @@ $(function(){
             }
         });
         displayAllProducts(filteredProducts);
+        document.getElementById("search-input").value = "";
     }
 
     function filterProductsBySearch(event) {
@@ -444,8 +456,14 @@ $(function(){
         }
         
         let filteredProducts = [];
+        productsArray.forEach(product => {
+            if (product.title.toLowerCase().includes(search)) {
+                filteredProducts.push(product);
+            }
+        });
+
         categoriesArray.forEach(category => {
-            if (search === category.name.toLowerCase()) {
+            if (category.name.toLowerCase().includes(search)) {
                 productsArray.forEach(product => {
                     if(product.category == category.name){
                         filteredProducts.push(product);
@@ -453,12 +471,6 @@ $(function(){
                 });
             }
         })
-
-        productsArray.forEach(product => {
-            if (product.title.toLowerCase().includes(search)) {
-                filteredProducts.push(product);
-            }
-        });
         displayAllProducts(filteredProducts);
     }
 
@@ -513,6 +525,7 @@ function focusOnclick(event) {
     let pricecomparison = ""
     let weight = ""
     let stockInHand = ""
+    let product;
 
     if (element.tagName.toLowerCase() === "img" || element.tagName.toLowerCase() === "h4") {
         for (let i = 0; i < productsArray.length; i++) {
@@ -520,19 +533,22 @@ function focusOnclick(event) {
             if (productsArray[i].id == productId) {
                 description = productsArray[i].description
                 image = productsArray[i].image
-                price = productsArray[i].price +  " Kr"
+                price = productsArray[i].price +  " kr/st"
                 productprice = productsArray[i].productprice
                 category = productsArray[i].category
-                pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " Kr"
-                weight = productsArray[i].weight + "g"
+                pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " kr/kg"
+                weight = productsArray[i].weight + " g"
                 stockInHand = productsArray[i].stockInHand + " st"
-                if (parseFloat(weight) < 1) {
-                    weight = parseFloat(weight) * 1000;
-                    weight += "g";
+                if (parseFloat(weight) > 1000) {
+                    weight = parseFloat(weight) / 1000;
+                    weight += "kg";
                 }
+                product = productsArray[i];
             }
         }
-    
+        price = price.replace(".", ":");
+        pricecomparison = pricecomparison.replace(".", ":");
+        weight = weight.replace(".", ":");
         let exampleModal = getFocusModal();
       
         // Initierar modalen om det behövs
@@ -550,15 +566,50 @@ function focusOnclick(event) {
             <div class="product-description"><h6><b>Pris:</b> ${price}</h6></div>
             <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
             <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}</h6></div>
-            <div class="product-description"><h6><b>I lager:</b>${stockInHand}</h6></div>
+            <div class="product-description"><h6><b>I lager:</b> ${stockInHand}</h6></div>
     
+            <div class="product-description input-group d-flex justify-content-center flex-nowrap">
+                <button id="focus-minus" class="card-minus-item btn btn-primary" data-id="${productId}">-</button>
+                <input id="focus-input" type="number" min="1" max ="99" pattern="[0-9]">
+                <button id="focus-plus" class="card-plus-item btn btn-primary" data-id="${productId}">+</button>
             </div>
             <div class="modal-footer">
+              <button id="focus-buy" class="add-to-cart btn btn-primary" data-id="${productId}">Köp</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
             </div>`
       
         setFocusModalContent(html);
-      
+        let minusButton = document.getElementById("focus-minus");
+        let input = document.getElementById("focus-input");
+        let plusButton = document.getElementById("focus-plus");
+
+        input.value = "1";
+
+        minusButton.addEventListener("click", function(e) {
+            if (input.value > 1) {
+                input.value--;
+            }
+        })
+
+        input.onkeyup = function() {
+            if(this.value > 99) {
+                alert("Felaktig inmatning");
+                this.value = 99;
+            } else if(this.value < 1) {
+                alert("Felaktig inmatning");
+                this.value = 1;
+            }
+        };
+
+        plusButton.addEventListener("click", function(e) {
+            if (input.value < 99) {
+                input.value++;
+            }
+        })
+
+        document.getElementById("focus-buy").addEventListener("click", function (e) {
+            addToCart(product, input.value);
+        });
         // visar modalen
         jQuery(exampleModal).modal('show');
         
