@@ -345,7 +345,7 @@ $(function(){
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
+                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}" min="1" max="99" pattern="[0-9]">
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
@@ -442,6 +442,7 @@ $(function(){
             }
         });
         displayAllProducts(filteredProducts);
+        document.getElementById("search-input").value = "";
     }
 
     function filterProductsBySearch(event) {
@@ -453,8 +454,14 @@ $(function(){
         }
         
         let filteredProducts = [];
+        productsArray.forEach(product => {
+            if (product.title.toLowerCase().includes(search)) {
+                filteredProducts.push(product);
+            }
+        });
+
         categoriesArray.forEach(category => {
-            if (search === category.name.toLowerCase()) {
+            if (category.name.toLowerCase().includes(search)) {
                 productsArray.forEach(product => {
                     if(product.category == category.name){
                         filteredProducts.push(product);
@@ -462,12 +469,6 @@ $(function(){
                 });
             }
         })
-
-        productsArray.forEach(product => {
-            if (product.title.toLowerCase().includes(search)) {
-                filteredProducts.push(product);
-            }
-        });
         displayAllProducts(filteredProducts);
     }
 
