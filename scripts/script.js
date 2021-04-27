@@ -338,6 +338,7 @@ $(function(){
         localStorage.clear();
         cartArray = [];
         displayCart();
+        displayAllProducts(productsArray);
     }
 
      
