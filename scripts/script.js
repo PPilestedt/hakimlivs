@@ -557,26 +557,53 @@ function focusOnclick(event) {
       
         let html =`
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
             </div>
-            <div class="modal-body">
-            <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
-            <div class="product-description text-justify"><p>${description}</p></div>
-            <hr>
-            <div class="product-description"><h6><b>Pris:</b> ${price}</h6></div>
-            <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
-            <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}</h6></div>
-            <div class="product-description"><h6><b>I lager:</b> ${stockInHand}</h6></div>
-    
-            <div class="product-description input-group d-flex justify-content-center flex-nowrap">
-                <button id="focus-minus" class="card-minus-item btn btn-primary" data-id="${productId}">-</button>
-                <input id="focus-input" type="number" min="1" max ="99" pattern="[0-9]">
-                <button id="focus-plus" class="card-plus-item btn btn-primary" data-id="${productId}">+</button>
+
+            <div class="modal-body container">
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="product-img rounded" id="focusImg">
+                        <img src="${image}" class="img-fluid" alt="${title}"> 
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="col">
+                        <div class="product-description text-justify">
+                            <p>${description}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col">
+                        <div class="product-description">
+                            <h6><b>Pris:</b>${price}</h6>
+                        </div>
+                        <div class="product-description">
+                            <h6><b>Vikt:</b>${weight}</h6>
+                        </div>
+                        <div class="product-description">
+                            <h6><b>Jämförelsepris:</b>${pricecomparison}</h6>
+                        </div>
+                        <div class="product-description">
+                            <h6><b>I lager:</b>${stockInHand}</h6>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+                <div class="product-description input-group d-flex justify-content-center flex-nowrap">
+                    <button id="focus-minus" class="card-minus-item btn btn-primary" data-id="${productId}">-</button>
+                    <input id="focus-input" type="number" min="1" max ="99" pattern="[0-9]">
+                    <button id="focus-plus" class="card-plus-item btn btn-primary" data-id="${productId}">+</button>
+                </div>
+            </div>
+
             <div class="modal-footer">
               <button id="focus-buy" class="add-to-cart btn btn-primary" data-id="${productId}">Köp</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
-            </div>`
+            </div>
+            `
       
         setFocusModalContent(html);
         let minusButton = document.getElementById("focus-minus");
@@ -636,7 +663,7 @@ function focusOnclick(event) {
     modal.setAttribute('aria-labelledby', 'exampleModalLabel');
     modal.setAttribute('aria-hidden', 'true');
     modal.innerHTML =
-          '<div class="modal-dialog modal-dialog-centered" role="document">' +
+          '<div class="modal-dialog modal-dialog-centered modal-lg" role="document">' + // modal-lg
             '<div class="modal-content"></div>' +
           '</div>';
     document.body.appendChild(modal);

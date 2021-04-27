@@ -232,6 +232,7 @@ footer {
   margin-left: 5%;
 }
 
+
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
   .nav-category{
