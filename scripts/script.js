@@ -1,11 +1,13 @@
 $(function(){
 
     let categoriesArray = [];
-    let productsArray = []; 
+    let productsArray = [];
+    let cartArray = [];
     
     loadProducts();
     loadCategories();
     displayCart();
+
 
     /**
      * Receives an event from the eventListener and
@@ -36,6 +38,7 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        displayAllProducts(productsArray);
     }
 
     /**
@@ -61,6 +64,7 @@ $(function(){
         document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        displayAllProducts(productsArray);
     }
 
     /**
@@ -74,7 +78,9 @@ $(function(){
         const element = event.target;
         const productId = element.getAttribute("data-id");
         const cart = JSON.parse(localStorage.getItem("cart"));
-        
+        const productContainer = document.getElementById("product-content");
+        let products = productContainer.querySelectorAll(".card");
+
         console.log("removeing from cart id " + productId);
 
 
@@ -89,6 +95,7 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        displayAllProducts(productsArray);
     }
 
     /**
@@ -107,7 +114,7 @@ $(function(){
         let value = element.value;
         console.log("updating number from inputfield. product:" + productId);
 
-        if (value.includes(".")) {
+        if (value.includes(".") || value.includes(",") || value.includes("+") || value.includes("-")) {
             alert("Felaktig inmatning");
             return;
         }
@@ -127,6 +134,7 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        displayAllProducts(productsArray);
     }
 
     /**
@@ -173,6 +181,15 @@ $(function(){
      * @returns the HTML code for a product card
      */
     function displayProductsInCard(product) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        let inCart;
+        if (cart != null) {
+            for (let productInCart of cart) {
+                if (productInCart.id == product.id) {
+                    inCart = productInCart;
+                }
+            }
+        }
         let card = document.createElement("div");
         let productPrice = product.price + " Kr";
         productPrice = productPrice.replace(".", ":");
@@ -206,19 +223,16 @@ $(function(){
 
         let quantityInput = document.createElement("input");
         quantityInput.type = "number";
-        quantityInput.value = "1";
+        if (inCart) {
+            quantityInput.value = inCart.quantity;
+        } else {
+            quantityInput.value = "1";
+        }
         quantityInput.min = "1";
         quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
-        quantityInput.onkeyup = function() {
-            if(this.value > 99) {
-                alert("Felaktig inmatning");
-                this.value = 99;
-            } else if(this.value < 1) {
-                alert("Felaktig inmatning");
-                this.value = 1;
-            }
-        };
+        quantityInput.setAttribute("data-id", `${product.id}`);   
+        
 
         let plusButton = document.createElement("button");
         plusButton.classList.add("card-plus-item");
@@ -226,11 +240,6 @@ $(function(){
         plusButton.classList.add("btn-primary");
         plusButton.setAttribute("data-id",`${product.id}`);
         plusButton.textContent = "+";
-        plusButton.addEventListener("click", function(e) {
-            if (quantityInput.value < 99) {
-                quantityInput.value++;
-            }
-        })
 
         let button = document.createElement("button");
         button.classList.add("add-to-cart");
@@ -240,9 +249,23 @@ $(function(){
         button.textContent = "Köp";
         
         button.addEventListener("click", function (e) {
-            addToCart(product, quantityInput.value);
-            $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+            addToCart(product, "1");
+            $(this).toggle();
+            $(minusButton).css("display", "block");
+            $(quantityInput).css("display", "block");
+            $(plusButton).css("display", "block");
         });
+
+        if (inCart) {
+            $(button).toggle();
+            $(minusButton).css("display", "block");
+            $(quantityInput).css("display", "block");
+            $(plusButton).css("display", "block");
+        }
+
+        $(minusButton).click(decreaseCartItem);
+        $(quantityInput).keyup(updateCartNumber);
+        $(plusButton).click(increaseCartItem);
 
         inputGroup.appendChild(minusButton);
         inputGroup.appendChild(quantityInput);
@@ -311,6 +334,15 @@ $(function(){
     
     }
 
+    function emptyCart(event){
+        localStorage.clear();
+        cartArray = [];
+        displayCart();
+        displayAllProducts(productsArray);
+    }
+
+     
+
     /**
      * Loops through the cart in localStorage and then
      * replaces the html code in the cart modal. 
@@ -325,7 +357,7 @@ $(function(){
         let totalPriceForProduct = "";
         let productPrice = "";
         console.log("Displaycart function")
-        const cartArray = JSON.parse( localStorage.getItem("cart"));
+        cartArray = JSON.parse( localStorage.getItem("cart"));
         let output = "";
         
         if(cartArray != null){
@@ -361,7 +393,6 @@ $(function(){
             });
         }
         cartItems.innerText = itemsTotal;
-        $(".total-count").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
         cartSum.innerText = cartSum.innerText.replace(".", ":");
         $('.show-cart').html(output);
@@ -371,7 +402,7 @@ $(function(){
         $(".plus-item").click(increaseCartItem);
         $(".delete-item").click(removeCartItem);
         $(".item-count").change(updateCartNumber);
-
+        $(".btn-emptyCart").click(emptyCart);
     }
 
     /**
@@ -405,6 +436,9 @@ $(function(){
         $('.nav-category').html(output);
 
         output = `<ul class='navbar-nav ml-auto nav-dropdown'>
+                    <li><div class="list-group-cart" data-toggle="modal" data-target="#cart">Varukorg</div></li>
+                    <li><div class="list-group-log-in" data-toggle="modal" data-target="#.login-register-form" disabled>Logga in</div></li>
+                    <li class="navbar-category-header"><span class="navbar-span">Kategorier:</span></li>
                     <li><div class="list-group-item navbar-button" data-toggle="collapse" data-target="#navbarResponsive">Alla Produkter</div></li>`;
         categories.forEach(category => {
 
@@ -560,7 +594,7 @@ function focusOnclick(event) {
               <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
             </div>
             <div class="modal-body">
-            <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
+            <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} " width="100%"> </div>
             <div class="product-description text-justify"><p>${description}</p></div>
             <hr>
             <div class="product-description"><h6><b>Pris:</b> ${price}</h6></div>
@@ -609,6 +643,7 @@ function focusOnclick(event) {
 
         document.getElementById("focus-buy").addEventListener("click", function (e) {
             addToCart(product, input.value);
+            $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         });
         // visar modalen
         jQuery(exampleModal).modal('show');
@@ -636,7 +671,7 @@ function focusOnclick(event) {
     modal.setAttribute('aria-labelledby', 'exampleModalLabel');
     modal.setAttribute('aria-hidden', 'true');
     modal.innerHTML =
-          '<div class="modal-dialog modal-dialog-centered" role="document">' +
+          '<div class="modal-dialog modal-sm modal-dialog-centered" role="document">' +
             '<div class="modal-content"></div>' +
           '</div>';
     document.body.appendChild(modal);
