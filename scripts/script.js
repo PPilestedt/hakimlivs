@@ -107,7 +107,7 @@ $(function(){
         let value = element.value;
         console.log("updating number from inputfield. product:" + productId);
 
-        if (value.includes(".")) {
+        if (value.includes(".") || value.includes(",") || value.includes("+") || value.includes("-")) {
             alert("Felaktig inmatning");
             return;
         }
@@ -189,48 +189,48 @@ $(function(){
             
             <h5>${productPrice}</h5>`;
 
-        // let inputGroup = document.createElement("div");
-        // inputGroup.className = "input-group d-flex justify-content-center flex-nowrap";
+        let inputGroup = document.createElement("div");
+        inputGroup.className = "input-group d-flex justify-content-center flex-nowrap";
 
-        // let minusButton = document.createElement("button");
-        // minusButton.classList.add("card-minus-item");
-        // minusButton.classList.add("btn");
-        // minusButton.classList.add("btn-primary");
-        // minusButton.setAttribute("data-id", `${product.id}`);   
-        // minusButton.textContent = "-";
-        // minusButton.addEventListener("click", function(e) {
-        //     if (quantityInput.value > 1) {
-        //         quantityInput.value--;
-        //     }
-        // })
+        let minusButton = document.createElement("button");
+        minusButton.classList.add("card-minus-item");
+        minusButton.classList.add("btn");
+        minusButton.classList.add("btn-primary");
+        minusButton.setAttribute("data-id", `${product.id}`);   
+        minusButton.textContent = "-";
+        minusButton.addEventListener("click", function(e) {
+            if (quantityInput.value > 1) {
+                quantityInput.value--;
+            }
+        })
 
-        // let quantityInput = document.createElement("input");
-        // quantityInput.type = "number";
-        // quantityInput.value = "1";
-        // quantityInput.min = "1";
-        // quantityInput.max = "99";
-        // quantityInput.pattern = "[0-9]";
-        // quantityInput.onkeyup = function() {
-        //     if(this.value > 99) {
-        //         alert("Felaktig inmatning");
-        //         this.value = 99;
-        //     } else if(this.value < 1) {
-        //         alert("Felaktig inmatning");
-        //         this.value = 1;
-        //     }
-        // };
+        let quantityInput = document.createElement("input");
+        quantityInput.type = "number";
+        quantityInput.value = "1";
+        quantityInput.min = "1";
+        quantityInput.max = "99";
+        quantityInput.pattern = "[0-9]";
+        quantityInput.onkeyup = function() {
+            if(this.value > 99) {
+                alert("Felaktig inmatning");
+                this.value = 99;
+            } else if(this.value < 1) {
+                alert("Felaktig inmatning");
+                this.value = 1;
+            }
+        };
 
-        // let plusButton = document.createElement("button");
-        // plusButton.classList.add("card-plus-item");
-        // plusButton.classList.add("btn");
-        // plusButton.classList.add("btn-primary");
-        // plusButton.setAttribute("data-id",`${product.id}`);
-        // plusButton.textContent = "+";
-        // plusButton.addEventListener("click", function(e) {
-        //     if (quantityInput.value < 99) {
-        //         quantityInput.value++;
-        //     }
-        // })
+        let plusButton = document.createElement("button");
+        plusButton.classList.add("card-plus-item");
+        plusButton.classList.add("btn");
+        plusButton.classList.add("btn-primary");
+        plusButton.setAttribute("data-id",`${product.id}`);
+        plusButton.textContent = "+";
+        plusButton.addEventListener("click", function(e) {
+            if (quantityInput.value < 99) {
+                quantityInput.value++;
+            }
+        })
 
         let button = document.createElement("button");
         button.classList.add("add-to-cart");
@@ -241,13 +241,16 @@ $(function(){
         
         button.addEventListener("click", function (e) {
             addToCart(product, "1");
-            $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+            $(this).toggle();
+            $(minusButton).css("display", "block");
+            $(quantityInput).css("display", "block");
+            $(plusButton).css("display", "block");
         });
 
-        // inputGroup.appendChild(minusButton);
-        // inputGroup.appendChild(quantityInput);
-        // inputGroup.appendChild(plusButton);
-        //prodDescription.appendChild(inputGroup);
+        inputGroup.appendChild(minusButton);
+        inputGroup.appendChild(quantityInput);
+        inputGroup.appendChild(plusButton);
+        prodDescription.appendChild(inputGroup);
         prodDescription.appendChild(button);
         card.appendChild(prodDescription);
         

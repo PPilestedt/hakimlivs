@@ -214,6 +214,10 @@ cursor: pointer;
   margin-bottom: 10px;
 }
 
+.card .input-group > * {
+  display: none;
+}
+
 .card .add-to-cart {
   width: 75%;
 }
