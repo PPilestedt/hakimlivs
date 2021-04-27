@@ -222,7 +222,7 @@ function disableButton() {
         let address = document.getElementById("address").value;
         let zipcode = document.getElementById("zipcode").value;
         let city = document.getElementById("city").value;
-        let phone = document.getElementById("phone").value;
+        let phone = document.getElementById("phonenumber").value;
         let email = document.getElementById("email").value;
         let customerid;
 
@@ -276,7 +276,8 @@ function disableButton() {
 
                 cartitems.forEach(item => {
                     let productid = item.id;
-                    submitProductsToOrder(orderid,productid);
+                    let productQuantity = item.quantity;
+                    submitProductsToOrder(orderid,productid,productQuantity);
                 });
             }
         });
@@ -289,17 +290,17 @@ function disableButton() {
      * @param {id of the order specified} orderid 
      * @param {the id of the product to be added to the order} productid 
      */
-    function submitProductsToOrder(orderid, productid){
+    function submitProductsToOrder(orderid, productid,quantity){
 
         console.log("saving productid: " + productid + " to order with id: " + orderid);
 
         $.ajax({
-            url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}`,
+            url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}&productQuantity=${quantity}`,
             type: 'GET',
             success: function (msg) {
                 let jsonUpdatedData = msg;
                 console.log(jsonUpdatedData);
-            } 
+            }
         });
     }
 
