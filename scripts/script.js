@@ -1,11 +1,13 @@
 $(function(){
 
     let categoriesArray = [];
-    let productsArray = []; 
+    let productsArray = [];
+    let cartArray = [];
     
     loadProducts();
     loadCategories();
     displayCart();
+
 
     /**
      * Receives an event from the eventListener and
@@ -311,6 +313,14 @@ $(function(){
     
     }
 
+    function emptyCart(event){
+        localStorage.clear();
+        cartArray = [];
+        displayCart();
+    }
+
+     
+
     /**
      * Loops through the cart in localStorage and then
      * replaces the html code in the cart modal. 
@@ -325,7 +335,7 @@ $(function(){
         let totalPriceForProduct = "";
         let productPrice = "";
         console.log("Displaycart function")
-        const cartArray = JSON.parse( localStorage.getItem("cart"));
+        cartArray = JSON.parse( localStorage.getItem("cart"));
         let output = "";
         
         if(cartArray != null){
@@ -371,7 +381,7 @@ $(function(){
         $(".plus-item").click(increaseCartItem);
         $(".delete-item").click(removeCartItem);
         $(".item-count").change(updateCartNumber);
-
+        $(".btn-emptyCart").click(emptyCart);
     }
 
     /**
@@ -640,7 +650,7 @@ function focusOnclick(event) {
     modal.setAttribute('aria-labelledby', 'exampleModalLabel');
     modal.setAttribute('aria-hidden', 'true');
     modal.innerHTML =
-          '<div class="modal-dialog modal-dialog-centered" role="document">' +
+          '<div class="modal-dialog modal-sm modal-dialog-centered" role="document">' +
             '<div class="modal-content"></div>' +
           '</div>';
     document.body.appendChild(modal);

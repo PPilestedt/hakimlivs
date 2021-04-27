@@ -343,3 +343,8 @@ body {
     display: block;
   }
 }
+
+.btn-emptyCart {
+  max-width: 100%;
+  margin-top: 1%;
+}
