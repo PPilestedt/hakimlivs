@@ -22,6 +22,12 @@ input[type=number] {
   height: 64px;
 }
 
+#small-logo {
+  display: none;
+  width: 64px;
+  height: 64px;
+}
+
 .nav-category{
   display: none;
   padding-top:25px;
@@ -208,6 +214,10 @@ cursor: pointer;
   margin-bottom: 10px;
 }
 
+.card .input-group > * {
+  display: none;
+}
+
 .card .add-to-cart {
   width: 75%;
 }
@@ -230,6 +240,51 @@ footer {
 
 .log-in-button, .cart-button {
   margin-left: 5%;
+}
+
+
+
+.contact-info {
+  text-decoration: none;
+  color: #ffc400;
+}
+
+.copyright-info {
+  text-decoration: none;
+  color: #ffc400;
+}
+
+body {
+  background-color: rgba(245, 241, 233, 0.856);
+}
+
+.list-group-item{
+  background-color: rgba(245, 241, 233, 0.856);
+}
+
+.list-group-cart{
+  position: relative;
+  display: none;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group-log-in{
+  position: relative;
+  display: none;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.navbar-category-header {
+  margin: 0.5rem;
+}
+
+.navbar-span {
+  font-size: 20px;
+  color: #f1f1f1;
 }
 
 
@@ -258,7 +313,42 @@ footer {
   td {
     white-space: normal;
   }
+  #logo {
+    display: none;
+  }
+  #small-logo {
+    display: block;
+  }  
+  #small-logo-a {
+    margin: auto;
+  }
 }
+
+/*Minimal mobilscreen = produktkort har tack vare marginleft, mer centrering */
+@media screen and (max-width: 360px) {
+  #product-content {
+    margin-left: 6px;
+  }
+  #product-content {
+    margin-top: 14.5px;
+  }
+}
+
+/*Mobil screen = produktkort har tack vare marginleft, mer centrering */
+@media screen and (min-width: 365px) {
+  #product-content {
+    margin-top: 14.5px;
+  }
+  #product-content {
+    margin-left: 12px;
+  }
+}
+
+
+
+
+
+
 
 @media screen and (max-width: 600px) {
   tr.cart-table {
@@ -270,22 +360,23 @@ footer {
     float: left;
     text-align: left;
   }
+
+  .log-in-button, .cart-button {
+    display: none;
+  }
+  .search-container {
+    width: 200px;
+  }
+  #search-input {
+    width: 149px;
+  }
+
+  .list-group-cart, .list-group-log-in {
+    display: block;
+  }
 }
 
-.contact-info {
-  text-decoration: none;
-  color: #ffc400;
-}
-
-.copyright-info {
-  text-decoration: none;
-  color: #ffc400;
-}
-
-body {
-  background-color: rgba(245, 241, 233, 0.856);
-}
-
-.list-group-item{
-  background-color: rgba(245, 241, 233, 0.856);
+.btn-emptyCart {
+  max-width: 100%;
+  margin-top: 1%;
 }

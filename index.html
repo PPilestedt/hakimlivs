@@ -27,13 +27,14 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
       <a href="index.html"><img src="images/hakimLogo.png" alt="Hakim Livs Logo" id="logo"></a>
+      <a href="index.html" id="small-logo-a"><img src="images/hakimLogoSmall.png" alt="Hakim Livs Logo" id="small-logo"></a>
       <div class="search-container">
         <input type="text" placeholder="Search.." id="search-input" maxlength="25">
         <button type="submit" id="searchbutton">Sök</button>
       </div>
 
         <!-- Logga in modal button -->
-      <button type="button" class="log-in-button btn btn-warning" data-toggle="modal" data-target=".login-register-form">Logga in</button>
+      <button type="button" class="log-in-button btn btn-warning" data-toggle="modal" data-target=".login-register-form" disabled>Logga in</button>
 
       <!-- Order Modal button-->
       <button type="button" class="cart-button btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count">0</span>)</button>
@@ -60,6 +61,8 @@
 
       <div id="right-field" class="col-lg-9">
 
+        <!-- Carousel-slider -->
+        <!-- 
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -86,6 +89,8 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
           </a>
         </div>
+        -->
+        <!-- Carousel-slider end-->
 
 
         
@@ -138,6 +143,7 @@
 
           </table>
           <div>Summa: <span class="total-cart"></span></div>
+          <button type="button" class="btn btn-danger btn-emptyCart" id="emptyCart" >Töm varukorg</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
