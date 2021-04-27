@@ -502,11 +502,13 @@ $(function(){
 function initFocus() {
     let cards = document.getElementsByClassName("card");
     
+    
     if (!productsArray.length == 0) {
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener("click", focusOnclick);
         }
     } else {
+        
         setTimeout(initFocus, 100); // kör igen efter 100 ms om det behövs
     } 
 }
