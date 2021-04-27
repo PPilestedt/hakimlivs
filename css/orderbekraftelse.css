@@ -79,15 +79,17 @@ text-right{
         padding: 0;
     }
     .total{
-        margin-right: 2.5%;
+        margin-right: 3%;
     }
     
 }
 
-@media screen and (min-width: 426px), (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .total{
         margin-right: 2%;
     }
     
 }
+
+
 
