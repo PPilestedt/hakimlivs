@@ -1,6 +1,3 @@
-
-
-
 .search-container {
     display: inline-flex;
     flex: 1 1 300px;
@@ -9,7 +6,7 @@
     border-radius: 5px;
     overflow: hidden;
     
-    height: 30px;
+    height: 38px;
   }
   
   
@@ -33,7 +30,6 @@
     background: #538AC5;
     border: 0;
     color: white;
-    padding: 0.5rem;
     border-radius: 0;
     
   }
