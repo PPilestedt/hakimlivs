@@ -50,7 +50,7 @@
     <!-- Customer info fields-->
     <div id="responsive" class="customer-container" style="max-width:100%;height:auto;" >
     <h2 class="text-center">Kunduppgifter</h2>
-    <form name="myForm" action="orderbekraftelse.html" onkeypress="return event.keyCode != 13;" novalidate onsubmit="return pwdcheck()">  
+    <form id="customer-form" name="myForm" onkeypress="return event.keyCode != 13;" novalidate>  
       <div class="form-group" >
           <label for="firstname">Ditt förnamn:</label>
           <input type="text" minlength="2" size="50" class="form-control" id="firstname" placeholder="Skriv ditt förnamn" name="firstname" required>
@@ -85,11 +85,11 @@
 
   <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="newemail" placeholder="Skriv din email" name="email" required>
+      <input type="email" class="form-control" id="email" placeholder="Skriv din email" name="email" required>
   </div>
 
       <div class="button-center"></div>
-        <button type="submit" class="btn btn-primary" id="finish-checkout-btn-two" onsubmit="document.location='orderbekraftelse.html'">Slutför beställning</button>
+        <button type="submit" class="btn btn-primary" id="finish-checkout-btn-two" >Slutför beställning</button>
       </div>
     </div>
     <br>
