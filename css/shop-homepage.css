@@ -368,7 +368,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 760px) {
   tr.cart-table {
     display: block;
   }
