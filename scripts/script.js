@@ -659,8 +659,8 @@ function focusOnclick(event) {
             </div>
 
             <div class="modal-footer">
-              <button id="focus-buy" class="add-to-cart btn btn-primary" data-dismiss="modal" data-id="${productId}">Köp</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+              <button id="focus-buy" class="add-to-cart btn btn-sm btn-primary" data-dismiss="modal" data-id="${productId}">Köp</button>
+              <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Stäng</button>
             </div>
             `
       
