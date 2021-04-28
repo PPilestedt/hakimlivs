@@ -38,13 +38,6 @@
       margin-top: -800px;
   }
 
-  @media screen and (max-width: 375px) {
-    .search-container {
-      flex: 0%;
-      height: 30px;
-    }
-  }
-
   @media screen and (max-width: 425px) {
     .cart-button {
       width:42px;
@@ -52,3 +45,16 @@
     }
   }
   
+
+  @media screen and (max-width: 375px) {
+    .search-container {
+      flex: 0%;
+      height: 30px;
+    }
+    .cart-button {
+      width:32px;
+      height: 30px;
+    }
+  }
+
+ 
