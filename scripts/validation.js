@@ -13,7 +13,6 @@ function pwdcheck(){
   var zipRegex = /^\d{3} \d{2}$/;
   var x6 = document.forms["myForm"]["phonenumber"];
   var phoneRegex = /^[0-9]*$/;
-  //var phoneRegex = /^(\d{3})(-|\s)*(\d{3})\s*(\d{2})\s*(\d{2})$/;
 
   
   if (x1.value == "") {
@@ -56,6 +55,7 @@ function pwdcheck(){
     return false;
   }
 
+  
   if (x6.value == "") {
     alert("Du måste ange ditt telefonnummer");
     return false;
@@ -63,6 +63,7 @@ function pwdcheck(){
     alert("Felaktigt format på telefonnummer");
     return false;
   }
+  
 
   if (x2.value == "") {
     alert("Du måste ange din email");
@@ -74,100 +75,180 @@ function pwdcheck(){
 } 
 
 
-function phone_formatting(ele,restore) {
-  var new_number,
-      selection_start = ele.selectionStart,
-      selection_end = ele.selectionEnd,
-      number = ele.value.replace(/\D/g,'');
-  
-  // automatically add dashes
-  if (number.length > 2) {
-    // matches: 123 || 123-4 || 123-45
-    new_number = number.substring(0,3) + '-';
-    if (number.length === 4 || number.length === 5) {
-      // matches: 123-4 || 123-45
-      new_number += number.substr(3);
-    }
-    else if (number.length > 5) {
-      // matches: 123-456 || 123-456-7 || 123-456-789
-      new_number += number.substring(3,6) + ' ';
-    }
-    if (number.length > 6) {
-      // matches: 123-456-7 || 123-456-789 || 123-456-7890
-      new_number += number.substring(6,9) + ' ';
-    }
-  }
-  else {
-    new_number = number;
-  }
-  
-  // if value is heigher than 12, last number is dropped
-  // if inserting a number before the last character, numbers
-  // are shifted right, only 12 characters will show
-  ele.value =  (new_number.length > 12) ? new_number.substring(12,0) : new_number;
-  
-  // restore cursor selection,
-  // prevent it from going to the end
-  // UNLESS
-  // cursor was at the end AND a dash was added
-  document.getElementById('msg').innerHTML='<p>Selection is: ' + selection_end + ' and length is: ' + new_number.length + '</p>';
-  
-  if (new_number.slice(-1) === '-' && restore === false
-      && (new_number.length === 8 && selection_end === 7)
-          || (new_number.length === 4 && selection_end === 3)) {
-      selection_start = new_number.length;
-      selection_end = new_number.length;
-  }
-  else if (restore === 'revert') {
-    selection_start--;
-    selection_end--;
-  }
-  ele.setSelectionRange(selection_start, selection_end);
 
-}
-  
-function phone_number_check(field,e) {
-  var key_code = e.keyCode,
-      key_string = String.fromCharCode(key_code),
-      press_delete = false,
-      dash_key = 189,
-      delete_key = [8,46],
-      direction_key = [33,34,35,36,37,38,39,40],
-      selection_end = field.selectionEnd;
-  
-  // delete key was pressed
-  if (delete_key.indexOf(key_code) > -1) {
-    press_delete = true;
-  }
-  
-  // only force formatting is a number or delete key was pressed
-  if (key_string.match(/^\d+$/) || press_delete) {
-    phone_formatting(field,press_delete);
-  }
-  // do nothing for direction keys, keep their default actions
-  else if(direction_key.indexOf(key_code) > -1) {
-    // do nothing
-  }
-  else if(dash_key === key_code) {
-    if (selection_end === field.value.length) {
-      field.value = field.value.slice(0,-1)
-    }
-    else {
-      field.value = field.value.substring(0,(selection_end - 1)) + field.value.substr(selection_end)
-      field.selectionEnd = selection_end - 1;
-    }
-  }
-  // all other non numerical key presses, remove their value
-  else {
-    e.preventDefault();
-//    field.value = field.value.replace(/[^0-9\-]/g,'')
-    phone_formatting(field,'revert');
-  }
 
+//Validation of phonenumber textfield (XXX-XXX XX XX)
+var zChar = new Array(' ', '(', ')', '-', '.');
+var maxphonelength = 15;  //13
+var phonevalue1;
+var phonevalue2;
+var cursorposition;
+
+function ParseForNumber1(object) {
+    phonevalue1 = ParseChar(object.value, zChar);
 }
 
-document.getElementById('phonenumber').onkeyup = function(e) {
-  phone_number_check(this,e);
+function ParseForNumber2(object) {
+    phonevalue2 = ParseChar(object.value, zChar);
 }
+
+function backspacerUP(object, e) {
+    if (e) {
+        e = e
+    } else {
+        e = window.event
+    }
+    if (e.which) {
+        var keycode = e.which
+    } else {
+        var keycode = e.keyCode
+    }
+
+    ParseForNumber1(object)
+
+    if (keycode >= 48) {
+        ValidatePhone(object)
+    }
+}
+
+function backspacerDOWN(object, e) {
+    if (e) {
+        e = e
+    } else {
+        e = window.event
+    }
+    if (e.which) {
+        var keycode = e.which
+    } else {
+        var keycode = e.keyCode
+    }
+    ParseForNumber2(object)
+}
+
+function GetCursorPosition() {
+
+    var t1 = phonevalue1;
+    var t2 = phonevalue2;
+    var bool = false
+    for (i = 0; i < t1.length; i++) {
+        if (t1.substring(i, 1) != t2.substring(i, 1)) {
+            if (!bool) {
+                cursorposition = i
+                bool = true
+            }
+        }
+    }
+}
+
+function ValidatePhone(object) {
+
+    var p = phonevalue1
+
+    p = p.replace(/[^\d]*/gi, "") 
+
+    if (p.length < 3) {
+        object.value = p
+    } else if (p.length > 3 && p.length < 7) {
+        //p = "(" + p;
+        l30 = p.length;
+        p30 = p.substring(0, 3);
+        p30 = p30 + "-"
+
+        p31 = p.substring(3, l30);
+        pp = p30 + p31;
+
+        object.value = pp;
+
+    } else if (p.length >= 7) {
+        //p = "(" + p;
+        l30 = p.length;
+        p30 = p.substring(0, 3);
+        p30 = p30 + "-"
+
+        p31 = p.substring(3, l30);
+        pp = p30 + p31;
+
+        l40 = pp.length;
+        p40 = pp.substring(0, 7);
+        p40 = p40 + " "
+
+        p41 = pp.substring(7, 9);
+        p42 = pp.substring(9,11);
+        ppp = p40 + p41 + " " + p42;
+
+
+        object.value = ppp.substring(0, maxphonelength);
+    }
+
+    GetCursorPosition()
+
+    if (cursorposition >= 0) {
+        if (cursorposition == 0) {
+            cursorposition = 2
+        } else if (cursorposition <= 2) {
+            cursorposition = cursorposition + 1
+        } else if (cursorposition <= 5) {
+            cursorposition = cursorposition + 2
+        } else if (cursorposition == 6) {
+            cursorposition = cursorposition + 2
+        } else if (cursorposition == 7) {
+            cursorposition = cursorposition + 4
+            e1 = object.value.indexOf(')')
+            e2 = object.value.indexOf('-')
+            if (e1 > -1 && e2 > -1) {
+                if (e2 - e1 == 4) {
+                    cursorposition = cursorposition - 1
+                }
+            }
+        } else if (cursorposition < 11) {
+            cursorposition = cursorposition + 3
+        } else if (cursorposition == 11) {
+            cursorposition = cursorposition + 1
+        } else if (cursorposition >= 12) {
+            cursorposition = cursorposition
+        }
+
+        var txtRange = object.createTextRange();
+        txtRange.moveStart("character", cursorposition);
+        txtRange.moveEnd("character", cursorposition - object.value.length);
+        txtRange.select();
+    }
+
+}
+
+function ParseChar(sStr, sChar) {
+    if (sChar.length == null) {
+        zChar = new Array(sChar);
+    } else zChar = sChar;
+
+    for (i = 0; i < zChar.length; i++) {
+        sNewStr = "";
+
+        var iStart = 0;
+        var iEnd = sStr.indexOf(sChar[i]);
+
+        while (iEnd != -1) {
+            sNewStr += sStr.substring(iStart, iEnd);
+            iStart = iEnd + 1;
+            iEnd = sStr.indexOf(sChar[i], iStart);
+        }
+        sNewStr += sStr.substring(sStr.lastIndexOf(sChar[i]) + 1, sStr.length);
+
+        sStr = sNewStr;
+    }
+
+    return sNewStr;
+}
+var clipboard = new Clipboard('.btn');
+
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+//End of phonenumber textfield validation
+
 
      
