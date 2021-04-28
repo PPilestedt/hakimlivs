@@ -604,7 +604,7 @@ function focusOnclick(event) {
                 stockInHand = productsArray[i].stockInHand + " st"
                 if (parseFloat(weight) > 1000) {
                     weight = parseFloat(weight) / 1000;
-                    weight += "kg";
+                    weight += " kg";
                 }
                 product = productsArray[i];
             }
@@ -640,16 +640,16 @@ function focusOnclick(event) {
                     <hr>
                     <div class="col col-sm-6">
                         <div class="product-description">
-                            <h6><b>Pris:</b>${price}</h6>
+                            <h6><b>Pris: </b>${price}</h6>
                         </div>
                         <div class="product-description">
-                            <h6><b>Vikt:</b>${weight}</h6>
+                            <h6><b>Vikt: </b>${weight}</h6>
                         </div>
                         <div class="product-description">
-                            <h6><b>Jämförelsepris:</b>${pricecomparison}</h6>
+                            <h6><b>Jämförelsepris: </b>${pricecomparison}</h6>
                         </div>
                         <div class="product-description">
-                            <h6><b>I lager:</b>${stockInHand}</h6>
+                            <h6><b>I lager: </b>${stockInHand}</h6>
                         </div>
                     </div>
                 </div>
