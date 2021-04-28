@@ -72,3 +72,53 @@ function pwdcheck(){
   }
 } 
      
+
+function setNumbers(event)
+{
+  const element = event.target;
+  var valText = element.value.toString();
+  var valTextNewProto = '';
+  var valTextNewFinal;
+  var valTextLength;
+  var valTextHalv1;
+  var valTextHalv2;
+
+
+
+  valTextLength = valText.length;
+
+  
+  for(var i1 = 0; i1 < valTextLength; i1++)
+  {
+    var i2 = i1 + 1;
+    const valChar = valText.substring(i1, i2);
+
+    if(valChar == '0' || valChar == '1' || valChar == '2' || valChar == '3' || valChar == '4' || valChar == '5' || valChar == '6' || valChar == '7' || valChar == '8' || valChar == '9')
+    {
+      valTextNewProto += valChar;
+
+    }
+
+  }
+
+
+  valTextLength = valTextNewProto.length;
+
+  if(valTextLength > 3)
+  {
+    valTextHalv1 = valTextNewProto.substr(0, 3);
+    valTextHalv2 = valTextNewProto.substr(3, valTextLength);
+
+    valTextNewFinal = valTextHalv1 + ' ' + valTextHalv2;
+
+  }
+  else
+  {
+    valTextNewFinal = valTextNewProto;
+
+  }
+
+
+  element.value = valTextNewFinal;
+
+}
