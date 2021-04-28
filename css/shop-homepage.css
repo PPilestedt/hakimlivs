@@ -166,6 +166,12 @@ td {
   background-color: rgba(245, 241, 233, 0.856);
 }
 
+.bottom-div {
+  position: absolute;
+  bottom: 0;
+}
+
+
 .card:hover {
   box-shadow: 0 0 11px rgba(100,100,100,1); 
 }

@@ -622,19 +622,19 @@ function focusOnclick(event) {
             <div class="modal-body container">
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-sm-6">
                     <div class="product-img rounded" id="focusImg">
                         <img src="${image}" class="img-fluid" alt="${title}"> 
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-sm-6">
                     <div class="col">
                         <div class="product-description text-justify">
                             <p>${description}</p>
                         </div>
                     </div>
                     <hr>
-                    <div class="col">
+                    <div class="col col-sm-6">
                         <div class="product-description">
                             <h6><b>Pris:</b>${price}</h6>
                         </div>
