@@ -442,3 +442,9 @@ body {
   line-height:1%;
 
 }
+
+
+.prodDesc {
+  overflow: scroll;
+  height: 200px;
+}
