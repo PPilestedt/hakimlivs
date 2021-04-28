@@ -638,7 +638,7 @@ function focusOnclick(event) {
                         </div>
                     </div>
                     <hr>
-                    <div class="col col-sm-6">
+                    <div class="col col-auto">
                         <div class="product-description">
                             <h6><b>Pris: </b>${price}</h6>
                         </div>
