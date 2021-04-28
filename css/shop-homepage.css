@@ -12,7 +12,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+.card-input{
   -moz-appearance: textfield;
   width: 45%;
 }
