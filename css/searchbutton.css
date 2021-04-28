@@ -1,0 +1,43 @@
+
+
+
+.search-container {
+    display: inline-flex;
+    flex: 1 1 300px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    
+    height: 30px;
+  }
+  
+  
+  .searchIcon {
+    padding: 0.5rem;
+    
+  }
+  
+  
+  
+  .searchBox {
+    border: 0;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    flex: 1;
+    
+    
+  }
+  
+  
+  .searchbutton {
+    background: #538AC5;
+    border: 0;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0;
+    
+  }
+
+  .symbol {
+      margin-top: -800px;
+  }
