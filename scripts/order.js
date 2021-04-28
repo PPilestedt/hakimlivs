@@ -1,7 +1,10 @@
 $(function() {
 
 const cart = JSON.parse(localStorage.getItem("cart"));
-
+$("#customer-form").submit(function(event){
+    validateForm();
+    event.preventDefault();    
+});
 displayCart();
 
 
@@ -186,6 +189,15 @@ function disableButton() {
     });
 
 
+    function validateForm(){
+        console.log("klickade på submit i chechkout");
+
+        if(pwdcheck()){
+            console.log("Validering av fält gick igenom");
+            startSubmitOrder();
+        }
+    }
+
     /**
      * Gathers information from the form and initiates the order
      * creation sequence.
@@ -286,16 +298,11 @@ function disableButton() {
             } 
         });
 
-        clearCart();
+   
         goToCheckout();
     }
 
-    function clearCart() {
-        localStorage.setItem('cart',"[]");
-    }
-
     function goToCheckout(){
-
         window.location.href = 'orderbekraftelse.html';
     }
 })
