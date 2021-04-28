@@ -634,8 +634,8 @@ function focusOnclick(event) {
                 </div>
                 <div class="col-sm-6">
                     <div class="col">
-                        <div class="product-description text-justify">
-                            <p>${description}</p>
+                        <div class="product-description">
+                            <p class="prodDesc">${description}</p>
                         </div>
                     </div>
                     <hr>
