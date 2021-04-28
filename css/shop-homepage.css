@@ -161,9 +161,9 @@ td {
   margin: 10px 5px 10px 5px;
   text-align: center;
   font-family: arial;
-  background-color: rgb(255, 255, 255);
+ 
   transition: box-shadow .3s;
-  background-color: rgba(245, 241, 233, 0.856);
+  background-color: rgba(255, 255, 255, 0.856);
 }
 
 .bottom-div {
@@ -198,7 +198,7 @@ cursor: pointer;
     padding-bottom: 10px;
     height: 50px;
     line-height: 1em;
-    background-color: rgba(245, 241, 233, 0.856);
+    background-color: rgba(255, 255, 255, 0.856);
 }
 .card h4:hover {
   cursor: pointer;
@@ -206,7 +206,7 @@ cursor: pointer;
   
 .card-body {
   padding: 0 10px 10px 10px;
-  background-color: rgba(245, 241, 233, 0.856);
+  background-color: rgba(255, 255, 255, 0.856);
 }
 
 .card button {
@@ -272,11 +272,13 @@ body {
   background-color: rgba(245, 241, 233, 0.856);
 }
 
+
+
 .list-group-cart{
   position: relative;
   display: none;
   padding: 0.75rem 1.25rem;
-  background-color: #fff;
+  background-color: rgba(245, 241, 233, 0.856);
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -284,7 +286,7 @@ body {
   position: relative;
   display: none;
   padding: 0.75rem 1.25rem;
-  background-color: #fff;
+  background-color: rgba(245, 241, 233, 0.856);
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
