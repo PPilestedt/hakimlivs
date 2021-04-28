@@ -173,35 +173,18 @@ function disableButton() {
     }
 }
 
-    $("#userform").click(function(){
-        let firstname = "Peter";
-        let lastname = "Pilestedt";
-        let address = "skojgatan";
-        let zipcode = "12345";
-        let city = "solna";
-        let phone = "070-1234567";
-        let email = "mailman@manmail.com";
+ 
+    $("#postknapp").click(function(){
+        console.log("klickade på submit i chechkout");
 
-        console.log("försöker posta");
-        var postItem = localStorage.getItem("cart");
-        $.ajax({
-            url: 'http://localhost:8080/customer/add',
-            data: JSON.stringify({
-                firstname : `${firstname}`,
-                lastname : `${lastname}`,
-                address : `${address}`,
-                zipcode : `${zipcode}`,
-                city : `${city}`,
-                phone : `${phone}`,
-                email : `${email}`
-            }),
-            type: 'POST',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        })
+        console.log(pwdcheck());
+
+        if(pwdcheck()){
+            console.log("Validering av fält gick igenom");
+            startSubmitOrder();
+        }
     });
+
 
     /**
      * Gathers information from the form and initiates the order
@@ -213,9 +196,9 @@ function disableButton() {
      * 3. removing all items in current cart ( not done yet )
      * 
      */
-    $("#postknapp").click(function(){
-        
-        console.log("klickade på submit i chechkout");
+    function startSubmitOrder(){
+
+        console.log("start submit order");
 
         let firstname = document.getElementById("firstname").value;
         let lastname = document.getElementById("lastname").value;
@@ -253,7 +236,7 @@ function disableButton() {
               
             }
         });
-    });
+    }
 
     /**
      * Creates an order with the specified customers id.
@@ -276,8 +259,8 @@ function disableButton() {
 
                 cartitems.forEach(item => {
                     let productid = item.id;
-                    let productQuantity = item.quantity;
-                    submitProductsToOrder(orderid,productid,productQuantity);
+                    let quantity = item.quantity;
+                    submitProductsToOrder(orderid,productid,quantity);
                 });
             }
         });
@@ -290,9 +273,9 @@ function disableButton() {
      * @param {id of the order specified} orderid 
      * @param {the id of the product to be added to the order} productid 
      */
-    function submitProductsToOrder(orderid, productid,quantity){
+    function submitProductsToOrder(orderid, productid, quantity) {
 
-        console.log("saving productid: " + productid + " to order with id: " + orderid);
+        console.log("saving productid: " + productid + " to order with id: " + orderid + " and quantity " + quantity);
 
         $.ajax({
             url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}&productQuantity=${quantity}`,
@@ -300,8 +283,19 @@ function disableButton() {
             success: function (msg) {
                 let jsonUpdatedData = msg;
                 console.log(jsonUpdatedData);
-            }
+            } 
         });
+
+        clearCart();
+        goToCheckout();
     }
 
+    function clearCart() {
+        localStorage.setItem('cart',"[]");
+    }
+
+    function goToCheckout(){
+
+        window.location.href = 'orderbekraftelse.html';
+    }
 })
