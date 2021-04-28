@@ -361,14 +361,26 @@ body {
     text-align: left;
   }
 
-  .log-in-button, .cart-button {
+  .log-in-button {
     display: none;
   }
+
+  .cart-button {
+    background-image: url("/images/cart.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 33px 28px;
+    width:35px;
+    height: 30px;
+    text-indent: -9000px;
+    text-transform: capitalize; 
+  }
+
   .search-container {
-    width: 200px;
+    width: 170px;
   }
   #search-input {
-    width: 149px;
+    width: 120px;
   }
 
   .list-group-cart, .list-group-log-in {
