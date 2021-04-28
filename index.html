@@ -16,6 +16,14 @@
   <!-- Custom styles for this template -->
   <link href="css/shop-homepage.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
+  
+  <!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/search.css" rel="stylesheet">
+
+  -->
+  <link href="css/searchbuton.css" rel="stylesheet">
+
 
 </head>
 
@@ -30,17 +38,15 @@
       <a href="index.html" id="small-logo-a"><img src="images/hakimLogoSmall.png" alt="Hakim Livs Logo" id="small-logo"></a>
       <div class="search-container">
         <input type="text" placeholder="Search.." id="search-input" maxlength="25">
-        <button type="submit" id="searchbutton">Sök</button>
-        
+        <button type="submit" id="searchbutton" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>
+</button>
       </div>
 
         <!-- Logga in modal button -->
       <button type="button" class="log-in-button btn btn-warning" data-toggle="modal" data-target=".login-register-form" disabled>Logga in</button>
 
       <!-- Order Modal button-->
-      <button type="button" class="cart-button btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count">0</span>) </button>
-      
-
+      <button type="button" class="cart-button btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count">0</span>)</button>
       <div class="collapse navbar-collapse sticky-top" id="navbarResponsive">
 
       </div>
@@ -146,7 +152,6 @@
 
           </table>
           <div>Summa: <span class="total-cart"></span></div>
-          <button type="button" class="btn btn-danger btn-emptyCart" id="emptyCart" >Töm varukorg</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
