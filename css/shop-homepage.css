@@ -410,3 +410,11 @@ body {
   max-width: 100%;
   margin-top: 1%;
 }
+
+.modal-title {
+  line-height: 2.8;
+}
+
+.modal-header .close {
+  margin: 0;
+}
