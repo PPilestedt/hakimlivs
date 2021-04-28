@@ -364,23 +364,22 @@ body {
     display: block;
   }
 
+  .table td {
+    border-top: none;
+  }
+
   td.break {
     width: 75%;
     float: left;
     text-align: left;
   }
+
+  .cart-item-sum {
+    border-bottom: 1px solid #dee2e6;
+  }
 }
 
 @media screen and (max-width: 760px) {
-  tr.cart-table {
-    display: block;
-  }
-
-  td.break {
-    width: 70%;
-    float: left;
-    text-align: left;
-  }
 
   .log-in-button {
     display: none;
