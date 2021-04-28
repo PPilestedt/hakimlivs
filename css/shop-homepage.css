@@ -137,6 +137,10 @@ td {
   white-space: nowrap;
 }
 
+.cart-title {
+  white-space: normal;
+}
+
 .cart-item-sum{
   text-align: end;
 }
@@ -346,9 +350,17 @@ body {
 
 
 
+@media screen and (max-width: 800px) {
+  tr.cart-table {
+    display: block;
+  }
 
-
-
+  td.break {
+    width: 75%;
+    float: left;
+    text-align: left;
+  }
+}
 
 @media screen and (max-width: 600px) {
   tr.cart-table {

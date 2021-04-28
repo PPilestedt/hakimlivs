@@ -387,7 +387,7 @@ $(function(){
             totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
             totalPriceForProduct = totalPriceForProduct.replace(".", ":");
                 output += `<tr class='cart-table'>
-                            <td>
+                            <td class="cart-title">
                                 ${product.title}
                             </td>
                             <td>
@@ -396,7 +396,7 @@ $(function(){
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="text" id="focus-input" class="item-count form-control" data-id="${product.id}" value="${product.quantity}".toString()>
+                                    <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}".toString()>
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
