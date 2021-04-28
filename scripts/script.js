@@ -387,7 +387,7 @@ $(function(){
             totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
             totalPriceForProduct = totalPriceForProduct.replace(".", ":");
                 output += `<tr class='cart-table'>
-                            <td>
+                            <td class="cart-title">
                                 ${product.title}
                             </td>
                             <td>
@@ -396,7 +396,7 @@ $(function(){
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="text" id="focus-input" class="item-count form-control" data-id="${product.id}" value="${product.quantity}".toString()>
+                                    <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}".toString()>
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
@@ -622,19 +622,19 @@ function focusOnclick(event) {
             <div class="modal-body container">
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-sm-6">
                     <div class="product-img rounded" id="focusImg">
                         <img src="${image}" class="img-fluid" alt="${title}"> 
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-sm-6">
                     <div class="col">
                         <div class="product-description text-justify">
                             <p>${description}</p>
                         </div>
                     </div>
                     <hr>
-                    <div class="col">
+                    <div class="col col-sm-6">
                         <div class="product-description">
                             <h6><b>Pris:</b>${price}</h6>
                         </div>

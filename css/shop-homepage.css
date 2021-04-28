@@ -137,6 +137,10 @@ td {
   white-space: nowrap;
 }
 
+.cart-title {
+  white-space: normal;
+}
+
 .cart-item-sum{
   text-align: end;
 }
@@ -161,6 +165,12 @@ td {
   transition: box-shadow .3s;
   background-color: rgba(245, 241, 233, 0.856);
 }
+
+.bottom-div {
+  position: absolute;
+  bottom: 0;
+}
+
 
 .card:hover {
   box-shadow: 0 0 11px rgba(100,100,100,1); 
@@ -346,11 +356,19 @@ body {
 
 
 
+@media screen and (max-width: 800px) {
+  tr.cart-table {
+    display: block;
+  }
 
+  td.break {
+    width: 75%;
+    float: left;
+    text-align: left;
+  }
+}
 
-
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 760px) {
   tr.cart-table {
     display: block;
   }
