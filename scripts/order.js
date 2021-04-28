@@ -224,7 +224,7 @@ function disableButton() {
         console.log("försöker posta");
  
         $.ajax({
-            url: 'http://localhost:8080/customer/add',
+            url: 'https://hakims-livs.herokuapp.com/customer/add',
             data: JSON.stringify({
                 firstname : `${firstname}`,
                 lastname : `${lastname}`,
@@ -242,7 +242,7 @@ function disableButton() {
                 let jsonUpdatedData = msg;
                 customerid = jsonUpdatedData.id;
                 console.log("Customerid " + customerid);
-                console.log(`http://localhost:8080/order/add?customerID=${customerid}`);
+                console.log(`https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`);
                 
                 submitOrderWithCustomer(customerid);
               
@@ -260,7 +260,7 @@ function disableButton() {
         console.log("submitting order with customerid: " + customerid);
 
         $.ajax({
-            url: `http://localhost:8080/order/add?customerID=${customerid}`,
+            url: `https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`,
             type: 'GET',
             success: function (msg) {
                 let jsonUpdatedData = msg;
@@ -290,7 +290,7 @@ function disableButton() {
         console.log("saving productid: " + productid + " to order with id: " + orderid + " and quantity " + quantity);
 
         $.ajax({
-            url: `http://localhost:8080/order/addproducts?orderID=${orderid}&productID=${productid}&productQuantity=${quantity}`,
+            url: `https://hakims-livs.herokuapp.com/order/addproducts?orderID=${orderid}&productID=${productid}&productQuantity=${quantity}`,
             type: 'GET',
             success: function (msg) {
                 let jsonUpdatedData = msg;
