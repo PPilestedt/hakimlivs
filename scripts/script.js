@@ -349,6 +349,11 @@ $(function(){
         document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     
     }
 
@@ -650,51 +655,18 @@ function focusOnclick(event) {
                 </div>
 
             </div>
-            
-                <div class="product-description input-group d-flex justify-content-center flex-nowrap">
-                    <button id="focus-minus" class="card-minus-item btn btn-primary" data-id="${productId}">-</button>
-                    <input id="focus-input" type="text">
-                    <button id="focus-plus" class="card-plus-item btn btn-primary" data-id="${productId}">+</button>
-                </div>
             </div>
 
             <div class="modal-footer">
-              <button id="focus-buy" class="add-to-cart btn btn-primary" data-id="${productId}">Köp</button>
+              <button id="focus-buy" class="add-to-cart btn btn-primary" data-dismiss="modal" data-id="${productId}">Köp</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
             </div>
             `
       
         setFocusModalContent(html);
-        let minusButton = document.getElementById("focus-minus");
-        let input = document.getElementById("focus-input");
-        let plusButton = document.getElementById("focus-plus");
-
-        input.value = "1";
-
-        minusButton.addEventListener("click", function(e) {
-            if (input.value > 1) {
-                input.value--;
-            }
-        })
-
-        input.onkeyup = function() {
-            if(this.value > 99) {
-                alert("Felaktig inmatning");
-                this.value = 99;
-            } else if(this.value < 1) {
-                alert("Felaktig inmatning");
-                this.value = 1;
-            }
-        };
-
-        plusButton.addEventListener("click", function(e) {
-            if (input.value < 99) {
-                input.value++;
-            }
-        })
 
         document.getElementById("focus-buy").addEventListener("click", function (e) {
-            addToCart(product, input.value);
+            addToCart(product, "1");
             $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         });
         // visar modalen
