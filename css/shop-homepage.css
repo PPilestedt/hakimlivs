@@ -445,6 +445,6 @@ body {
 
 
 .prodDesc {
-  overflow: scroll;
+  overflow: auto;
   height: 200px;
 }
