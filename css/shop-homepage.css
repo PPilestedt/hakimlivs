@@ -137,6 +137,10 @@ td {
   white-space: nowrap;
 }
 
+.cart-title {
+  white-space: normal;
+}
+
 .cart-item-sum{
   text-align: end;
 }
@@ -157,10 +161,16 @@ td {
   margin: 10px 5px 10px 5px;
   text-align: center;
   font-family: arial;
-  background-color: rgb(255, 255, 255);
+ 
   transition: box-shadow .3s;
-  background-color: rgba(245, 241, 233, 0.856);
+  background-color: rgba(255, 255, 255, 0.856);
 }
+
+.bottom-div {
+  position: absolute;
+  bottom: 0;
+}
+
 
 .card:hover {
   box-shadow: 0 0 11px rgba(100,100,100,1); 
@@ -188,7 +198,7 @@ cursor: pointer;
     padding-bottom: 10px;
     height: 50px;
     line-height: 1em;
-    background-color: rgba(245, 241, 233, 0.856);
+    background-color: rgba(255, 255, 255, 0.856);
 }
 .card h4:hover {
   cursor: pointer;
@@ -196,7 +206,7 @@ cursor: pointer;
   
 .card-body {
   padding: 0 10px 10px 10px;
-  background-color: rgba(245, 241, 233, 0.856);
+  background-color: rgba(255, 255, 255, 0.856);
 }
 
 .card button {
@@ -262,11 +272,13 @@ body {
   background-color: rgba(245, 241, 233, 0.856);
 }
 
+
+
 .list-group-cart{
   position: relative;
   display: none;
   padding: 0.75rem 1.25rem;
-  background-color: #fff;
+  background-color: rgba(245, 241, 233, 0.856);
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -274,7 +286,7 @@ body {
   position: relative;
   display: none;
   padding: 0.75rem 1.25rem;
-  background-color: #fff;
+  background-color: rgba(245, 241, 233, 0.856);
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -287,6 +299,9 @@ body {
   color: #f1f1f1;
 }
 
+.modal-header .close {
+  margin: -1rem -0.5rem -1rem auto;
+}
 
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
@@ -332,6 +347,19 @@ body {
   #product-content {
     margin-top: 14.5px;
   }
+
+  #small-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-container {
+    width: 150px;
+  }
+
+  #search-input {
+    width: 100px;
+  }
 }
 
 /*Mobil screen = produktkort har tack vare marginleft, mer centrering */
@@ -346,29 +374,48 @@ body {
 
 
 
-
-
-
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   tr.cart-table {
     display: block;
   }
 
+  .table td {
+    border-top: none;
+  }
+
   td.break {
-    width: 70%;
+    width: 75%;
     float: left;
     text-align: left;
   }
 
-  .log-in-button, .cart-button {
+  .cart-item-sum {
+    border-bottom: 1px solid #dee2e6;
+  }
+}
+
+@media screen and (max-width: 760px) {
+
+  .log-in-button {
     display: none;
   }
+
+  .cart-button {
+    background-image: url("/images/cart.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 33px 28px;
+    width:35px;
+    height: 30px;
+    text-indent: -9000px;
+    text-transform: capitalize; 
+  }
+
   .search-container {
-    width: 200px;
+    width: 170px;
   }
   #search-input {
-    width: 149px;
+    width: 120px;
   }
 
   .list-group-cart, .list-group-log-in {
@@ -379,4 +426,12 @@ body {
 .btn-emptyCart {
   max-width: 100%;
   margin-top: 1%;
+}
+
+.modal-title {
+  line-height: 2.8;
+}
+
+.modal-header .close {
+  margin: 0;
 }
