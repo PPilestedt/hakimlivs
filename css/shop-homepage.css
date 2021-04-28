@@ -345,6 +345,19 @@ body {
   #product-content {
     margin-top: 14.5px;
   }
+
+  #small-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-container {
+    width: 150px;
+  }
+
+  #search-input {
+    width: 100px;
+  }
 }
 
 /*Mobil screen = produktkort har tack vare marginleft, mer centrering */
