@@ -3,6 +3,8 @@ $(function(){
     let categoriesArray = [];
     let productsArray = [];
     let cartArray = [];
+    let currentProducts = [];
+    let filtered = false;
     
     loadProducts();
     loadCategories();
@@ -38,7 +40,11 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
-        displayAllProducts(productsArray);
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -64,7 +70,11 @@ $(function(){
         document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
-        displayAllProducts(productsArray);
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -95,7 +105,11 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
-        displayAllProducts(productsArray);
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -134,7 +148,11 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
-        displayAllProducts(productsArray);
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -369,7 +387,7 @@ $(function(){
             totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
             totalPriceForProduct = totalPriceForProduct.replace(".", ":");
                 output += `<tr class='cart-table'>
-                            <td>
+                            <td class="cart-title">
                                 ${product.title}
                             </td>
                             <td>
@@ -378,7 +396,7 @@ $(function(){
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}" min="1" max="99" pattern="[0-9]">
+                                    <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}".toString()>
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
@@ -401,6 +419,7 @@ $(function(){
         $(".minus-item").click(decreaseCartItem);
         $(".plus-item").click(increaseCartItem);
         $(".delete-item").click(removeCartItem);
+        $(".item-count").keyup(correctInputCartTotals);
         $(".item-count").change(updateCartNumber);
         $(".btn-emptyCart").click(emptyCart);
     }
@@ -465,34 +484,37 @@ $(function(){
 
     function filterProductsByCategory(event){
         let selectedCategoryName = event.target.innerHTML;
+        currentProducts = [];
 
         if(selectedCategoryName == "Alla Produkter"){
+            filtered = false;
             displayAllProducts(productsArray);
             return;
         }
 
-        let filteredProducts = [];
         productsArray.forEach(product => {
             if(product.category == selectedCategoryName){
-                filteredProducts.push(product);
+                currentProducts.push(product);
             }
         });
-        displayAllProducts(filteredProducts);
+        filtered = true;
+        displayAllProducts(currentProducts);
         document.getElementById("search-input").value = "";
     }
 
     function filterProductsBySearch(event) {
         let search = document.getElementById("search-input").value.toLowerCase().trim();
+        currentProducts = [];
 
         if (search === '') {
             displayAllProducts(productsArray);
+            filtered = false;
             return;
         }
         
-        let filteredProducts = [];
         productsArray.forEach(product => {
             if (product.title.toLowerCase().includes(search)) {
-                filteredProducts.push(product);
+                currentProducts.push(product);
             }
         });
 
@@ -500,12 +522,13 @@ $(function(){
             if (category.name.toLowerCase().includes(search)) {
                 productsArray.forEach(product => {
                     if(product.category == category.name){
-                        filteredProducts.push(product);
+                        currentProducts.push(product);
                     }
                 });
             }
         })
-        displayAllProducts(filteredProducts);
+        filtered = true;
+        displayAllProducts(currentProducts);
     }
 
     /**
@@ -631,7 +654,7 @@ function focusOnclick(event) {
             
                 <div class="product-description input-group d-flex justify-content-center flex-nowrap">
                     <button id="focus-minus" class="card-minus-item btn btn-primary" data-id="${productId}">-</button>
-                    <input id="focus-input" type="number" min="1" max ="99" pattern="[0-9]">
+                    <input id="focus-input" type="text">
                     <button id="focus-plus" class="card-plus-item btn btn-primary" data-id="${productId}">+</button>
                 </div>
             </div>
@@ -709,6 +732,44 @@ function focusOnclick(event) {
     document.body.appendChild(modal);
     return modal;
   }
+
+
+    function correctInputCartTotals(event)
+    {
+        const element = event.target;
+        var valText = element.value.toString();
+        var valTextNew = '';
+        let valueNew;
+
+
+        for(var i1 = 0; i1 < valText.length; i1++)
+        {
+            var i2 = i1 + 1;
+            const valChar = valText.substring(i1, i2);
+        
+
+            if(valChar == '0' || valChar == '1' || valChar == '2' || valChar == '3' || valChar == '4' || valChar == '5' || valChar == '6' || valChar == '7' || valChar == '8' || valChar == '9')
+            {
+                valTextNew += valChar;
+                
+            }
+
+        }
+
+
+        if(valTextNew.length > 2)
+        {
+            valTextNew = valTextNew.substr(0, 2);
+        }
+
+
+        if(valTextNew != '' || valTextNew != '0')
+        {
+            valueNew = valTextNew;
+            element.value = valueNew;
+        }
+
+    }
 
 })
 
