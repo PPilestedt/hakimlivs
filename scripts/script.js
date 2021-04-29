@@ -508,10 +508,16 @@ $(function(){
     }
 
     function filterProductsBySearch(event) {
+
         let search = document.getElementById("search-input").value.toLowerCase().trim();
+        var fullText = '';
+        fullText += "Din sökning med " + '"' + search + '"' + " gav ";
+       
+
         currentProducts = [];
 
         if (search === '') {
+            searchResultsMessage(search, fullText);
             displayAllProducts(productsArray);
             filtered = false;
             return;
@@ -523,6 +529,10 @@ $(function(){
             }
         });
 
+
+        const productsTotal = currentProducts.length;
+
+
         categoriesArray.forEach(category => {
             if (category.name.toLowerCase().includes(search)) {
                 productsArray.forEach(product => {
@@ -532,7 +542,24 @@ $(function(){
                 });
             }
         })
+
+
+        const resultsTotal = currentProducts.length;
+
+        if(resultsTotal == 0 && productsTotal == 0)
+        {
+            fullText += "inga träffar.";
+        }
+        else
+        {
+            fullText += productsTotal + " träffar på produkter och " + resultsTotal + " träffar för resultat som visas."
+        }
+
+
         filtered = true;
+
+
+        searchResultsMessage(search, fullText);
         displayAllProducts(currentProducts);
     }
 
@@ -739,6 +766,25 @@ function focusOnclick(event) {
         {
             valueNew = valTextNew;
             element.value = valueNew;
+        }
+
+    }
+
+
+    function searchResultsMessage(textSearch, textMessage)
+    {
+        const userMessage = document.getElementById("search-result-to-user");
+
+
+        if(textSearch == '')
+        {
+            userMessage.innerHTML = '';
+    
+        }
+        else
+        {
+            userMessage.innerHTML = textMessage;
+           
         }
 
     }
