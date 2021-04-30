@@ -388,9 +388,9 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
-            productPrice = product.price.toFixed(2) + " Kr";
+            productPrice = product.price.toFixed(2) + " kr";
             productPrice = productPrice.replace(".", ":");
-            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
+            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " kr";
             totalPriceForProduct = totalPriceForProduct.replace(".", ":");
             totalPriceForProduct = numberWithSpace(totalPriceForProduct);
                 output += `<tr class='cart-table'>
@@ -418,7 +418,7 @@ $(function(){
             });
         }
         cartItems.innerText = itemsTotal;
-        cartSum.innerText = priceTotal.toFixed(2) + " Kr";
+        cartSum.innerText = priceTotal.toFixed(2) + " kr";
         cartSum.innerText = cartSum.innerText.replace(".", ":");
         cartSum.innerText = numberWithSpace(cartSum.innerText);
         $('.show-cart').html(output);
