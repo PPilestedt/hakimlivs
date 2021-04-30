@@ -666,14 +666,17 @@ function focusOnclick(event) {
         let html =`
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
 
             <div class="modal-body container">
 
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="product-img rounded" id="focusImg">
-                        <img src="${image}" class="img-fluid" alt="${title}"> 
+                    <div class="product-img" id="focusImg">
+                        <img src="${image}" class="focus-img" alt="${title}"> 
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -757,12 +760,10 @@ function focusOnclick(event) {
         var valTextNew = '';
         let valueNew;
 
-
         for(var i1 = 0; i1 < valText.length; i1++)
         {
             var i2 = i1 + 1;
             const valChar = valText.substring(i1, i2);
-        
 
             if(valChar == '0' || valChar == '1' || valChar == '2' || valChar == '3' || valChar == '4' || valChar == '5' || valChar == '6' || valChar == '7' || valChar == '8' || valChar == '9')
             {
@@ -772,19 +773,16 @@ function focusOnclick(event) {
 
         }
 
-
         if(valTextNew.length > 2)
         {
             valTextNew = valTextNew.substr(0, 2);
         }
-
 
         if(valTextNew != '' || valTextNew != '0')
         {
             valueNew = valTextNew;
             element.value = valueNew;
         }
-
     }
 
 
