@@ -1,5 +1,10 @@
-const cart = JSON.parse(localStorage.getItem("cart"));
+$(function() {
 
+const cart = JSON.parse(localStorage.getItem("cart"));
+$("#customer-form").submit(function(event){
+    validateForm();
+    event.preventDefault();    
+});
 displayCart();
 
 
@@ -170,3 +175,134 @@ function disableButton() {
         document.getElementById("finish-checkout-btn-two").setAttribute("disabled", "true");
     }
 }
+
+ 
+    $("#postknapp").click(function(){
+        console.log("klickade på submit i chechkout");
+
+        console.log(pwdcheck());
+
+        if(pwdcheck()){
+            console.log("Validering av fält gick igenom");
+            startSubmitOrder();
+        }
+    });
+
+
+    function validateForm(){
+        console.log("klickade på submit i chechkout");
+
+        if(pwdcheck()){
+            console.log("Validering av fält gick igenom");
+            startSubmitOrder();
+        }
+    }
+
+    /**
+     * Gathers information from the form and initiates the order
+     * creation sequence.
+     * 
+     * 1. creating user
+     * 2. adding an order to that user
+     * 3. adding all the products in the cart to that order
+     * 3. removing all items in current cart ( not done yet )
+     * 
+     */
+    function startSubmitOrder(){
+
+        console.log("start submit order");
+
+        let firstname = document.getElementById("firstname").value;
+        let lastname = document.getElementById("lastname").value;
+        let address = document.getElementById("address").value;
+        let zipcode = document.getElementById("zipcode").value;
+        let city = document.getElementById("city").value;
+        let phone = document.getElementById("phonenumber").value;
+        let email = document.getElementById("email").value;
+        let customerid;
+
+        console.log("försöker posta");
+ 
+        $.ajax({
+            url: 'https://hakims-livs.herokuapp.com/customer/add',
+            data: JSON.stringify({
+                firstname : `${firstname}`,
+                lastname : `${lastname}`,
+                address : `${address}`,
+                zipcode : `${zipcode}`,
+                city : `${city}`,
+                phone : `${phone}`,
+                email : `${email}`}),
+            type: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success: function (msg) {
+                let jsonUpdatedData = msg;
+                customerid = jsonUpdatedData.id;
+                console.log("Customerid " + customerid);
+                console.log(`https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`);
+                
+                submitOrderWithCustomer(customerid);
+              
+            }
+        });
+    }
+
+    /**
+     * Creates an order with the specified customers id.
+     * 
+     * @param {The id of the customer} customerid 
+     */
+    function submitOrderWithCustomer(customerid){
+
+        console.log("submitting order with customerid: " + customerid);
+
+        $.ajax({
+            url: `https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`,
+            type: 'GET',
+            success: function (msg) {
+                let jsonUpdatedData = msg;
+                let orderid = jsonUpdatedData.id;
+                console.log("orderid " + orderid);
+
+                let cartitems = JSON.parse(localStorage.getItem("cart"));
+
+                cartitems.forEach(item => {
+                    let productid = item.id;
+                    let quantity = item.quantity;
+                    submitProductsToOrder(orderid,productid,quantity);
+                });
+            }
+        });
+
+    }
+
+    /**
+     * Function that adds an product to the order specified.
+     * 
+     * @param {id of the order specified} orderid 
+     * @param {the id of the product to be added to the order} productid 
+     */
+    function submitProductsToOrder(orderid, productid, quantity) {
+
+        console.log("saving productid: " + productid + " to order with id: " + orderid + " and quantity " + quantity);
+
+        $.ajax({
+            url: `https://hakims-livs.herokuapp.com/order/addproducts?orderID=${orderid}&productID=${productid}&productQuantity=${quantity}`,
+            type: 'GET',
+            success: function (msg) {
+                let jsonUpdatedData = msg;
+                console.log(jsonUpdatedData);
+            } 
+        });
+
+   
+        goToCheckout();
+    }
+
+    function goToCheckout(){
+        window.location.href = 'orderbekraftelse.html';
+    }
+})

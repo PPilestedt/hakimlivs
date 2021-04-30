@@ -209,7 +209,7 @@ $(function(){
             }
         }
         let card = document.createElement("div");
-        let productPrice = product.price + " Kr";
+        let productPrice = product.price.toFixed(2) + " Kr";
         productPrice = productPrice.replace(".", ":");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
@@ -240,7 +240,7 @@ $(function(){
         })
 
         let quantityInput = document.createElement("input");
-        quantityInput.type = "number";
+        quantityInput.type = "text";
         if (inCart) {
             quantityInput.value = inCart.quantity;
         } else {
@@ -250,7 +250,7 @@ $(function(){
         quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
         quantityInput.setAttribute("data-id", `${product.id}`);   
-        
+        quantityInput.classList.add("card-input");
 
         let plusButton = document.createElement("button");
         plusButton.classList.add("card-plus-item");
@@ -282,7 +282,8 @@ $(function(){
         }
 
         $(minusButton).click(decreaseCartItem);
-        $(quantityInput).keyup(updateCartNumber);
+        $(quantityInput).keyup(correctInputCartTotals)
+        $(quantityInput).change(updateCartNumber);
         $(plusButton).click(increaseCartItem);
 
         inputGroup.appendChild(minusButton);
@@ -623,7 +624,7 @@ function focusOnclick(event) {
             if (productsArray[i].id == productId) {
                 description = productsArray[i].description
                 image = productsArray[i].image
-                price = productsArray[i].price +  " kr/st"
+                price = productsArray[i].price.toFixed(2) +  " kr/st"
                 productprice = productsArray[i].productprice
                 category = productsArray[i].category
                 pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " kr/kg"
@@ -638,7 +639,7 @@ function focusOnclick(event) {
         }
         price = price.replace(".", ":");
         pricecomparison = pricecomparison.replace(".", ":");
-        weight = weight.replace(".", ":");
+        weight = weight.replace(".", ",")
         let exampleModal = getFocusModal();
       
         // Initierar modalen om det behövs
@@ -660,12 +661,12 @@ function focusOnclick(event) {
                 </div>
                 <div class="col-sm-6">
                     <div class="col">
-                        <div class="product-description text-justify">
-                            <p>${description}</p>
+                        <div class="product-description">
+                            <p class="prodDesc">${description}</p>
                         </div>
                     </div>
                     <hr>
-                    <div class="col col-sm-6">
+                    <div class="col col-auto">
                         <div class="product-description">
                             <h6><b>Pris: </b>${price}</h6>
                         </div>
@@ -685,8 +686,8 @@ function focusOnclick(event) {
             </div>
 
             <div class="modal-footer">
-              <button id="focus-buy" class="add-to-cart btn btn-primary" data-dismiss="modal" data-id="${productId}">Köp</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+              <button id="focus-buy" class="add-to-cart btn btn-sm btn-primary" data-dismiss="modal" data-id="${productId}">Köp</button>
+              <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Stäng</button>
             </div>
             `
       

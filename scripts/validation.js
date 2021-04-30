@@ -12,7 +12,7 @@ function pwdcheck(){
   var x5 = document.forms["myForm"]["zipcode"];
   var zipRegex = /^\d{3} \d{2}$/;
   var x6 = document.forms["myForm"]["phonenumber"];
-  var phoneRegex = /^[0-9]*$/;
+  var phoneRegex = /^[\-\0-9]*$/;
 
   
   if (x1.value == "") {
@@ -72,6 +72,7 @@ function pwdcheck(){
     alert("Felaktigt format på email");
     return false;
   }
+  return true;
 } 
 
 

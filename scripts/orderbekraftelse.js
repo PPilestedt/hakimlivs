@@ -18,6 +18,12 @@ function orderBekraftelse() {
             `
         });
     }
+
+    clearCart();
+}
+
+function clearCart() {
+    localStorage.setItem('cart',"[]");
 }
 
 let totalDiv = document.querySelector(".total");

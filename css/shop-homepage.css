@@ -12,7 +12,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+.card-input{
   -moz-appearance: textfield;
   width: 45%;
 }
@@ -256,12 +256,12 @@ footer {
 
 .contact-info {
   text-decoration: none;
-  color: #ffc400;
+  color: #ffffff;
 }
 
 .copyright-info {
   text-decoration: none;
-  color: #ffc400;
+  color: #ffffff;
 }
 
 body {
@@ -434,4 +434,17 @@ body {
 
 .modal-header .close {
   margin: 0;
+}
+
+#searchbutton {
+  display:inline-block;
+  padding:15px 10px;
+  line-height:1%;
+
+}
+
+
+.prodDesc {
+  overflow: auto;
+  height: 200px;
 }
