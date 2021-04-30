@@ -326,6 +326,7 @@ body {
 
 .prodDesc {
   overflow: auto;
+  height: 6rem;
 }
 
 .focus-img {
