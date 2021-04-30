@@ -388,10 +388,11 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
-            productPrice = product.price + " Kr";
+            productPrice = product.price.toFixed(2) + " Kr";
             productPrice = productPrice.replace(".", ":");
             totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
             totalPriceForProduct = totalPriceForProduct.replace(".", ":");
+            totalPriceForProduct = numberWithSpace(totalPriceForProduct);
                 output += `<tr class='cart-table'>
                             <td class="cart-title">
                                 ${product.title}
@@ -419,6 +420,7 @@ $(function(){
         cartItems.innerText = itemsTotal;
         cartSum.innerText = priceTotal.toFixed(2) + " Kr";
         cartSum.innerText = cartSum.innerText.replace(".", ":");
+        cartSum.innerText = numberWithSpace(cartSum.innerText);
         $('.show-cart').html(output);
         disableButton();
         //eventListeners för cart item knappar
@@ -428,6 +430,10 @@ $(function(){
         $(".item-count").keyup(correctInputCartTotals);
         $(".item-count").change(updateCartNumber);
         $(".btn-emptyCart").click(emptyCart);
+    }
+
+    function numberWithSpace(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
     /**
