@@ -209,7 +209,7 @@ $(function(){
             }
         }
         let card = document.createElement("div");
-        let productPrice = product.price.toFixed(2) + " Kr";
+        let productPrice = product.price.toFixed(2) + " kr";
         productPrice = productPrice.replace(".", ":");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
