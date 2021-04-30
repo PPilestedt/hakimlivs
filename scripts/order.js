@@ -209,26 +209,21 @@ function correctInputCartTotals(event)
     }
 }
  
-    $("#postknapp").click(function(){
-        console.log("klickade på submit i chechkout");
-
-        console.log(pwdcheck());
-
-        if(pwdcheck()){
-            console.log("Validering av fält gick igenom");
-            startSubmitOrder();
-        }
-    });
-
-
+    /**
+     * Checks if form is valid then starts submitting products to backend
+     */
     function validateForm(){
-        console.log("klickade på submit i chechkout");
+        //console.log("klickade på submit i chechkout");
 
         if(pwdcheck()){
-            console.log("Validering av fält gick igenom");
+            //console.log("Validering av fält gick igenom");
             startSubmitOrder();
         }
     }
+
+    //variabel i order.js scopet
+    let customerid;
+    let orderid;
 
     /**
      * Gathers information from the form and initiates the order
@@ -242,7 +237,7 @@ function correctInputCartTotals(event)
      */
     function startSubmitOrder(){
 
-        console.log("start submit order");
+        //console.log("start submit order");
 
         let firstname = document.getElementById("firstname").value;
         let lastname = document.getElementById("lastname").value;
@@ -251,11 +246,11 @@ function correctInputCartTotals(event)
         let city = document.getElementById("city").value;
         let phone = document.getElementById("phonenumber").value;
         let email = document.getElementById("email").value;
-        let customerid;
 
-        console.log("försöker posta");
+        //console.log("försöker posta");
  
         $.ajax({
+            async: false,
             url: 'https://hakims-livs.herokuapp.com/customer/add',
             data: JSON.stringify({
                 firstname : `${firstname}`,
@@ -266,19 +261,18 @@ function correctInputCartTotals(event)
                 phone : `${phone}`,
                 email : `${email}`}),
             type: 'POST',
+            async: true,
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
-            },
-            success: function (msg) {
-                let jsonUpdatedData = msg;
+            }            
+        }).done(function (msg){
+            let jsonUpdatedData = msg;
                 customerid = jsonUpdatedData.id;
-                console.log("Customerid " + customerid);
-                console.log(`https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`);
+                //console.log("Customerid " + customerid);
+                //console.log(`https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`);
                 
                 submitOrderWithCustomer(customerid);
-              
-            }
         });
     }
 
@@ -289,26 +283,30 @@ function correctInputCartTotals(event)
      */
     function submitOrderWithCustomer(customerid){
 
-        console.log("submitting order with customerid: " + customerid);
+        //console.log("submitting order with customerid: " + customerid);
 
         $.ajax({
+            async: false,
             url: `https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`,
-            type: 'GET',
-            success: function (msg) {
-                let jsonUpdatedData = msg;
-                let orderid = jsonUpdatedData.id;
-                console.log("orderid " + orderid);
-
-                let cartitems = JSON.parse(localStorage.getItem("cart"));
-
-                cartitems.forEach(item => {
-                    let productid = item.id;
-                    let quantity = item.quantity;
-                    submitProductsToOrder(orderid,productid,quantity);
-                });
-            }
+            type: 'GET'
+        }).done(function(msg){
+            let jsonUpdatedData = msg;
+            orderid = jsonUpdatedData.id;
+            console.log("orderid " + orderid);
+            submitCartProducts();
         });
+        
+   
+        goToCheckout();
+    }
 
+    function submitCartProducts(){
+        let cartitems = JSON.parse(localStorage.getItem("cart"));
+        cartitems.forEach(item => {
+            let productid = item.id;
+            let quantity = item.quantity;
+            submitProductsToOrder(orderid,productid,quantity);
+        });
     }
 
     /**
@@ -319,9 +317,10 @@ function correctInputCartTotals(event)
      */
     function submitProductsToOrder(orderid, productid, quantity) {
 
-        console.log("saving productid: " + productid + " to order with id: " + orderid + " and quantity " + quantity);
+        //console.log("saving productid: " + productid + " to order with id: " + orderid + " and quantity " + quantity);
 
         $.ajax({
+            async: false,
             url: `https://hakims-livs.herokuapp.com/order/addproducts?orderID=${orderid}&productID=${productid}&productQuantity=${quantity}`,
             type: 'GET',
             success: function (msg) {
@@ -329,9 +328,6 @@ function correctInputCartTotals(event)
                 console.log(jsonUpdatedData);
             } 
         });
-
-   
-        goToCheckout();
     }
 
     function goToCheckout(){
