@@ -308,7 +308,6 @@ function disableButton() {
     }
 
     function goToCheckout(){
-        //console.log("go to checkout")
         window.location.href = 'orderbekraftelse.html';
     }
 })
