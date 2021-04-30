@@ -512,12 +512,29 @@ $(function(){
         let search = document.getElementById("search-input").value.toLowerCase().trim();
         var fullText = '';
         fullText += "Din sökning med " + '"' + search + '"' + " gav ";
-       
+        const regex = /[a-zA-ZåäöÅÄÖ0-9 ]/;
+    
 
         currentProducts = [];
 
-        if (search === '') {
-            searchResultsMessage(search, fullText);
+
+        for(i1 = 0; i1 < search.length; i1++)
+        {
+            var i2 = i1 + 1;
+            const foundChar = search.substring(i1, i2);
+            const regexChar = foundChar.match(regex);
+
+            if(foundChar != regexChar)
+            {
+                alert("Du har matat in ogiltiga tecken, bara bokstäver, siffror, och mellanslag är tillåtna.");
+                searchResultsMessage('', '');
+                return;
+            }
+        }
+
+
+        if (search == '') {
+            searchResultsMessage('', '');
             displayAllProducts(productsArray);
             filtered = false;
             return;
@@ -552,7 +569,7 @@ $(function(){
         }
         else
         {
-            fullText += productsTotal + " träffar på produkter och " + resultsTotal + " träffar för resultat som visas."
+            fullText += resultsTotal + " träffar."
         }
 
 
