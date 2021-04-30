@@ -177,23 +177,14 @@ function disableButton() {
 }
 
  
-    $("#postknapp").click(function(){
-        console.log("klickade på submit i chechkout");
-
-        console.log(pwdcheck());
-
-        if(pwdcheck()){
-            console.log("Validering av fält gick igenom");
-            startSubmitOrder();
-        }
-    });
-
-
+    /**
+     * Checks if form is valid then starts submitting products to backend
+     */
     function validateForm(){
-        console.log("klickade på submit i chechkout");
+        //console.log("klickade på submit i chechkout");
 
         if(pwdcheck()){
-            console.log("Validering av fält gick igenom");
+            //console.log("Validering av fält gick igenom");
             startSubmitOrder();
         }
     }
@@ -214,7 +205,7 @@ function disableButton() {
      */
     function startSubmitOrder(){
 
-        console.log("start submit order");
+        //console.log("start submit order");
 
         let firstname = document.getElementById("firstname").value;
         let lastname = document.getElementById("lastname").value;
@@ -224,7 +215,7 @@ function disableButton() {
         let phone = document.getElementById("phonenumber").value;
         let email = document.getElementById("email").value;
 
-        console.log("försöker posta");
+        //console.log("försöker posta");
  
         $.ajax({
             async: false,
@@ -246,8 +237,8 @@ function disableButton() {
         }).done(function (msg){
             let jsonUpdatedData = msg;
                 customerid = jsonUpdatedData.id;
-                console.log("Customerid " + customerid);
-                console.log(`https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`);
+                //console.log("Customerid " + customerid);
+                //console.log(`https://hakims-livs.herokuapp.com/order/add?customerID=${customerid}`);
                 
                 submitOrderWithCustomer(customerid);
         });
@@ -260,7 +251,7 @@ function disableButton() {
      */
     function submitOrderWithCustomer(customerid){
 
-        console.log("submitting order with customerid: " + customerid);
+        //console.log("submitting order with customerid: " + customerid);
 
         $.ajax({
             async: false,
@@ -294,7 +285,7 @@ function disableButton() {
      */
     function submitProductsToOrder(orderid, productid, quantity) {
 
-        console.log("saving productid: " + productid + " to order with id: " + orderid + " and quantity " + quantity);
+        //console.log("saving productid: " + productid + " to order with id: " + orderid + " and quantity " + quantity);
 
         $.ajax({
             async: false,
