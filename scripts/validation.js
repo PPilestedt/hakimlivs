@@ -72,6 +72,7 @@ function pwdcheck(){
     alert("Felaktigt format på email");
     return false;
   }
+  
   return true;
 } 
 
