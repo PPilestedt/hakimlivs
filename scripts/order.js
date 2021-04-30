@@ -132,7 +132,7 @@ function displayCart() {
                         <td>
                             <div class="input-group">
                                 <button class="minus-item btn input-group-addon btn-primary checkout-left" data-id="${product.id}">-</button>
-                                <input type="number" class="item-count form-control checkout-center" data-id="${product.id}" value="${product.quantity}">
+                                <input type="text" class="item-count form-control checkout-center" data-id="${product.id}" value="${product.quantity}">
                                 <button class="plus-item btn input-group-addon btn-primary checkout-right" data-id="${product.id}">+</button>
                             </div>
                         </td>
@@ -155,6 +155,7 @@ function displayCart() {
     $(".minus-item").click(decreaseCartItem);
     $(".plus-item").click(increaseCartItem);
     $(".delete-item").click(removeCartItem);
+    $(".item-count").keyup(correctInputCartTotals);
     $(".item-count").change(updateCartNumber);
 
 }
@@ -176,6 +177,37 @@ function disableButton() {
     }
 }
 
+function correctInputCartTotals(event)
+{
+    const element = event.target;
+    var valText = element.value.toString();
+    var valTextNew = '';
+    let valueNew;
+
+    for(var i1 = 0; i1 < valText.length; i1++)
+    {
+        var i2 = i1 + 1;
+        const valChar = valText.substring(i1, i2);
+
+        if(valChar == '0' || valChar == '1' || valChar == '2' || valChar == '3' || valChar == '4' || valChar == '5' || valChar == '6' || valChar == '7' || valChar == '8' || valChar == '9')
+        {
+            valTextNew += valChar;
+            
+        }
+
+    }
+
+    if(valTextNew.length > 2)
+    {
+        valTextNew = valTextNew.substr(0, 2);
+    }
+
+    if(valTextNew != '' || valTextNew != '0')
+    {
+        valueNew = valTextNew;
+        element.value = valueNew;
+    }
+}
  
     $("#postknapp").click(function(){
         console.log("klickade på submit i chechkout");

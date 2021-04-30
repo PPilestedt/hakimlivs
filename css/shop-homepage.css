@@ -303,6 +303,34 @@ body {
   margin: -1rem -0.5rem -1rem auto;
 }
 
+.btn-emptyCart {
+  max-width: 100%;
+  margin-top: 1%;
+}
+
+.modal-title {
+  line-height: 2.8;
+}
+
+.modal-header .close {
+  margin: 0;
+}
+
+#searchbutton {
+  display:inline-block;
+  padding:15px 10px;
+  line-height:1%;
+
+}
+
+.prodDesc {
+  overflow: auto;
+}
+
+.focus-img {
+  width: 100%;
+}
+
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
   .nav-category{
@@ -372,8 +400,6 @@ body {
   }
 }
 
-
-
 @media screen and (max-width: 800px) {
   tr.cart-table {
     display: block;
@@ -421,30 +447,10 @@ body {
   .list-group-cart, .list-group-log-in {
     display: block;
   }
-}
 
-.btn-emptyCart {
-  max-width: 100%;
-  margin-top: 1%;
-}
-
-.modal-title {
-  line-height: 2.8;
-}
-
-.modal-header .close {
-  margin: 0;
-}
-
-#searchbutton {
-  display:inline-block;
-  padding:15px 10px;
-  line-height:1%;
-
-}
-
-
-.prodDesc {
-  overflow: auto;
-  height: 200px;
+  .focus-img {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+  }
 }
