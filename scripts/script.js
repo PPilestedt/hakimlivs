@@ -209,7 +209,7 @@ $(function(){
             }
         }
         let card = document.createElement("div");
-        let productPrice = product.price.toFixed(2) + " Kr";
+        let productPrice = product.price.toFixed(2) + " kr";
         productPrice = productPrice.replace(".", ":");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
@@ -388,10 +388,11 @@ $(function(){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
-            productPrice = product.price + " Kr";
+            productPrice = product.price.toFixed(2) + " kr";
             productPrice = productPrice.replace(".", ":");
-            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
+            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " kr";
             totalPriceForProduct = totalPriceForProduct.replace(".", ":");
+            totalPriceForProduct = numberWithSpace(totalPriceForProduct);
                 output += `<tr class='cart-table'>
                             <td class="cart-title">
                                 ${product.title}
@@ -417,8 +418,9 @@ $(function(){
             });
         }
         cartItems.innerText = itemsTotal;
-        cartSum.innerText = priceTotal.toFixed(2) + " Kr";
+        cartSum.innerText = priceTotal.toFixed(2) + " kr";
         cartSum.innerText = cartSum.innerText.replace(".", ":");
+        cartSum.innerText = numberWithSpace(cartSum.innerText);
         $('.show-cart').html(output);
         disableButton();
         //eventListeners för cart item knappar
@@ -428,6 +430,10 @@ $(function(){
         $(".item-count").keyup(correctInputCartTotals);
         $(".item-count").change(updateCartNumber);
         $(".btn-emptyCart").click(emptyCart);
+    }
+
+    function numberWithSpace(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
     /**
@@ -666,14 +672,17 @@ function focusOnclick(event) {
         let html =`
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
 
             <div class="modal-body container">
 
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="product-img rounded" id="focusImg">
-                        <img src="${image}" class="img-fluid" alt="${title}"> 
+                    <div class="product-img" id="focusImg">
+                        <img src="${image}" class="focus-img" alt="${title}"> 
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -757,12 +766,10 @@ function focusOnclick(event) {
         var valTextNew = '';
         let valueNew;
 
-
         for(var i1 = 0; i1 < valText.length; i1++)
         {
             var i2 = i1 + 1;
             const valChar = valText.substring(i1, i2);
-        
 
             if(valChar == '0' || valChar == '1' || valChar == '2' || valChar == '3' || valChar == '4' || valChar == '5' || valChar == '6' || valChar == '7' || valChar == '8' || valChar == '9')
             {
@@ -772,19 +779,16 @@ function focusOnclick(event) {
 
         }
 
-
         if(valTextNew.length > 2)
         {
             valTextNew = valTextNew.substr(0, 2);
         }
-
 
         if(valTextNew != '' || valTextNew != '0')
         {
             valueNew = valTextNew;
             element.value = valueNew;
         }
-
     }
 
 
