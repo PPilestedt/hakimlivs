@@ -120,7 +120,7 @@ function displayCart() {
         priceTotal += product.price*product.quantity;
         productPrice = product.price.toFixed(2) + " Kr";
         productPrice = productPrice.replace(".", ":");
-        totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
+        totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " kr";
         totalPriceForProduct = totalPriceForProduct.replace(".", ":");
         totalPriceForProduct = numberWithSpace(totalPriceForProduct);
             output += `<tr>
@@ -148,7 +148,7 @@ function displayCart() {
         });
     }
     document.getElementById('order-entries').innerHTML = output;
-    cartSum.innerText = priceTotal.toFixed(2) + " Kr";
+    cartSum.innerText = priceTotal.toFixed(2) + " kr";
     cartSum.innerText = cartSum.innerText.replace(".", ":");
     cartSum.innerText = numberWithSpace(cartSum.innerText);
     
