@@ -311,16 +311,13 @@ body {
   margin: -1rem -0.5rem -1rem auto;
 }
 
+.modal-title {
+  margin-left: 1rem;
+}
+
 .btn-emptyCart {
   max-width: 100%;
   margin-top: 1%;
-}
-
-
-
-
-.modal-header .close {
-  margin: 0;
 }
 
 .prodDesc {
