@@ -791,16 +791,22 @@ function focusOnclick(event) {
     function searchResultsMessage(textSearch, textMessage)
     {
         const userMessage = document.getElementById("search-result-to-user");
-
+        const messageLayoutPath = document.getElementById("change-message");
+        let messageLayoutValues;
+        
 
         if(textSearch == '')
         {
             userMessage.innerHTML = '';
+            messageLayoutValues = "";
+            messageLayoutPath.innerHTML = messageLayoutValues;
     
         }
         else
         {
             userMessage.innerHTML = textMessage;
+            messageLayoutValues = "<link href=css/shop-homepage-searchresults.css rel=stylesheet>";
+            messageLayoutPath.innerHTML = messageLayoutValues;
            
         }
 
