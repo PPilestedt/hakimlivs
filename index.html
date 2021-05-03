@@ -16,9 +16,6 @@
   <!-- Custom styles for this template -->
   <link href="css/shop-homepage.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
-  
-  <link href="css/searchbutton.css" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   
@@ -35,17 +32,17 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
       <a href="index.html"><img src="images/hakimLogo.png" alt="Hakim Livs Logo" id="logo"></a>
-      <a href="index.html" id="small-logo-a"><img src="images/hakimLogoSmall.png" alt="Hakim Livs Logo" id="small-logo"></a>
+      <a href="index.html" id="small-logo-a"><img src="images/hakimLogoSmallText.png" alt="Hakim Livs Logo" id="small-logo"></a>
       <div class="search-container">
         <input type="text" class="searchBox" placeholder=" Sök efter vara..." id="search-input" maxlength="25">
-        <button type="submit" class="searchbutton id="searchbutton"><i class="fa fa-search symbol"></i></button>   
+        <button type="submit" class="searchbutton" id="searchbutton"><i class="fa fa-search symbol"></i></button>   
       </div>
 
         <!-- Logga in modal button -->
       <button type="button" class="log-in-button btn btn-warning" data-toggle="modal" data-target=".login-register-form" disabled>Logga in</button>
 
       <!-- Order Modal button-->
-      <button type="button" class="cart-button btn btn-warning" data-toggle="modal" data-target="#cart">Varukorg (<span class="total-count">0</span>)</button>
+      <button type="button" class="cart-button btn btn-warning" data-toggle="modal" data-target="#cart"><span class="total-count badge">0</span></button>
       <div class="collapse navbar-collapse sticky-top" id="navbarResponsive">
 
       </div>
@@ -150,7 +147,8 @@
           <table class="show-cart table">
 
           </table>
-          <div>Summa: <span class="total-cart"></span></div>
+          <div><b>Summa: <span class="total-cart"></span></b></div>
+          <button type="button" class="btn btn-danger btn-emptyCart" id="emptyCart" >Töm varukorg</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
@@ -296,7 +294,6 @@
   <script src="scripts/script.js"></script>
   <script src="scripts/sidofot-uppgifter.js" async></script>
   <script src="scripts/validation.js"></script>
-  <script src="scripts/cartanimation.js"></script>
 
 </body>
 

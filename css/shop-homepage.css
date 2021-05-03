@@ -252,7 +252,15 @@ footer {
   margin-left: 5%;
 }
 
-
+.cart-button {
+  background-image: url("/images/cart.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 33px 28px;
+  width: 45px;
+  height: 40px;
+  text-transform: capitalize; 
+}
 
 .contact-info {
   text-decoration: none;
@@ -303,6 +311,67 @@ body {
   margin: -1rem -0.5rem -1rem auto;
 }
 
+.btn-emptyCart {
+  max-width: 100%;
+  margin-top: 1%;
+}
+
+
+
+
+.modal-header .close {
+  margin: 0;
+}
+
+.prodDesc {
+  overflow: auto;
+  height: 6rem;
+}
+
+.focus-img {
+  width: 100%;
+}
+
+.cart-button .badge {
+  position: relative;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  top: -50%;
+  right: -80%;
+}
+
+.search-container {
+  display: inline-flex;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 38px;
+}
+
+.searchIcon {
+  padding: 0.5rem;
+  
+}
+
+.searchBox {
+  border: 0;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  flex: 1;
+}
+
+.searchbutton {
+  background: #538AC5;
+  border: 0;
+  color: white;
+  border-radius: 0;
+}
+
+.symbol {
+  margin-top: -800px;
+}
+
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
   .nav-category{
@@ -339,6 +408,21 @@ body {
   }
 }
 
+@media screen and (max-width: 425px) {
+  .cart-button {
+    width: 42px;
+    height: 38px;
+  }
+}
+
+
+@media screen and (max-width: 375px) {
+  .search-container {
+    flex: 0%;
+    height: 30px;
+  }
+}
+
 /*Minimal mobilscreen = produktkort har tack vare marginleft, mer centrering */
 @media screen and (max-width: 360px) {
   #product-content {
@@ -372,8 +456,6 @@ body {
   }
 }
 
-
-
 @media screen and (max-width: 800px) {
   tr.cart-table {
     display: block;
@@ -401,14 +483,14 @@ body {
   }
 
   .cart-button {
-    background-image: url("/images/cart.svg");
-    background-repeat: no-repeat;
-    background-position: center;
     background-size: 33px 28px;
     width:35px;
     height: 30px;
-    text-indent: -9000px;
-    text-transform: capitalize; 
+  }
+
+  .cart-button .badge {
+    top: -80%;
+    right: -80%;
   }
 
   .search-container {
@@ -421,30 +503,11 @@ body {
   .list-group-cart, .list-group-log-in {
     display: block;
   }
+
+  .focus-img {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+  }
 }
-
-.btn-emptyCart {
-  max-width: 100%;
-  margin-top: 1%;
-}
-
-.modal-title {
-  line-height: 2.8;
-}
-
-.modal-header .close {
-  margin: 0;
-}
-
-#searchbutton {
-  display:inline-block;
-  padding:15px 10px;
-  line-height:1%;
-
-}
-
-
-.prodDesc {
-  overflow: auto;
-  height: 200px;
-}
+/*Skriv inte ny css-kod här, skriv det över alla @media screens annars blir det risk för förstörd responsivitet*/
