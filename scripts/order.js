@@ -118,7 +118,7 @@ function displayCart() {
         cartArray.forEach(product => {
         itemsTotal += product.quantity;
         priceTotal += product.price*product.quantity;
-        productPrice = product.price.toFixed(2) + " Kr";
+        productPrice = product.price.toFixed(2) + " kr";
         productPrice = productPrice.replace(".", ":");
         totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " kr";
         totalPriceForProduct = totalPriceForProduct.replace(".", ":");
