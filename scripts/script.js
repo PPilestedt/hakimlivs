@@ -796,28 +796,38 @@ function focusOnclick(event) {
     {
         const userMessage = document.getElementById("search-result-to-user");
         const messageLayoutPath = document.getElementById("change-message");
+        const currentMessageStyle = messageLayoutPath.innerHTML;
+        const existingMessageStyle = "<link href=" + '"' + "css/shop-homepage-searchresults.css" + '"' + " rel=" + '"' + "stylesheet" + '"' + ">";
+        const noMessageStyle = "";
         let messageLayoutValues;
         
+       
 
         if(textSearch == '')
         {
+            if(currentMessageStyle != noMessageStyle)
+            {
+                messageLayoutValues = "";
+                messageLayoutPath.innerHTML = messageLayoutValues;
+
+            }
+
             userMessage.innerHTML = '';
-            messageLayoutValues = "";
-            messageLayoutPath.innerHTML = messageLayoutValues;
     
         }
         else
         {
+            if(currentMessageStyle != existingMessageStyle)
+            {
+                messageLayoutValues = existingMessageStyle;
+                messageLayoutPath.innerHTML = messageLayoutValues;
+
+            }
+
             userMessage.innerHTML = textMessage;
-            messageLayoutValues = "<link href=css/shop-homepage-searchresults.css rel=stylesheet>";
-            messageLayoutPath.innerHTML = messageLayoutValues;
            
         }
 
     }
 
 })
-
-
-
-
