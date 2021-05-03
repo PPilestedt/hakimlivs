@@ -11,9 +11,9 @@ function orderBekraftelse() {
             productContainer.innerHTML += `
             <tr>
                 <td class="product-namn">${item.title}</td>
-                <td class="product-price">${(item.price).toFixed(2).replace(".", ":")}</td>
+                <td class="product-price">${numberWithSpace((item.price).toFixed(2).replace(".", ":"))}</td>
                 <td class="product-quantity">${item.quantity}</td>    
-                <td class="product-total">${(item.quantity * item.price).toFixed(2).replace(".", ":")}</td>          
+                <td class="product-total">${numberWithSpace((item.quantity * item.price).toFixed(2).replace(".", ":"))}</td>          
             </tr>           
             `
         });
@@ -22,12 +22,16 @@ function orderBekraftelse() {
     clearCart();
 }
 
+function numberWithSpace(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
 function clearCart() {
     localStorage.setItem('cart',"[]");
 }
 
 let totalDiv = document.querySelector(".total");
-totalDiv.innerHTML = getTotal().replace(".", ":");
+totalDiv.innerHTML = numberWithSpace(getTotal().replace(".", ":"));
 
 function getTotal() {
     let sum = 0;

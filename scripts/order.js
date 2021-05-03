@@ -118,10 +118,11 @@ function displayCart() {
         cartArray.forEach(product => {
         itemsTotal += product.quantity;
         priceTotal += product.price*product.quantity;
-        productPrice = product.price + " Kr";
+        productPrice = product.price.toFixed(2) + " Kr";
         productPrice = productPrice.replace(".", ":");
         totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
         totalPriceForProduct = totalPriceForProduct.replace(".", ":");
+        totalPriceForProduct = numberWithSpace(totalPriceForProduct);
             output += `<tr>
                         <td>
                             ${product.title}
@@ -149,6 +150,7 @@ function displayCart() {
     document.getElementById('order-entries').innerHTML = output;
     cartSum.innerText = priceTotal.toFixed(2) + " Kr";
     cartSum.innerText = cartSum.innerText.replace(".", ":");
+    cartSum.innerText = numberWithSpace(cartSum.innerText);
     
     disableButton();
     //eventListeners för cart item knappar
@@ -158,6 +160,10 @@ function displayCart() {
     $(".item-count").keyup(correctInputCartTotals);
     $(".item-count").change(updateCartNumber);
 
+}
+
+function numberWithSpace(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
 function disableButton() {
