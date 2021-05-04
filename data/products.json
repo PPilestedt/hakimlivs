@@ -2,7 +2,7 @@
     {
         "title": "Illustrerad Vetenskap",
         "description": "Nordens största magasin om natur, vetenskap och teknik. Prenumerera på Illustrerad Vetenskap och låt tidningen ta med dig på en resa i en fascinerande värld av upptäckter och nya rön.",
-        "image": "./images/tid1.png",
+        "image": "https://klimatsans.com/wp-content/uploads/2017/08/170817-illustrerad-vetenskap-16-2016-1.jpg",
         "price": 79,
         "productprice": 40,
         "category": "Tidskrifter",
@@ -82,7 +82,7 @@
     {
         "title": "Militär Historia",
         "description": "Tidningen Militär Historia är en tidskrift som berättar allt om de utmärkande historiska händelserna. Från avgörande slag till de största fältherrarna, vapnen samt doktrinerna som korade vinnaren.",
-        "image": "./images/tid2.png",
+        "image": "https://www.lehtitukku.fi/sites/default/files/images/magazine/cover/militar-historia-2019-06-14_0.jpg",
         "price": 64,
         "productprice": 40,
         "category": "Tidskrifter",
@@ -122,7 +122,7 @@
     {
         "title": "Modern Psykologi",
         "description": "Modern Psykologi är tidningen för dig som är nyfiken på dig själv och andra. Här kan du läsa om allt som har med tänkande, känslor och relationer att göra. Varje nummer är fullt med fördjupande reportage, personliga möten, aktuella rön och matnyttiga guider baserade på psykologisk forskning. Du hittar också en fyllig avdelning med frågor och svar från våra legitimerade psykologer.",
-        "image": "./images/tid3.png",
+        "image": "https://bilder.tidningskungen.se/upl/normal500/modern-psykologi-4-2021.jpg",
         "price": 99,
         "productprice": 80,
         "category": "Tidskrifter",
@@ -182,7 +182,7 @@
     {
         "title": "Världens Historia",
         "description": "Vi älskar historia! Den här tidningen kommer ta dig till världshistoriens stora och små händelser, man får läsa allt om hur man gräver fram unika människor med deras fantastiska bakgrunder och man får lär sig massor om deras dramatiska händelser som hänt dom. Vi lär er allt om det förflutna och de fascinerande berättelser med unika illustrationer som kommer ge ett helt nytt perspektiv, både hur dåtiden och nutiden har formats under historians gång.",
-        "image": "./images/tid4.png",
+        "image": "https://bilder.tidningskungen.se/upl/normal500/varldens-historia-tidningsprenumeration-4-2021-1.jpg",
         "price": 79,
         "productprice": 40,
         "stockInHand":50,
