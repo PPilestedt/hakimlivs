@@ -416,6 +416,10 @@ body {
     width: 42px;
     height: 38px;
   }
+  #history-field {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
 }
 
 
