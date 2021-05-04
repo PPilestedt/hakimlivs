@@ -330,12 +330,12 @@ body {
 }
 
 .cart-button .badge {
-  position: relative!important;;
-  border-radius: 50%!important;;
+  position: relative!important;
+  border-radius: 50%!important;
   background: red;
   color: white;
-  top: -50%!important;;
-  right: -80%!important;;
+  top: -50%!important;
+  right: -80%!important;
 }
 
 .search-container {
