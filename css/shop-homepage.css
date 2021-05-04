@@ -330,12 +330,12 @@ body {
 }
 
 .cart-button .badge {
-  position: relative;
-  border-radius: 50%;
+  position: relative!important;;
+  border-radius: 50%!important;;
   background: red;
   color: white;
-  top: -50%;
-  right: -80%;
+  top: -50%!important;;
+  right: -80%!important;;
 }
 
 .search-container {
@@ -486,8 +486,8 @@ body {
   }
 
   .cart-button .badge {
-    top: -80%;
-    right: -80%;
+    top: -80%!important;;
+    right: -80%!important;;
   }
 
   .search-container {
