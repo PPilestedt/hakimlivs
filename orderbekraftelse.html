@@ -22,11 +22,7 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span></button>
             <a href="index.html"><img src="images/hakimLogo.png" alt="Hakim Livs Logo" id="logo"></a>
-            <div class="search-container">
-                <input type="text" placeholder="Search..">
-                <button type="submit">Sök</button>
-            </div>
-            <button type="button" class="log-in-button btn btn-warning" data-toggle="modal" data-target=".login-register-form">Logga in</button>
+            <button type="button" class="log-in-button btn btn-warning" data-toggle="modal" data-target=".login-register-form" disabled>Logga in</button>
 
             <div class="collapse navbar-collapse sticky-top" id="navbarResponsive">
 
@@ -34,15 +30,14 @@
         </div>
     </nav>
     <div class="container">
-        <h2 class="text-center">Tack för din order! Din order skickas snarast! - Hakim Livs</h2>
+        <h2 class="text-center">Tack för din order! Din order skickas snarast!</h2>
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Produkt</th>
-                    <th scope="col">Pris</th>
-                    <th scope="col">Antal</th>
-                    <th scope="col">Vikt</th>
-                    <th scope="col">Summa</th>
+                    <th scope="col" class="header-productName">Produkt</th>
+                    <th scope="col" class="header-productPrice">Pris(kr)</th>
+                    <th scope="col" class="header-productQty">Antal</th>
+                    <th scope="col" class="header-productSum">Summa(kr)</th>
                 </tr>
             </thead>
             <tbody class="produkter">
@@ -50,10 +45,12 @@
             </tbody>
         </table>
 
-
-        <div class="text-right">
-            <strong>Totalt: </strong>
+        <div class="text-center">
+          <h4>
+            <strong>Totalt(kr): </strong>
             <span class="total"></span>
+          </h4>
+
         </div>
     </div>
     <!-- Footer -->
@@ -64,7 +61,7 @@
           <a href="history.html" class="undecorated-link">Hakim Livs - Vår Historia</a>
         </div>
         <div class="col-lg-4 center">
-          <p class="m-0 text-white">Copyright &copy; Your Website 2020</p>
+          <p class="m-0 text-white">Copyright &copy; Hakim Livs 2021</p>
         </div>
         <div class="col-lg-4 right">
            <div class="m-0 text-white" id="kontaktUppgifter">
@@ -74,8 +71,9 @@
     </div>
     <!-- /.container -->
   </footer>
-    <script src="orderbekraftelse.js"></script>
-    <script src="sidofot-uppgifter.js" async></script>
+    <script src="scripts/sidofot-uppgifter.js" async></script>
+    <script src="scripts/orderbekraftelse.js"></script>
+
 </body>
 
 </html>

@@ -1,11 +1,15 @@
 $(function(){
 
     let categoriesArray = [];
-    let productsArray = []; 
+    let productsArray = [];
+    let cartArray = [];
+    let currentProducts = [];
+    let filtered = false;
     
     loadProducts();
     loadCategories();
     displayCart();
+
 
     /**
      * Receives an event from the eventListener and
@@ -36,6 +40,11 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -61,6 +70,11 @@ $(function(){
         document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -74,7 +88,9 @@ $(function(){
         const element = event.target;
         const productId = element.getAttribute("data-id");
         const cart = JSON.parse(localStorage.getItem("cart"));
-        
+        const productContainer = document.getElementById("product-content");
+        let products = productContainer.querySelectorAll(".card");
+
         console.log("removeing from cart id " + productId);
 
 
@@ -89,6 +105,11 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -107,7 +128,7 @@ $(function(){
         let value = element.value;
         console.log("updating number from inputfield. product:" + productId);
 
-        if (value.includes(".")) {
+        if (value.includes(".") || value.includes(",") || value.includes("+") || value.includes("-")) {
             alert("Felaktig inmatning");
             return;
         }
@@ -127,6 +148,11 @@ $(function(){
 
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     }
 
     /**
@@ -173,9 +199,18 @@ $(function(){
      * @returns the HTML code for a product card
      */
     function displayProductsInCard(product) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        let inCart;
+        if (cart != null) {
+            for (let productInCart of cart) {
+                if (productInCart.id == product.id) {
+                    inCart = productInCart;
+                }
+            }
+        }
         let card = document.createElement("div");
-        let productPrice = product.price + " Kr";
-        productPrice = productPrice.replace(".", ",");
+        let productPrice = product.price.toFixed(2) + " kr";
+        productPrice = productPrice.replace(".", ":");
         card.className = "product-card";
         card.innerHTML = `<div class="product-img"><img src="${product.image}" alt="${product.title} "> </div>`;
         
@@ -205,20 +240,17 @@ $(function(){
         })
 
         let quantityInput = document.createElement("input");
-        quantityInput.type = "number";
-        quantityInput.value = "1";
+        quantityInput.type = "text";
+        if (inCart) {
+            quantityInput.value = inCart.quantity;
+        } else {
+            quantityInput.value = "1";
+        }
         quantityInput.min = "1";
         quantityInput.max = "99";
         quantityInput.pattern = "[0-9]";
-        quantityInput.onkeyup = function() {
-            if(this.value > 99) {
-                alert("Felaktig inmatning");
-                this.value = 99;
-            } else if(this.value < 1) {
-                alert("Felaktig inmatning");
-                this.value = 1;
-            }
-        };
+        quantityInput.setAttribute("data-id", `${product.id}`);   
+        quantityInput.classList.add("card-input");
 
         let plusButton = document.createElement("button");
         plusButton.classList.add("card-plus-item");
@@ -226,11 +258,6 @@ $(function(){
         plusButton.classList.add("btn-primary");
         plusButton.setAttribute("data-id",`${product.id}`);
         plusButton.textContent = "+";
-        plusButton.addEventListener("click", function(e) {
-            if (quantityInput.value < 99) {
-                quantityInput.value++;
-            }
-        })
 
         let button = document.createElement("button");
         button.classList.add("add-to-cart");
@@ -240,8 +267,24 @@ $(function(){
         button.textContent = "Köp";
         
         button.addEventListener("click", function (e) {
-            addToCart(product, quantityInput.value);
+            addToCart(product, "1");
+            $(this).toggle();
+            $(minusButton).css("display", "block");
+            $(quantityInput).css("display", "block");
+            $(plusButton).css("display", "block");
         });
+
+        if (inCart) {
+            $(button).toggle();
+            $(minusButton).css("display", "block");
+            $(quantityInput).css("display", "block");
+            $(plusButton).css("display", "block");
+        }
+
+        $(minusButton).click(decreaseCartItem);
+        $(quantityInput).keyup(correctInputCartTotals)
+        $(quantityInput).change(updateCartNumber);
+        $(plusButton).click(increaseCartItem);
 
         inputGroup.appendChild(minusButton);
         inputGroup.appendChild(quantityInput);
@@ -307,8 +350,22 @@ $(function(){
         document.getElementById("finish-checkout-btn").removeAttribute("disabled");
         localStorage.setItem("cart",JSON.stringify(cart));
         displayCart();
+        if (filtered) {
+            displayAllProducts(currentProducts);
+        } else {
+            displayAllProducts(productsArray);
+        }
     
     }
+
+    function emptyCart(event){
+        localStorage.clear();
+        cartArray = [];
+        displayCart();
+        displayAllProducts(productsArray);
+    }
+
+     
 
     /**
      * Loops through the cart in localStorage and then
@@ -324,19 +381,20 @@ $(function(){
         let totalPriceForProduct = "";
         let productPrice = "";
         console.log("Displaycart function")
-        const cartArray = JSON.parse( localStorage.getItem("cart"));
+        cartArray = JSON.parse( localStorage.getItem("cart"));
         let output = "";
         
         if(cartArray != null){
             cartArray.forEach(product => {
             itemsTotal += product.quantity;
             priceTotal += product.price*product.quantity;
-            productPrice = product.price + " Kr";
-            productPrice = productPrice.replace(".", ",");
-            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " Kr";
-            totalPriceForProduct = totalPriceForProduct.replace(".", ",");
+            productPrice = product.price.toFixed(2) + " kr";
+            productPrice = productPrice.replace(".", ":");
+            totalPriceForProduct = (product.price * product.quantity).toFixed(2) + " kr";
+            totalPriceForProduct = totalPriceForProduct.replace(".", ":");
+            totalPriceForProduct = numberWithSpace(totalPriceForProduct);
                 output += `<tr class='cart-table'>
-                            <td>
+                            <td class="cart-title">
                                 ${product.title}
                             </td>
                             <td>
@@ -345,7 +403,7 @@ $(function(){
                             <td class='break'>
                                 <div class="input-group">
                                     <button class="minus-item btn input-group-addon btn-primary" data-id="${product.id}">-</button>
-                                    <input type="number" class="item-count form-control" data-id="${product.id}" value="${product.quantity}">
+                                    <input type="text" class="item-count form-control" data-id="${product.id}" value="${product.quantity}".toString()>
                                     <button class="plus-item btn input-group-addon btn-primary" data-id="${product.id}">+</button>
                                 </div>
                                 
@@ -360,16 +418,22 @@ $(function(){
             });
         }
         cartItems.innerText = itemsTotal;
-        cartSum.innerText = priceTotal.toFixed(2) + " Kr";
-        cartSum.innerText = cartSum.innerText.replace(".", ",");
+        cartSum.innerText = priceTotal.toFixed(2) + " kr";
+        cartSum.innerText = cartSum.innerText.replace(".", ":");
+        cartSum.innerText = numberWithSpace(cartSum.innerText);
         $('.show-cart').html(output);
         disableButton();
         //eventListeners för cart item knappar
         $(".minus-item").click(decreaseCartItem);
         $(".plus-item").click(increaseCartItem);
         $(".delete-item").click(removeCartItem);
+        $(".item-count").keyup(correctInputCartTotals);
         $(".item-count").change(updateCartNumber);
+        $(".btn-emptyCart").click(emptyCart);
+    }
 
+    function numberWithSpace(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
     /**
@@ -403,6 +467,8 @@ $(function(){
         $('.nav-category').html(output);
 
         output = `<ul class='navbar-nav ml-auto nav-dropdown'>
+                    <li><div class="list-group-log-in" data-toggle="modal" data-target="#.login-register-form" disabled>Logga in</div></li>
+                    <li class="navbar-category-header"><span class="navbar-span">Kategorier:</span></li>
                     <li><div class="list-group-item navbar-button" data-toggle="collapse" data-target="#navbarResponsive">Alla Produkter</div></li>`;
         categories.forEach(category => {
 
@@ -429,46 +495,95 @@ $(function(){
 
     function filterProductsByCategory(event){
         let selectedCategoryName = event.target.innerHTML;
+        currentProducts = [];
 
         if(selectedCategoryName == "Alla Produkter"){
+            filtered = false;
             displayAllProducts(productsArray);
             return;
         }
 
-        let filteredProducts = [];
         productsArray.forEach(product => {
             if(product.category == selectedCategoryName){
-                filteredProducts.push(product);
+                currentProducts.push(product);
             }
         });
-        displayAllProducts(filteredProducts);
+        filtered = true;
+        displayAllProducts(currentProducts);
+        document.getElementById("search-input").value = "";
     }
 
     function filterProductsBySearch(event) {
-        let search = document.getElementById("search-input").value.toLowerCase().trim();
 
-        if (search === '') {
+        let search = document.getElementById("search-input").value.toLowerCase().trim();
+        var fullText = '';
+        fullText += "Din sökning med " + '"' + search + '"' + " gav ";
+        const regex = /[a-zA-ZåäöÅÄÖ0-9 ]/;
+    
+
+        currentProducts = [];
+
+
+        for(i1 = 0; i1 < search.length; i1++)
+        {
+            var i2 = i1 + 1;
+            const foundChar = search.substring(i1, i2);
+            const regexChar = foundChar.match(regex);
+
+            if(foundChar != regexChar)
+            {
+                alert("Du har matat in ogiltiga tecken, bara bokstäver, siffror, och mellanslag är tillåtna.");
+                searchResultsMessage('', '');
+                return;
+            }
+        }
+
+
+        if (search == '') {
+            searchResultsMessage('', '');
             displayAllProducts(productsArray);
+            filtered = false;
             return;
         }
         
-        let filteredProducts = [];
+        productsArray.forEach(product => {
+            if (product.title.toLowerCase().includes(search)) {
+                currentProducts.push(product);
+            }
+        });
+
+
+        const productsTotal = currentProducts.length;
+
+
         categoriesArray.forEach(category => {
-            if (search === category.name.toLowerCase()) {
+            if (category.name.toLowerCase().includes(search)) {
                 productsArray.forEach(product => {
                     if(product.category == category.name){
-                        filteredProducts.push(product);
+                        currentProducts.push(product);
                     }
                 });
             }
         })
 
-        productsArray.forEach(product => {
-            if (product.title.toLowerCase().includes(search)) {
-                filteredProducts.push(product);
-            }
-        });
-        displayAllProducts(filteredProducts);
+
+        const resultsTotal = currentProducts.length;
+
+        if(resultsTotal == 0 && productsTotal == 0)
+        {
+            fullText += "inga träffar.";
+        }
+        else
+        {
+            fullText += resultsTotal + " träffar."
+        }
+
+
+        filtered = true;
+
+
+        searchResultsMessage(search, fullText);
+        displayAllProducts(currentProducts);
     }
 
     /**
@@ -499,11 +614,13 @@ $(function(){
 function initFocus() {
     let cards = document.getElementsByClassName("card");
     
+    
     if (!productsArray.length == 0) {
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener("click", focusOnclick);
         }
     } else {
+        
         setTimeout(initFocus, 100); // kör igen efter 100 ms om det behövs
     } 
 }
@@ -530,22 +647,22 @@ function focusOnclick(event) {
             if (productsArray[i].id == productId) {
                 description = productsArray[i].description
                 image = productsArray[i].image
-                price = productsArray[i].price +  " Kr"
+                price = productsArray[i].price.toFixed(2) +  " kr/st"
                 productprice = productsArray[i].productprice
                 category = productsArray[i].category
-                pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " Kr"
-                weight = productsArray[i].weight + "g"
+                pricecomparison = productsArray[i].pricecomparison.toFixed(2) + " kr/kg"
+                weight = productsArray[i].weight + " g"
                 stockInHand = productsArray[i].stockInHand + " st"
                 if (parseFloat(weight) > 1000) {
                     weight = parseFloat(weight) / 1000;
-                    weight += "kg";
+                    weight += " kg";
                 }
                 product = productsArray[i];
             }
         }
-        price = price.replace(".", ",");
-        pricecomparison = pricecomparison.replace(".", ",");
-        weight = weight.replace(".", ",");
+        price = price.replace(".", ":");
+        pricecomparison = pricecomparison.replace(".", ":");
+        weight = weight.replace(".", ",")
         let exampleModal = getFocusModal();
       
         // Initierar modalen om det behövs
@@ -554,58 +671,57 @@ function focusOnclick(event) {
       
         let html =`
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
+                <h4 class="modal-title" id="exampleModalLabel">${title}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <div class="modal-body">
-            <div class="product-img rounded" id="focusImg"><img src="${image}" alt="${title} "> </div>
-            <div class="product-description text-justify"><p>${description}</p></div>
-            <hr>
-            <div class="product-description"><h6><b>Pris:</b> ${price}</h6></div>
-            <div class="product-description"><h6><b>Vikt:</b> ${weight}</h6></div>
-            <div class="product-description"><h6><b>Jämförelsepris:</b> ${pricecomparison}</h6></div>
-            <div class="product-description"><h6><b>I lager:</b>${stockInHand}</h6></div>
-    
-            <div class="product-description input-group d-flex justify-content-center flex-nowrap">
-                <button id="focus-minus" class="card-minus-item btn btn-primary" data-id="${productId}">-</button>
-                <input id="focus-input" type="number" min="1" max ="99" pattern="[0-9]">
-                <button id="focus-plus" class="card-plus-item btn btn-primary" data-id="${productId}">+</button>
+
+            <div class="modal-body container">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="product-img" id="focusImg">
+                        <img src="${image}" class="focus-img" alt="${title}"> 
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col">
+                        <div class="product-description">
+                            <p class="prodDesc">${description}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col col-auto">
+                        <div class="product-description">
+                            <h6><b>Pris: </b>${price}</h6>
+                        </div>
+                        <div class="product-description">
+                            <h6><b>Vikt: </b>${weight}</h6>
+                        </div>
+                        <div class="product-description">
+                            <h6><b>Jämförelsepris: </b>${pricecomparison}</h6>
+                        </div>
+                        <div class="product-description">
+                            <h6><b>I lager: </b>${stockInHand}</h6>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+            </div>
+
             <div class="modal-footer">
-              <button id="focus-buy" class="add-to-cart btn btn-primary" data-id="${productId}">Köp</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
-            </div>`
+              <button id="focus-buy" class="add-to-cart btn btn-sm btn-primary" data-dismiss="modal" data-id="${productId}">Köp</button>
+              <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Stäng</button>
+            </div>
+            `
       
         setFocusModalContent(html);
-        let minusButton = document.getElementById("focus-minus");
-        let input = document.getElementById("focus-input");
-        let plusButton = document.getElementById("focus-plus");
-
-        input.value = "1";
-
-        minusButton.addEventListener("click", function(e) {
-            if (input.value > 1) {
-                input.value--;
-            }
-        })
-
-        input.onkeyup = function() {
-            if(this.value > 99) {
-                alert("Felaktig inmatning");
-                this.value = 99;
-            } else if(this.value < 1) {
-                alert("Felaktig inmatning");
-                this.value = 1;
-            }
-        };
-
-        plusButton.addEventListener("click", function(e) {
-            if (input.value < 99) {
-                input.value++;
-            }
-        })
 
         document.getElementById("focus-buy").addEventListener("click", function (e) {
-            addToCart(product, input.value);
+            addToCart(product, "1");
+            $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         });
         // visar modalen
         jQuery(exampleModal).modal('show');
@@ -633,15 +749,85 @@ function focusOnclick(event) {
     modal.setAttribute('aria-labelledby', 'exampleModalLabel');
     modal.setAttribute('aria-hidden', 'true');
     modal.innerHTML =
-          '<div class="modal-dialog modal-dialog-centered" role="document">' +
+
+
+          '<div class="modal-dialog modal-lg modal-dialog-centered" role="document">' +
             '<div class="modal-content"></div>' +
           '</div>';
     document.body.appendChild(modal);
     return modal;
   }
 
+
+    function correctInputCartTotals(event)
+    {
+        const element = event.target;
+        var valText = element.value.toString();
+        var valTextNew = '';
+        let valueNew;
+
+        for(var i1 = 0; i1 < valText.length; i1++)
+        {
+            var i2 = i1 + 1;
+            const valChar = valText.substring(i1, i2);
+
+            if(valChar == '0' || valChar == '1' || valChar == '2' || valChar == '3' || valChar == '4' || valChar == '5' || valChar == '6' || valChar == '7' || valChar == '8' || valChar == '9')
+            {
+                valTextNew += valChar;
+                
+            }
+
+        }
+
+        if(valTextNew.length > 2)
+        {
+            valTextNew = valTextNew.substr(0, 2);
+        }
+
+        if(valTextNew != '' || valTextNew != '0')
+        {
+            valueNew = valTextNew;
+            element.value = valueNew;
+        }
+    }
+
+
+    function searchResultsMessage(textSearch, textMessage)
+    {
+        const userMessage = document.getElementById("search-result-to-user");
+        const messageLayoutPath = document.getElementById("change-message");
+        const currentMessageStyle = messageLayoutPath.innerHTML;
+        const existingMessageStyle = "<link href=" + '"' + "css/shop-homepage-searchresults.css" + '"' + " rel=" + '"' + "stylesheet" + '"' + ">";
+        const noMessageStyle = "";
+        let messageLayoutValues;
+        
+       
+
+        if(textSearch == '')
+        {
+            if(currentMessageStyle != noMessageStyle)
+            {
+                messageLayoutValues = "";
+                messageLayoutPath.innerHTML = messageLayoutValues;
+
+            }
+
+            userMessage.innerHTML = '';
+    
+        }
+        else
+        {
+            if(currentMessageStyle != existingMessageStyle)
+            {
+                messageLayoutValues = existingMessageStyle;
+                messageLayoutPath.innerHTML = messageLayoutValues;
+
+            }
+
+            userMessage.innerHTML = textMessage;
+           
+        }
+
+    }
+
 })
-
-
-
-

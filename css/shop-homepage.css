@@ -12,7 +12,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+.card-input{
   -moz-appearance: textfield;
   width: 45%;
 }
@@ -22,9 +22,16 @@ input[type=number] {
   height: 64px;
 }
 
+#small-logo {
+  display: none;
+  width: 64px;
+  height: 64px;
+}
+
 .nav-category{
   display: none;
   padding-top:25px;
+  background-color: rgba(245, 241, 233, 0.856);
 }
 
 .category-hover:hover {
@@ -62,14 +69,20 @@ form.example button {
 }
 
 #titleinfo {
-  color: aqua;
+  color: rgb(69, 83, 83);
   text-align: center;
 }
 
 #textinfo {
-  font-size: 22px;
+  font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  color: rgb(69, 83, 83);
+}
+
+#history-field {
+  padding-left: 5em;
+  padding-right: 5em;
 }
 
 
@@ -130,6 +143,10 @@ td {
   white-space: nowrap;
 }
 
+.cart-title {
+  white-space: normal;
+}
+
 .cart-item-sum{
   text-align: end;
 }
@@ -150,9 +167,16 @@ td {
   margin: 10px 5px 10px 5px;
   text-align: center;
   font-family: arial;
-  background-color: rgb(255, 255, 255);
+ 
   transition: box-shadow .3s;
+  background-color: rgba(255, 255, 255, 0.856);
 }
+
+.bottom-div {
+  position: absolute;
+  bottom: 0;
+}
+
 
 .card:hover {
   box-shadow: 0 0 11px rgba(100,100,100,1); 
@@ -180,6 +204,7 @@ cursor: pointer;
     padding-bottom: 10px;
     height: 50px;
     line-height: 1em;
+    background-color: rgba(255, 255, 255, 0.856);
 }
 .card h4:hover {
   cursor: pointer;
@@ -187,6 +212,7 @@ cursor: pointer;
   
 .card-body {
   padding: 0 10px 10px 10px;
+  background-color: rgba(255, 255, 255, 0.856);
 }
 
 .card button {
@@ -198,9 +224,14 @@ cursor: pointer;
   font-size: 18px;
 }
 
+
 .card .input-group {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.card .input-group > * {
+  display: none;
 }
 
 .card .add-to-cart {
@@ -227,6 +258,123 @@ footer {
   margin-left: 5%;
 }
 
+.cart-button {
+  background-image: url("/images/cart.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 33px 28px;
+  width: 45px;
+  height: 40px;
+  text-transform: capitalize; 
+}
+
+.contact-info {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.copyright-info {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+body {
+  background-color: rgba(245, 241, 233, 0.856);
+}
+
+.list-group-item{
+  background-color: rgba(245, 241, 233, 0.856);
+}
+
+
+
+.list-group-cart{
+  position: relative;
+  display: none;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(245, 241, 233, 0.856);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group-log-in{
+  position: relative;
+  display: none;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(245, 241, 233, 0.856);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.navbar-category-header {
+  margin: 0.5rem;
+}
+
+.navbar-span {
+  font-size: 20px;
+  color: #f1f1f1;
+}
+
+.modal-header .close {
+  margin: -1rem -0.5rem -1rem auto;
+}
+
+.modal-title {
+  margin-left: 1rem;
+}
+
+.btn-emptyCart {
+  max-width: 100%;
+  margin-top: 1%;
+}
+
+.prodDesc {
+  overflow: auto;
+  height: 6rem;
+}
+
+.focus-img {
+  width: 100%;
+}
+
+.cart-button .badge {
+  position: relative;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  top: -50%;
+  right: -80%;
+}
+
+.search-container {
+  display: inline-flex;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 38px;
+}
+
+.searchIcon {
+  padding: 0.5rem;
+  
+}
+
+.searchBox {
+  border: 0;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  flex: 1;
+}
+
+.searchbutton {
+  background: #538AC5;
+  border: 0;
+  color: white;
+  border-radius: 0;
+}
+
+.symbol {
+  margin-top: -800px;
+}
+
 /*Övergång till dropdown i headern*/
 @media (min-width: 992px) {
   .nav-category{
@@ -249,15 +397,124 @@ footer {
   .right {
     order: 2;
   }  
+  td {
+    white-space: normal;
+  }
+  #logo {
+    display: none;
+  }
+  #small-logo {
+    display: block;
+  }  
+  #small-logo-a {
+    margin: auto;
+  }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 425px) {
+  .cart-button {
+    width: 42px;
+    height: 38px;
+  }
+  #history-field {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+
+
+@media screen and (max-width: 375px) {
+  .search-container {
+    flex: 0%;
+    height: 30px;
+  }
+}
+
+/*Minimal mobilscreen = produktkort har tack vare marginleft, mer centrering */
+@media screen and (max-width: 360px) {
+  #product-content {
+    margin-left: 6px;
+  }
+  #product-content {
+    margin-top: 14.5px;
+  }
+
+  #small-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-container {
+    width: 150px;
+  }
+
+  #search-input {
+    width: 100px;
+  }
+}
+
+/*Mobil screen = produktkort har tack vare marginleft, mer centrering */
+@media screen and (min-width: 365px) {
+  #product-content {
+    margin-top: 14.5px;
+  }
+  #product-content {
+    margin-left: 12px;
+  }
+}
+
+@media screen and (max-width: 800px) {
   tr.cart-table {
     display: block;
   }
+
+  .table td {
+    border-top: none;
+  }
+
   td.break {
-    width: 70%;
+    width: 75%;
     float: left;
     text-align: left;
   }
+
+  .cart-item-sum {
+    border-bottom: 1px solid #dee2e6;
+  }
 }
+
+@media screen and (max-width: 760px) {
+
+  .log-in-button {
+    display: none;
+  }
+
+  .cart-button {
+    background-size: 33px 28px;
+    width:35px;
+    height: 30px;
+  }
+
+  .cart-button .badge {
+    top: -80% !important;
+    right: -80% !important;
+  }
+
+  .search-container {
+    width: 170px;
+  }
+  #search-input {
+    width: 120px;
+  }
+
+  .list-group-cart, .list-group-log-in {
+    display: block;
+  }
+
+  .focus-img {
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+/*Skriv inte ny css-kod här, skriv det över alla @media screens annars blir det risk för förstörd responsivitet*/
